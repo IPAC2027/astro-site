@@ -1,0 +1,158 @@
+/* Common page styles for IPAC'27 website */
+
+/* Content containers */
+.content-container {
+  @apply prose prose-lg max-w-none;
+}
+
+/* Page headers */
+.page-title {
+  @apply text-3xl font-heading font-bold text-gray-900 mb-6;
+}
+
+.section-title {
+  @apply text-2xl font-semibold text-gray-900 mb-6;
+}
+
+.subsection-title {
+  @apply text-xl font-semibold text-gray-900 mb-4;
+}
+
+/* Alert/notification boxes */
+.alert-box {
+  @apply rounded-lg p-6 mb-8;
+}
+
+.alert-info {
+  @apply bg-primary-50 border border-primary-200;
+}
+
+.alert-warning {
+  @apply bg-amber-50 border border-amber-200;
+}
+
+.alert-success {
+  @apply bg-green-50 border border-green-200;
+}
+
+.alert-error {
+  @apply bg-red-50 border border-red-200;
+}
+
+/* Alert icons */
+.alert-icon {
+  @apply w-6 h-6 mr-3;
+}
+
+.alert-icon-info {
+  @apply text-primary-600;
+}
+
+.alert-icon-warning {
+  @apply text-amber-600;
+}
+
+.alert-icon-success {
+  @apply text-green-600;
+}
+
+.alert-icon-error {
+  @apply text-red-600;
+}
+
+/* Cards and content blocks */
+.content-card {
+  @apply bg-white rounded-lg shadow-sm border p-6;
+}
+
+.content-card-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6 mb-8;
+}
+
+.content-card-grid-3 {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6 mb-8;
+}
+
+/* Highlighted content areas */
+.highlight-box {
+  @apply bg-gray-50 rounded-lg p-6 mb-8;
+}
+
+.highlight-box-primary {
+  @apply bg-primary-50 rounded-lg p-6 mb-8;
+}
+
+.highlight-box-accent {
+  @apply bg-accent-50 rounded-lg p-6 mb-8;
+}
+
+/* Lists */
+.content-list {
+  @apply space-y-2 text-gray-600;
+}
+
+.content-list-checkmark li::before {
+  content: "✓ ";
+  @apply text-green-500 font-bold mr-2;
+}
+
+.content-list-bullet li::before {
+  content: "• ";
+  @apply text-gray-400 font-bold mr-2;
+}
+
+/* Buttons and CTAs */
+.btn-primary {
+  @apply bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors;
+}
+
+.btn-secondary {
+  @apply border border-primary-600 text-primary-600 hover:bg-primary-50 px-6 py-3 rounded-lg font-semibold transition-colors;
+}
+
+.btn-accent {
+  @apply bg-accent-600 hover:bg-accent-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors;
+}
+
+/* Text utilities */
+.text-lead {
+  @apply text-lg text-gray-600 mb-6;
+}
+
+.text-body {
+  @apply text-gray-600 mb-6;
+}
+
+.text-small {
+  @apply text-sm text-gray-600;
+}
+
+/* Icon containers */
+.icon-container {
+  @apply w-10 h-10 rounded-lg flex items-center justify-center;
+}
+
+.icon-container-primary {
+  @apply bg-primary-100 text-primary-600;
+}
+
+.icon-container-accent {
+  @apply bg-accent-100 text-accent-600;
+}
+
+.icon-container-large {
+  @apply w-12 h-12 rounded-lg flex items-center justify-center;
+}
+
+/* Status indicators */
+.status-coming-soon {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800;
+}
+
+.status-available {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800;
+}
+
+.status-closed {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800;
+}

@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Contact - IPAC27">
+  <Navigation />
+  
+  <!-- Page Header -->
+  <section class="bg-gradient-to-r from-primary-800 to-accent-800 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">Contact Us</h1>
+      <p class="text-xl text-gray-200 max-w-3xl">
+        Get in touch with the IPAC27 organizing committee. We're here to help with your questions and inquiries.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Information -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div>
+          <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6">Send us a Message</h2>
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  required
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                required
+              />
+            </div>
+            
+            <div>
+              <label for="organization" class="block text-sm font-medium text-gray-700 mb-2">Organization</label>
+              <input
+                type="text"
+                id="organization"
+                name="organization"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              />
+            </div>
+            
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+              <select
+                id="subject"
+                name="subject"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                required
+              >
+                <option value="">Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="registration">Registration Questions</option>
+                <option value="abstracts">Abstract Submission</option>
+                <option value="sponsors">Sponsorship Opportunities</option>
+                <option value="exhibition">Exhibition Information</option>
+                <option value="travel">Travel and Accommodation</option>
+                <option value="technical">Technical Issues</option>
+                <option value="media">Media and Press</option>
+              </select>
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                placeholder="Please provide details about your inquiry..."
+                required
+              ></textarea>
+            </div>
+            
+            <button
+              type="submit"
+              class="w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+          <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6">Get in Touch</h2>
+          
+          <div class="space-y-8">
+            <!-- General Contact -->
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">General Information</h3>
+                <p class="text-gray-600 mt-1">info@ipac27.org</p>
+                <p class="text-gray-500 text-sm mt-1">For general inquiries and conference information</p>
+              </div>
+            </div>
+
+            <!-- Registration Contact -->
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">Registration</h3>
+                <p class="text-gray-600 mt-1">registration@ipac27.org</p>
+                <p class="text-gray-500 text-sm mt-1">Questions about registration and fees</p>
+              </div>
+            </div>
+
+            <!-- Scientific Program -->
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 8.172V5L8 4z"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">Scientific Program</h3>
+                <p class="text-gray-600 mt-1">program@ipac27.org</p>
+                <p class="text-gray-500 text-sm mt-1">Abstract submissions and scientific program</p>
+              </div>
+            </div>
+
+            <!-- Exhibition & Sponsorship -->
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6m8 0H8"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">Exhibition & Sponsorship</h3>
+                <p class="text-gray-600 mt-1">sponsors@ipac27.org</p>
+                <p class="text-gray-500 text-sm mt-1">Sponsorship opportunities and exhibition</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Media -->
+          <div class="mt-12 pt-8 border-t border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Follow Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-primary-600 transition-colors">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-primary-600 transition-colors">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Office Hours -->
+          <div class="mt-8 bg-gray-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Office Hours</h3>
+            <div class="space-y-2 text-gray-600">
+              <div class="flex justify-between">
+                <span>Monday - Friday:</span>
+                <span>9:00 AM - 5:00 PM</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Time Zone:</span>
+                <span>Eastern Time (ET)</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-4">
+              We aim to respond to all inquiries within 24-48 hours during business days.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-heading font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+      
+      <div class="space-y-8">
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">When will registration open?</h3>
+          <p class="text-gray-600">Registration for IPAC27 is expected to open in early 2026. We will announce the exact date through our mailing list and website updates.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">How can I submit an abstract?</h3>
+          <p class="text-gray-600">Abstract submission guidelines and deadlines will be published closer to the conference date. Please subscribe to our updates to be notified when submissions open.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Are there student grants available?</h3>
+          <p class="text-gray-600">Yes, we will offer student grants to help young scientists attend IPAC27. Details about eligibility and application procedures will be announced with registration information.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg p-6 shadow-md">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Where will IPAC27 be held?</h3>
+          <p class="text-gray-600">IPAC27 will be held at Huntington Place in Detroit, Michigan from May 23-28, 2027. Detailed venue information will be announced soon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

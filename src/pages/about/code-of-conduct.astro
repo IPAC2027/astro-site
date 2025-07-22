@@ -1,0 +1,22 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { getEntry } from 'astro:content';
+
+// Get content from the markdown file using Astro content collections
+const entry = await getEntry('about', 'code-of-conduct');
+if (!entry) {
+  throw new Error('Page content not found');
+}
+
+const { Content } = await entry.render();
+---
+
+<ContentLayout 
+  title={entry.data.title} 
+  description={entry.data.description}
+  bannerText={entry.data.bannerText || "Code of Conduct"}
+>
+  <div class="prose prose-lg max-w-none">
+    <Content />
+  </div>
+</ContentLayout>

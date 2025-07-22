@@ -1,0 +1,152 @@
+---
+import { navigationConfig } from '../utils/navigation-config.ts';
+
+const navigation = [
+  { name: 'Home', href: '/' },
+  ...navigationConfig.map((section: any) => ({
+    name: section.name,
+    submenu: section.submenu
+  })),
+  { name: 'Contact', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-24">
+      <div class="flex items-center">
+        <a href="/" class="flex-shrink-0 flex items-center">
+          <img class="h-12 w-auto" src="/ipac27.png" alt="IPAC27 Logo" />
+        </a>
+      </div>
+      
+      <!-- Desktop Navigation -->
+            <!-- Desktop Navigation -->
+      <div class="hidden md:flex md:items-center md:space-x-1">
+        {navigation.map((item: any) => (
+          <div class="relative group">
+            {item.href ? (
+              <a
+                href={item.href}
+                class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  currentPath === item.href || (item.submenu && item.submenu.some((sub: any) => currentPath === sub.href))
+                    ? 'bg-primary-100 text-primary-700'
+                    : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
+                }`}
+              >
+                {item.name}
+              </a>
+            ) : (
+              <button class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                item.submenu && item.submenu.some((sub: any) => currentPath === sub.href)
+                  ? 'bg-primary-100 text-primary-700'
+                  : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
+              }`}>
+                {item.name}
+                {item.submenu && (
+                  <svg class="ml-1 h-4 w-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                )}
+              </button>
+            )}
+            
+            {item.submenu && (
+              <div class="absolute left-0 top-full mt-1 w-48 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                {item.submenu.map((subitem: any) => (
+                  <a
+                    href={subitem.href}
+                    class={`block px-4 py-2 text-sm hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors ${
+                      currentPath === subitem.href
+                        ? 'text-primary-600 bg-primary-50'
+                        : 'text-gray-700'
+                    }`}
+                  >
+                    {subitem.name}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+        <button
+          type="button"
+          class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu hidden md:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+      {navigation.map((item: any) => (
+        <div>
+          {item.href ? (
+            <a
+              href={item.href}
+              class={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+                currentPath === item.href
+                  ? 'text-primary-600 bg-primary-50'
+                  : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
+              }`}
+            >
+              {item.name}
+            </a>
+          ) : (
+            <div class={`block px-3 py-2 rounded-md text-base font-medium ${
+              item.submenu && item.submenu.some((sub: any) => currentPath === sub.href)
+                ? 'text-primary-600 bg-primary-50'
+                : 'text-gray-700'
+            }`}>
+              {item.name}
+            </div>
+          )}
+          {item.submenu && (
+            <div class="ml-4 mt-1 space-y-1">
+              {item.submenu.map((subitem: any) => (
+                <a
+                  href={subitem.href}
+                  class={`block px-3 py-2 text-sm rounded-md transition-colors duration-200 ${
+                    currentPath === subitem.href
+                      ? 'text-primary-600 bg-primary-50'
+                      : 'text-gray-600 hover:text-primary-600 hover:bg-primary-50'
+                  }`}
+                >
+                  {subitem.name}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>

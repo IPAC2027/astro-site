@@ -1,0 +1,264 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  showBackToParent?: boolean;
+  parentLink?: string;
+  parentName?: string;
+  bannerTitle?: string;
+  bannerDescription?: string;
+  bannerText?: string;
+}
+
+interface SectionItem {
+  name: string;
+  href: string;
+}
+
+interface SectionConfig {
+  title: string;
+  items: SectionItem[];
+  bannerTitle?: string;
+  bannerDescription?: string;
+}
+
+const { 
+  title, 
+  description, 
+  showBackToParent = false, 
+  parentLink, 
+  parentName,
+  bannerTitle,
+  bannerDescription,
+  bannerText
+} = Astro.props;
+
+// Get section from URL
+const currentPath = Astro.url.pathname;
+const pathParts = currentPath.split('/').filter(Boolean);
+const sectionKey = pathParts[0];
+
+// Import centralized navigation configuration
+import { navigationConfig, getSectionItems } from '../utils/navigation-config.ts';
+
+// Create sections config for backward compatibility with banner functionality
+const sections: Record<string, SectionConfig> = {
+  'about': {
+    title: 'About',
+    bannerTitle: 'About IPAC\'27',
+    bannerDescription: '',
+    items: getSectionItems('about')
+  },
+  'program': {
+    title: 'Program',
+    bannerTitle: 'IPAC\'27 Programs',
+    bannerDescription: '',
+    items: getSectionItems('program')
+  },
+  'registration': {
+    title: 'Registration',
+    bannerTitle: 'Registration',
+    bannerDescription: '',
+    items: getSectionItems('registration')
+  },
+  'authors': {
+    title: 'Authors',
+    bannerTitle: 'For Authors',
+    bannerDescription: '',
+    items: getSectionItems('authors')
+  },
+  'exhibitors': {
+    title: 'Exhibitors',
+    bannerTitle: 'Exhibition & Sponsorship',
+    bannerDescription: '',
+    items: getSectionItems('exhibitors')
+  },
+  'travel': {
+    title: 'Travel',
+    bannerTitle: 'Travel & Accommodation',
+    bannerDescription: '',
+    items: getSectionItems('travel')
+  }
+};
+
+const currentSection = sections[sectionKey];
+
+// Determine banner content - use props first, then section defaults
+const finalBannerTitle = bannerTitle || currentSection?.bannerTitle || title;
+const finalBannerDescription = bannerDescription || currentSection?.bannerDescription || description;
+
+import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title={`${title} - IPAC'27`} description={description}>
+  <Navigation />
+  
+  <!-- Page Header Banner -->
+  <section class="bg-gradient-to-r from-primary-800 to-accent-800 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-end">
+        <div class="flex-1">
+          <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">{finalBannerTitle}</h1>
+          {finalBannerDescription && (
+            <p class="text-xl text-gray-200 max-w-3xl">
+              {finalBannerDescription}
+            </p>
+          )}
+        </div>
+        {bannerText && (
+          <div class="flex-shrink-0 ml-8 mr-8">
+            <p class="text-2xl md:text-3xl font-semibold text-right text-white/90">
+              {bannerText}
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+  
+  <main class="flex-grow bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex gap-8">
+        <!-- Sidebar Navigation -->
+        <div class="w-64 flex-shrink-0">
+          <div class="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
+            {showBackToParent && parentLink && parentName && (
+              <div class="mb-4">
+                <a href={parentLink} class="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center">
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                  Back to {parentName}
+                </a>
+              </div>
+            )}
+            
+            {currentSection && (
+              <>
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">{currentSection.title}</h3>
+                <nav class="space-y-1">
+                  {currentSection.items.map(item => (
+                    <a 
+                      href={item.href}
+                      class={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        currentPath === item.href 
+                          ? 'bg-primary-100 text-primary-700' 
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </nav>
+              </>
+            )}
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 min-w-0">
+          <div class="bg-white rounded-lg shadow-sm border">
+            <!-- Page Header -->
+            <div class="border-b border-gray-200 px-8 py-6">
+              <h1 class="text-3xl font-bold text-gray-900">{title}</h1>
+              {description && (
+                <p class="text-lg text-gray-600 mt-2">{description}</p>
+              )}
+            </div>
+
+            <!-- Page Content -->
+            <div class="px-8 py-6">
+              <div class="prose prose-lg max-w-none">
+                <slot />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Custom content styles that make content easier to manage */
+  :global(.content-section) {
+    @apply mb-8;
+  }
+
+  :global(.content-title) {
+    @apply text-2xl font-semibold text-gray-900 mb-4;
+  }
+
+  :global(.content-subtitle) {
+    @apply text-xl font-semibold text-gray-900 mb-3;
+  }
+
+  :global(.content-text) {
+    @apply text-gray-600 mb-4 leading-relaxed;
+  }
+
+  :global(.content-list) {
+    @apply space-y-2 text-gray-600 mb-6;
+  }
+
+  :global(.content-list li) {
+    @apply relative pl-4;
+  }
+
+  :global(.content-list li::before) {
+    @apply absolute left-0 text-primary-600;
+    content: "•";
+  }
+
+  :global(.content-highlight) {
+    @apply bg-primary-50 border border-primary-200 rounded-lg p-6 mb-6;
+  }
+
+  :global(.content-warning) {
+    @apply bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6;
+  }
+
+  :global(.content-success) {
+    @apply bg-green-50 border border-green-200 rounded-lg p-6 mb-6;
+  }
+
+  :global(.content-card) {
+    @apply bg-gray-50 rounded-lg p-6 mb-6;
+  }
+
+  :global(.content-grid) {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 mb-8;
+  }
+
+  :global(.content-grid-3) {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6 mb-8;
+  }
+
+  :global(.btn-primary) {
+    @apply bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block;
+  }
+
+  :global(.btn-secondary) {
+    @apply border border-primary-600 text-primary-600 hover:bg-primary-50 px-6 py-3 rounded-lg font-semibold transition-colors inline-block;
+  }
+
+  :global(.status-badge) {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  :global(.status-coming-soon) {
+    @apply bg-amber-100 text-amber-800;
+  }
+
+  :global(.status-available) {
+    @apply bg-green-100 text-green-800;
+  }
+
+  :global(.status-closed) {
+    @apply bg-red-100 text-red-800;
+  }
+</style>

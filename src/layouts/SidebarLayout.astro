@@ -1,0 +1,105 @@
+---
+export interface Props {
+	title?: string;
+	description?: string;
+	sectionTitle: string;
+	sectionItems: Array<{name: string, href: string}>;
+	bannerText?: string;
+	bannerTitle?: string;
+	bannerDescription?: string;
+}
+
+const { 
+	title = "IPAC'27 - 18th International Particle Accelerator Conference", 
+	description = "IPAC'27 Conference - The premier international conference for particle accelerator science and technology.",
+	sectionTitle,
+	sectionItems,
+	bannerText,
+	bannerTitle,
+	bannerDescription
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body class="font-sans antialiased bg-gray-50">
+		<div class="min-h-screen flex flex-col">
+			<!-- Navigation will be inserted here -->
+			<slot name="navigation" />
+			
+			<!-- Page Header Banner -->
+			{(bannerTitle || bannerDescription || bannerText) && (
+				<section class="bg-gradient-to-r from-primary-800 to-accent-800 text-white py-16">
+					<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+						<div class="flex justify-between items-end">
+							<div class="flex-1">
+								{bannerTitle && (
+									<h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">{bannerTitle}</h1>
+								)}
+								{bannerDescription && (
+									<p class="text-xl text-gray-200 max-w-3xl">
+										{bannerDescription}
+									</p>
+								)}
+							</div>
+							{bannerText && (
+								<div class="flex-shrink-0 ml-8 mr-8">
+									<p class="text-2xl md:text-3xl font-semibold text-right text-white/90">
+										{bannerText}
+									</p>
+								</div>
+							)}
+						</div>
+					</div>
+				</section>
+			)}
+			
+			<!-- Main content area with sidebar -->
+			<div class="flex-1 flex">
+				<!-- Sidebar -->
+				<aside class="w-64 bg-white shadow-sm border-r border-gray-200">
+					<div class="p-6">
+						<h2 class="text-lg font-semibold text-gray-900 mb-4">{sectionTitle}</h2>
+						<nav class="space-y-1">
+							{sectionItems.map((item) => (
+								<a
+									href={item.href}
+									class={`block px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+										currentPath === item.href
+											? 'bg-primary-100 text-primary-700 border-r-2 border-primary-500'
+											: 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+									}`}
+								>
+									{item.name}
+								</a>
+							))}
+						</nav>
+					</div>
+				</aside>
+				
+				<!-- Main content -->
+				<main class="flex-1 overflow-y-auto">
+					<div class="max-w-4xl mx-auto p-6">
+						<slot />
+					</div>
+				</main>
+			</div>
+			
+			<!-- Footer will be inserted here -->
+			<slot name="footer" />
+		</div>
+	</body>
+</html>
