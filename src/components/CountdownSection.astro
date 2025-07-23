@@ -1,0 +1,75 @@
+---
+export interface CountdownProps {
+  title: string;
+  targetDate: string;
+}
+
+const { title, targetDate } = Astro.props;
+---
+
+<section class="py-6 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-heading font-bold text-gray-900">{title}</h2>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white rounded-lg shadow-md p-4 w-32">
+          <div class="flex items-center justify-center space-x-2">
+            <div class="text-2xl font-bold text-primary-600 font-mono w-10 text-center" id="days">--</div>
+            <div class="text-gray-600 text-sm">Days</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 w-32">
+          <div class="flex items-center justify-center space-x-2">
+            <div class="text-2xl font-bold text-primary-600 font-mono w-10 text-center" id="hours">--</div>
+            <div class="text-gray-600 text-sm">Hours</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 w-32">
+          <div class="flex items-center justify-center space-x-2">
+            <div class="text-2xl font-bold text-primary-600 font-mono w-10 text-center" id="minutes">--</div>
+            <div class="text-gray-600 text-sm">Minutes</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-4 w-32">
+          <div class="flex items-center justify-center space-x-2">
+            <div class="text-2xl font-bold text-primary-600 font-mono w-10 text-center" id="seconds">--</div>
+            <div class="text-gray-600 text-sm">Seconds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ targetDate }}>
+  // Countdown timer
+  function updateCountdown() {
+    const target = new Date(targetDate).getTime();
+    const now = new Date().getTime();
+    const difference = target - now;
+
+    if (difference > 0) {
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+
+      if (daysEl) daysEl.textContent = days.toString();
+      if (hoursEl) hoursEl.textContent = hours.toString();
+      if (minutesEl) minutesEl.textContent = minutes.toString();
+      if (secondsEl) secondsEl.textContent = seconds.toString();
+    }
+  }
+
+  // Update countdown every second
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>

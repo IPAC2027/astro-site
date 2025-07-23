@@ -2,244 +2,26 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import HeroSection from '../components/HeroSection.astro';
+import CountdownSection from '../components/CountdownSection.astro';
+import ImportantDatesAboutSection from '../components/ImportantDatesAboutSection.astro';
+import NewsSection from '../components/NewsSection.astro';
+import { homeContent } from '../data/homeContent.ts';
 ---
 
 <Layout title="IPAC27 - 18th International Particle Accelerator Conference">
   <Navigation />
   
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-br from-primary-900 via-primary-800 to-accent-900 text-white overflow-hidden">
-    <div class="absolute inset-0 bg-black opacity-20"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6">
-          IPAC<span class="text-accent-300">'27</span>
-        </h1>
-        <h2 class="text-xl md:text-2xl lg:text-3xl font-light mb-8">
-          18th International Particle Accelerator Conference
-        </h2>
-        
-        <!-- Conference Details -->
-        <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 md:p-8 mb-8 max-w-2xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
-            <div>
-              <div class="text-accent-300 text-3xl font-bold">May 23-28, 2027</div>
-              <div class="text-gray-200">Conference Dates</div>
-            </div>
-            <div>
-              <div class="text-accent-300 text-3xl font-bold">Detroit, MI</div>
-              <div class="text-gray-200">Huntington Place</div>
-            </div>
-          </div>
-        </div>
+  <HeroSection {...homeContent.hero} />
+  
+  <CountdownSection {...homeContent.countdown} />
 
-        <!-- Call to Action Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/registration" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
-            Register Now
-          </a>
-          <a href="/about" class="border-2 border-white text-white hover:bg-white hover:text-primary-900 px-8 py-3 rounded-lg font-semibold transition-all duration-200">
-            Learn More
-          </a>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Decorative background elements -->
-    <div class="absolute top-20 left-10 w-72 h-72 bg-accent-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-    <div class="absolute bottom-20 right-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
-  </section>
+  <ImportantDatesAboutSection 
+    importantDates={homeContent.importantDates} 
+    about={homeContent.about} 
+  />
 
-  <!-- Countdown Section -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-heading font-bold text-gray-900 mb-8">Countdown to IPAC27</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <div class="text-3xl font-bold text-primary-600" id="days">--</div>
-          <div class="text-gray-600">Days</div>
-        </div>
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <div class="text-3xl font-bold text-primary-600" id="hours">--</div>
-          <div class="text-gray-600">Hours</div>
-        </div>
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <div class="text-3xl font-bold text-primary-600" id="minutes">--</div>
-          <div class="text-gray-600">Minutes</div>
-        </div>
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <div class="text-3xl font-bold text-primary-600" id="seconds">--</div>
-          <div class="text-gray-600">Seconds</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Key Dates Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Important Dates</h2>
-        <p class="text-lg text-gray-600">Mark your calendar for these key conference milestones</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg p-6 border border-primary-100">
-          <div class="text-primary-600 font-bold text-lg mb-2">Early 2026</div>
-          <h3 class="font-semibold text-gray-900 mb-2">Registration Opens</h3>
-          <p class="text-gray-600">Early bird registration and abstract submissions begin</p>
-        </div>
-        
-        <div class="bg-gradient-to-br from-accent-50 to-primary-50 rounded-lg p-6 border border-accent-100">
-          <div class="text-accent-600 font-bold text-lg mb-2">Late 2026</div>
-          <h3 class="font-semibold text-gray-900 mb-2">Abstract Deadline</h3>
-          <p class="text-gray-600">Final deadline for abstract submissions</p>
-        </div>
-        
-        <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg p-6 border border-primary-100">
-          <div class="text-primary-600 font-bold text-lg mb-2">Spring 2027</div>
-          <h3 class="font-semibold text-gray-900 mb-2">Final Registration</h3>
-          <p class="text-gray-600">Last opportunity to register for the conference</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6">About IPAC27</h2>
-          <p class="text-lg text-gray-600 mb-6">
-            The International Particle Accelerator Conference (IPAC) is the premier global forum for presenting 
-            and discussing the latest developments in particle accelerator science and technology.
-          </p>
-          <p class="text-gray-600 mb-6">
-            IPAC27 will bring together accelerator physicists, engineers, and industry professionals from around 
-            the world to share groundbreaking research, innovative technologies, and collaborative opportunities 
-            that advance the field of particle acceleration.
-          </p>
-          <a href="/about" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
-            Learn more about IPAC27
-            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-lg p-8">
-          <h3 class="text-xl font-semibold text-gray-900 mb-6">Conference Highlights</h3>
-          <ul class="space-y-4">
-            <li class="flex items-start">
-              <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mt-1">
-                <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
-              </div>
-              <span class="ml-3 text-gray-600">Cutting-edge research presentations</span>
-            </li>
-            <li class="flex items-start">
-              <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mt-1">
-                <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
-              </div>
-              <span class="ml-3 text-gray-600">Industry exhibition and networking</span>
-            </li>
-            <li class="flex items-start">
-              <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mt-1">
-                <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
-              </div>
-              <span class="ml-3 text-gray-600">Student grants and young scientist programs</span>
-            </li>
-            <li class="flex items-start">
-              <div class="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mt-1">
-                <div class="w-2 h-2 bg-primary-600 rounded-full"></div>
-              </div>
-              <span class="ml-3 text-gray-600">Technical workshops and tutorials</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- News and Updates -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Latest Updates</h2>
-        <p class="text-lg text-gray-600">Stay informed about IPAC27 developments</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <article class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-          <div class="p-6">
-            <div class="text-sm text-accent-600 font-semibold mb-2">January 15, 2025</div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-3">IPAC27 Website Launched</h3>
-            <p class="text-gray-600 mb-4">
-              We're excited to announce the launch of the official IPAC27 website. 
-              Stay tuned for important updates about the conference.
-            </p>
-            <a href="#" class="text-primary-600 hover:text-primary-700 font-semibold text-sm">
-              Read more →
-            </a>
-          </div>
-        </article>
-        
-        <article class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-          <div class="p-6">
-            <div class="text-sm text-accent-600 font-semibold mb-2">Coming Soon</div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-3">Call for Abstracts</h3>
-            <p class="text-gray-600 mb-4">
-              Details about abstract submission guidelines and deadlines will be 
-              announced in the coming months.
-            </p>
-            <a href="#" class="text-primary-600 hover:text-primary-700 font-semibold text-sm">
-              Learn more →
-            </a>
-          </div>
-        </article>
-        
-        <article class="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-          <div class="p-6">
-            <div class="text-sm text-accent-600 font-semibold mb-2">Coming Soon</div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-3">Venue Announcement</h3>
-            <p class="text-gray-600 mb-4">
-              The host city and venue for IPAC27 will be announced soon. 
-              Subscribe to our updates to be the first to know.
-            </p>
-            <a href="#" class="text-primary-600 hover:text-primary-700 font-semibold text-sm">
-              Stay updated →
-            </a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+  <NewsSection {...homeContent.news} />
 
   <Footer />
 </Layout>
-
-<script>
-  // Countdown timer (placeholder - will count down to May 2027)
-  function updateCountdown() {
-    // Conference date - May 23, 2027
-    const targetDate = new Date('2027-05-23T09:00:00').getTime();
-    const now = new Date().getTime();
-    const difference = targetDate - now;
-
-    if (difference > 0) {
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-      document.getElementById('days')!.textContent = days.toString();
-      document.getElementById('hours')!.textContent = hours.toString();
-      document.getElementById('minutes')!.textContent = minutes.toString();
-      document.getElementById('seconds')!.textContent = seconds.toString();
-    }
-  }
-
-  // Update countdown every second
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-</script>
