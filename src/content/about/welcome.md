@@ -42,3 +42,36 @@ Huntington Place, Detroit, MI, USA
 Plenary, parallel, and poster sessions
 :::
 :::
+
+## More Information
+
+:::collapsible{title="Click to see detailed conference information"}
+### Conference Structure
+
+The conference will be organized into several key components:
+
+- **Plenary Sessions**: Morning sessions featuring invited speakers
+- **Parallel Sessions**: Afternoon breakout sessions by topic areas
+- **Poster Sessions**: Interactive displays during coffee breaks
+- **Industrial Exhibition**: Latest accelerator technologies and services
+- **Student Program**: Dedicated sessions for early-career researchers
+
+### Important Dates
+
+- **Abstract Submission Deadline**: December 15, 2026
+- **Early Registration Deadline**: February 1, 2027
+- **Hotel Reservation Deadline**: March 1, 2027
+- **Conference Dates**: May 23-28, 2027
+:::
+
+:::collapsible{title="Show venue details" open="true"}
+### About Huntington Place
+
+Huntington Place (formerly Cobo Center) is Detroit's premier convention facility, located in the heart of downtown Detroit. The venue offers:
+
+- **Location**: 1 Washington Blvd, Detroit, MI 48226
+- **Capacity**: Over 700,000 square feet of exhibition space
+- **Accessibility**: Full ADA compliance and accessibility features
+- **Transportation**: Connected to downtown hotels via skywalks
+- **Parking**: On-site parking available
+:::

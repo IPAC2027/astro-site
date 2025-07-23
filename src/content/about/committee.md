@@ -4,56 +4,84 @@ description: ""
 bannerText: "Committee"
 ---
 
+
+
 # IPAC'27 Committee
 
 The success of IPAC'27 depends on the dedicated work of our organizing committee, composed of experts from around the world.
 
-## Conference Leadership
 
-:::grid{columns=2}
-:::card{title="Conference Chair"}
-**Dr. Jie Wei**  
-Institution Name  
-Email: chair@ipac27.org
+
+
+:::collapsible{title="International Organizing Committee Members", open="true"}
+
+* **Wei, Jie, FRIB, USA, OC Chair**
+* Pilat, Fulvia, ORNL, USA 
+* Valishev, Alexander, FNAL, USA 
+* Le Pimpec, Frederic, CLS, Canada 
+* Sajaev, Vadim, ANL, USA 
+* Liu, Lin, LNLS, Brazil 
+* Kester, Oliver, TRIUMF, Canada 
+* Liepe, Mattias, Cornell, USA 
+* Fischer, Wolfram, BNL, USA
+* Prestemon, Soren, LBNL, USA
+* Satogata, Todd, JLab, USA
+* Huang, Zhirong, SLAC, USA
+* Carlsten, Bruce, LANL, USA
+* Ostroumov, Peter, FRIB, USA
+* Bruwhiler, David, RadiaSoft, USA
+* Musumeci, Pietro, UCLA, USA
+* Chiadroni, Enrica, La Sapienza, Italy 
+* Gebel, Ralf, FZJ & GSI, Germany
+* Marcos, Jordi, CELLS, Spain
+* Meseck, Atoosa, HZB, Germany
+* Prat, Eduard, PSI, Switzerland
+* Thomason, John, STFC, UK
+* Tomas, Rogelio, CERN, Switzerland
+* Wawrzyniak, Adriana, Solaris, Poland
+* Sato, Yoichi, J-PARC, Japan
+* Koseki, Tadashi, KEK, Japan
+* Hara, Toru, RIKEN/Spring-8, Japan
+* He, Yuan, IMP, China
+* Deng, Haixiao, SHINE, China
+* Shin, Seunghwan, 4GSR/KBSI, Korea
+* Lin, Ming-Chyuan, NSRRC, Taiwan
+* Klysubun, Prapong, SLRI, Thailand
+* Advisor: McIntosh, Peter, STFC, UK
 :::
 
-:::card{title="Scientific Program Committee Chair"}
-**Dr. [Name]**  
-Institution Name  
-Email: program@ipac27.org
+
+:::collapsible{title="Scientific Program Committee Members", open="true"}
+* **Cousineau, Sarah, ORNL, USA, SPC Chair**
+* Valishev, Alexander, FNAL, USA 
+* Sajaev, Vadim, ANL, USA 
+* Kester, Oliver, TRIUMF, Canada 
+* Fischer, Wolfram, BNL, USA
+* Prestemon, Soren, LBNL, USA
+* Satogata, Todd, JLab, USA
+* Huang, Zhirong, SLAC, USA
+* Ostroumov, Peter, FRIB, USA
+* Marcos, Jordi, CELLS, Spain
+* Meseck, Atoosa, HZB, Germany
+* Prat, Eduard, PSI, Switzerland
+* Wawrzyniak, Adriana, Solaris, Poland
+* Sato, Yoichi, J-PARC, Japan
+* Hara, Toru, RIKEN/Spring-8, Japan
+* He, Yuan, IMP, China
+* Shin, Seunghwan, 4GSR/KBSI, Korea
+* Observer: Sakamoto, Naruhiko, RIKEN/Nishina, Japan
 :::
 
-:::card{title="Local Organizing Committee Chair"}
-**Dr. [Name]**  
-Institution Name  
-Email: local@ipac27.org
+:::collapsible{title="Scientific Advisory Board"}
+:::grid{columns=3}
+:::card{title="America"}
+* **member A**
+* member B
+:::
+:::card{title="Asia"}
+:::
+:::card{title="Europe"}
+:::
 :::
 
-:::card{title="Industry Chair"}
-**Dr. [Name]**  
-Company Name  
-Email: industry@ipac27.org
-:::
-:::
 
-## Organizing Committee
-
-:::warning
-Committee member details will be announced as they are confirmed. Please check back for updates.
-:::
-
-### International Advisory Committee
-
-The International Advisory Committee provides guidance on scientific program and strategic direction.
-
-### Local Organizing Committee
-
-The Local Organizing Committee handles local arrangements, venue coordination, and participant services.
-
-### Program Committee
-
-The Program Committee is responsible for reviewing abstracts, organizing sessions, and coordinating the scientific program.
-
-:::info
-If you are interested in volunteering for the conference organization, please contact us at volunteer@ipac27.org.
-:::

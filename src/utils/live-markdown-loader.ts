@@ -44,13 +44,10 @@ function parseMarkdownToBlocks(content: string): ContentBlock[] {
               nestingLevel--;
               content += lines[endIndex] + '\n';
             }
-          } else if (currentLine.startsWith(':::') && directiveType === 'grid') {
-            // For grid directives, handle nested cards
+          } else if (currentLine.startsWith(':::')) {
+            // Any new directive starts - increase nesting level
             nestingLevel++;
             content += lines[endIndex] + '\n';
-          } else if (currentLine.startsWith(':::') && directiveType !== 'grid') {
-            // For non-grid directives, any new directive ends this one
-            break;
           } else {
             content += lines[endIndex] + '\n';
           }
@@ -75,6 +72,31 @@ function parseMarkdownToBlocks(content: string): ContentBlock[] {
       blocks.push({ type: 'subtitle', content: line.substring(3) });
     } else if (line.startsWith('### ')) {
       blocks.push({ type: 'subtitle', content: line.substring(4) });
+    } else if (line.startsWith('* ') || line.startsWith('- ')) {
+      // Handle markdown lists - collect consecutive list items
+      const listItems: string[] = [];
+      
+      // Add the current line
+      listItems.push(line.substring(2).trim());
+      
+      // Look ahead to collect consecutive list items
+      let nextIndex = i + 1;
+      while (nextIndex < lines.length) {
+        const nextLine = lines[nextIndex].trim();
+        if (nextLine.startsWith('* ') || nextLine.startsWith('- ')) {
+          listItems.push(nextLine.substring(2).trim());
+          nextIndex++;
+        } else if (nextLine === '') {
+          // Skip empty lines between list items
+          nextIndex++;
+        } else {
+          // End of list
+          break;
+        }
+      }
+      
+      blocks.push({ type: 'list', content: listItems });
+      i = nextIndex - 1; // -1 because the main loop will increment
     } else {
       // Regular text
       blocks.push({ type: 'text', content: line });
@@ -91,13 +113,13 @@ function parseDirectiveProps(propsString: string): Record<string, string> {
   const props: Record<string, string> = {};
   if (!propsString) return props;
   
-  // Use a more sophisticated parsing approach for quoted values
-  const regex = /(\w+)="([^"]*)"/g;
+  // Use a more sophisticated parsing approach for both quoted and unquoted values
+  const regex = /(\w+)=(?:"([^"]*)"|(\w+))/g;
   let match;
   
   while ((match = regex.exec(propsString)) !== null) {
-    const [, key, value] = match;
-    props[key] = value;
+    const [, key, quotedValue, unquotedValue] = match;
+    props[key] = quotedValue || unquotedValue;
   }
   
   return props;
@@ -126,6 +148,21 @@ function parseDirective(type: string, content: string, props: Record<string, str
         type: 'card',
         content: content.trim(),
         className: props.title || ''
+      };
+    
+    case 'collapsible':
+      // Check if the content contains nested directives
+      const trimmedContent = content.trim();
+      const nestedBlocks = parseMarkdownToBlocks(trimmedContent);
+      
+      return {
+        type: 'collapsible',
+        content: {
+          title: props.title || 'Click to expand',
+          content: trimmedContent,
+          isOpen: props.open === 'true',
+          nestedBlocks: nestedBlocks.length > 0 ? nestedBlocks : undefined
+        }
       };
     
     default:

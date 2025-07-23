@@ -89,6 +89,28 @@
 /* Lists */
 .content-list {
   @apply space-y-2 text-gray-600;
+  /* Multi-column layout for wider screens */
+  column-count: 1;
+  column-gap: 2rem;
+  column-fill: balance;
+}
+
+@media (min-width: 768px) {
+  .content-list {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-list {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-list {
+    column-count: 4;
+  }
 }
 
 .content-list-checkmark li::before {

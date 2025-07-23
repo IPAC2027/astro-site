@@ -203,10 +203,32 @@ import Footer from '../components/Footer.astro';
 
   :global(.content-list) {
     @apply space-y-2 text-gray-600 mb-6;
+    /* Ensure proper spacing in multi-column layout */
+    break-inside: avoid-column;
+    /* Multi-column layout for wider screens */
+    column-count: 1; /* Start with 1 column by default */
+    column-gap: 2rem;
+    column-fill: balance;
+  }
+
+  /* Responsive multi-column breakpoints */
+  @media (min-width: 1080px) {
+    :global(.content-list) {
+      column-count: 2; /* 2 columns for tablets and laptops */
+    }
+  }
+
+  @media (min-width: 1600px) {
+    :global(.content-list) {
+      column-count: 3; /* 3 columns for large screens */
+    }
   }
 
   :global(.content-list li) {
     @apply relative pl-4;
+    /* Prevent list items from breaking across columns */
+    break-inside: avoid;
+    display: block;
   }
 
   :global(.content-list li::before) {
@@ -232,6 +254,10 @@ import Footer from '../components/Footer.astro';
 
   :global(.content-grid) {
     @apply grid grid-cols-1 md:grid-cols-2 gap-6 mb-8;
+  }
+
+  :global(.content-grid-1) {
+    @apply grid grid-cols-1 gap-6 mb-8;
   }
 
   :global(.content-grid-3) {

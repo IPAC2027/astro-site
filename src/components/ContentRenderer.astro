@@ -16,15 +16,33 @@ const { blocks } = Astro.props;
     case 'subtitle':
       return <h3 class="content-subtitle">{block.content}</h3>;
     
-    case 'text':
-      return <p class="content-text">{block.content}</p>;
+    case 'text': {
+      const content = Array.isArray(block.content) ? block.content.join(' ') : block.content;
+      if (typeof content !== 'string') {
+        return null;
+      }
+      const parts = content.split(/(\*\*.*?\*\*)/g);
+      const parsedParts = parts.map((part: string) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong>{part.slice(2, -2)}</strong>;
+        }
+        return part;
+      });
+      return <p class="content-text">{parsedParts}</p>;
+    }
     
     case 'list':
       return (
         <ul class="content-list">
-          {Array.isArray(block.content) && block.content.map(item => (
-            <li>{item}</li>
-          ))}
+          {Array.isArray(block.content) && block.content.map(item => {
+            // Process markdown formatting within list items
+            const processedItem = item
+              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+              .replace(/\*(.*?)\*/g, '<em>$1</em>')
+              .replace(/`(.*?)`/g, '<code>$1</code>');
+            
+            return <li set:html={processedItem}></li>;
+          })}
         </ul>
       );
     
@@ -80,7 +98,59 @@ const { blocks } = Astro.props;
     
     case 'grid':
       if (typeof block.content === 'object' && 'columns' in block.content) {
-        const gridClass = block.content.columns === 3 ? 'content-grid-3' : 'content-grid';
+        const columns = Number(block.content.columns);
+        const gridClass = columns === 3 ? 'content-grid-3' : 
+                          columns === 1 ? 'content-grid-1' : 'content-grid';
+        
+        // Parse markdown content in card items
+        const parseCardMarkdown = (content: string) => {
+          const lines = content.split('\n').map(line => line.trim()).filter(line => line);
+          const elements = [];
+          
+          let i = 0;
+          while (i < lines.length) {
+            const line = lines[i];
+            
+            // Check if this is a list item
+            if (line.startsWith('* ') || line.startsWith('- ')) {
+              // Collect all consecutive list items
+              const listItems = [];
+              while (i < lines.length && (lines[i].startsWith('* ') || lines[i].startsWith('- '))) {
+                const itemContent = lines[i].substring(2).trim();
+                // Process markdown formatting in list item
+                const processedItem = itemContent
+                  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                  .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                  .replace(/`(.*?)`/g, '<code>$1</code>');
+                listItems.push(processedItem);
+                i++;
+              }
+              
+              // Create a list element
+              elements.push(
+                <ul class="list-disc list-inside space-y-1 text-sm">
+                  {listItems.map(item => (
+                    <li set:html={item}></li>
+                  ))}
+                </ul>
+              );
+            } else {
+              // Regular text line - parse bold text and line breaks
+              const parts = line.split(/(\*\*.*?\*\*)/);
+              const parsedParts = parts.map(part => {
+                if (part.startsWith('**') && part.endsWith('**')) {
+                  return <strong>{part.slice(2, -2)}</strong>;
+                }
+                return part;
+              });
+              elements.push(<div class="mb-1">{parsedParts}</div>);
+              i++;
+            }
+          }
+          
+          return elements;
+        };
+        
         return (
           <div class={gridClass}>
             {block.content.items.map(item => (
@@ -89,7 +159,9 @@ const { blocks } = Astro.props;
                   <div class="text-2xl mb-3">{item.icon}</div>
                 )}
                 <h4 class="font-semibold text-gray-900 mb-2">{item.title}</h4>
-                <p class="text-gray-600 text-sm">{item.content}</p>
+                <div class="text-gray-600 text-sm">
+                  {parseCardMarkdown(item.content)}
+                </div>
               </div>
             ))}
           </div>
@@ -121,6 +193,109 @@ const { blocks } = Astro.props;
           </span>
         </div>
       );
+    
+    case 'collapsible':
+      if (typeof block.content === 'object' && 'title' in block.content) {
+        // If there are nested blocks, render them, otherwise use the markdown parser
+        if (block.content.nestedBlocks && block.content.nestedBlocks.length > 0) {
+          return (
+            <details class="mb-6 border border-gray-200 rounded-lg overflow-hidden" open={block.content.isOpen}>
+              <summary class="px-6 py-4 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200 border-b border-gray-200">
+                <span class="font-medium text-gray-900">{block.content.title}</span>
+              </summary>
+              <div class="px-6 py-4 bg-white">
+                <div class="prose prose-sm max-w-none text-gray-700">
+                  <Astro.self blocks={block.content.nestedBlocks} />
+                </div>
+              </div>
+            </details>
+          );
+        } else {
+          // Parse basic markdown content 
+          const parseMarkdownContent = (content: string) => {
+            const lines = content.split('\n');
+            const elements = [];
+            
+            for (let i = 0; i < lines.length; i++) {
+              const trimmedLine = lines[i].trim();
+              if (!trimmedLine) continue;
+              
+              // Handle headers
+              if (trimmedLine.startsWith('### ')) {
+                elements.push(<h3 class="text-lg font-semibold text-gray-900 mb-3 mt-4 first:mt-0">{trimmedLine.slice(4)}</h3>);
+              } else if (trimmedLine.startsWith('## ')) {
+                elements.push(<h2 class="text-xl font-semibold text-gray-900 mb-3 mt-4 first:mt-0">{trimmedLine.slice(3)}</h2>);
+              } else {
+                // Parse bold text in paragraphs
+                const parts = trimmedLine.split(/(\*\*.*?\*\*)/);
+                const parsedParts = parts.map(part => {
+                  if (part.startsWith('**') && part.endsWith('**')) {
+                    return <strong>{part.slice(2, -2)}</strong>;
+                  }
+                  return part;
+                });
+                elements.push(<p class="mb-3 leading-relaxed">{parsedParts}</p>);
+              }
+            }
+            
+            return elements;
+          };
+          
+          return (
+            <details class="mb-6 border border-gray-200 rounded-lg overflow-hidden" open={block.content.isOpen}>
+              <summary class="px-6 py-4 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200 border-b border-gray-200">
+                <span class="font-medium text-gray-900">{block.content.title}</span>
+              </summary>
+              <div class="px-6 py-4 bg-white">
+                <div class="prose prose-sm max-w-none text-gray-700">
+                  {block.content.nestedBlocks ? 
+                    block.content.nestedBlocks.map((nestedBlock: any) => {
+                      if (nestedBlock.type === 'grid' && nestedBlock.content && typeof nestedBlock.content === 'object' && 'columns' in nestedBlock.content && 'items' in nestedBlock.content) {
+                        const { columns, items } = nestedBlock.content;
+                        const gridClass = columns === 2 ? 'content-grid' : columns === 3 ? 'content-grid-3' : 'content-grid-1';
+                        
+                        return (
+                          <div class={gridClass}>
+                            {items.map((item: any) => (
+                              <div class="bg-white rounded-lg p-6 shadow-sm border">
+                                {item.title && (
+                                  <h4 class="font-semibold text-gray-900 mb-2">{item.title}</h4>
+                                )}
+                                <div class="text-gray-600 text-sm">
+                                  {item.content.split('\n').map((line: string) => {
+                                    if (line.trim()) {
+                                      if (line.includes('**')) {
+                                        const parts = line.split(/(\*\*[^*]+\*\*)/);
+                                        const parsedParts = parts.map((part: string) => {
+                                          if (part.startsWith('**') && part.endsWith('**')) {
+                                            return <strong>{part.slice(2, -2)}</strong>;
+                                          }
+                                          return part;
+                                        });
+                                        return <div class="mb-1">{parsedParts}</div>;
+                                      } else {
+                                        return <div class="mb-1">{line}</div>;
+                                      }
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      }
+                      return null;
+                    }) :
+                    parseMarkdownContent(block.content.content)
+                  }
+                </div>
+              </div>
+            </details>
+          );
+        }
+      }
+      return null;
     
     default:
       return null;
