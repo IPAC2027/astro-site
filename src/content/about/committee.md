@@ -83,5 +83,14 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 :::card{title="Europe"}
 :::
 :::
+:::
 
-
+:::collapsible{title="Local Organising Committee Members", open="true"}
+* **Hao, Yue, MSU, LOC Chair**
+* Anisimov, Petr, LANL, Scientific Secretariat
+* Geiger, Kristy, Eventive Thinking, Conference Organizer
+* Pease, Katie, MSU, Conference Secretary
+* Patterer, Robert, MSU, Treasurer
+* Wang, Ling, MSU, Editor in Chief
+* Zhang, Tong, MSU 
+:::
