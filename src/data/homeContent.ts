@@ -2,7 +2,7 @@ export const homeContent = {
   hero: {
     title: "IPAC'27",
     subtitle: "18th International Particle Accelerator Conference",
-    backgroundImage: "/background.svg", // You can change this to your desired image
+    backgroundImage: "/detroit_skyline_night.jpg", // You can change this to your desired image
     conferenceDetails: {
       dates: "May 22-28, 2027",
       location: "Detroit, MI",

@@ -1,10 +1,16 @@
 ---
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+
 export interface Props {
 	title?: string;
 	description?: string;
 }
 
 const { title = "IPAC27 - 18th International Particle Accelerator Conference", description = "" } = Astro.props;
+
+// Google Analytics configuration
+const GA_TRACKING_ID = import.meta.env.PUBLIC_GA_TRACKING_ID;
+const isDev = import.meta.env.DEV;
 ---
 
 <!doctype html>
@@ -19,8 +25,25 @@ const { title = "IPAC27 - 18th International Particle Accelerator Conference", d
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+		
+		<!-- Google Analytics -->
+		{GA_TRACKING_ID && !isDev && (
+			<>
+				<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}></script>
+				<script define:vars={{ GA_TRACKING_ID }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', GA_TRACKING_ID);
+				</script>
+			</>
+		)}
 	</head>
 	<body class="font-sans antialiased">
+		</head>
+	<body>
+		<GoogleAnalytics />
 		<slot />
+	</body>
 	</body>
 </html>
