@@ -4,20 +4,20 @@ import ContentRenderer from '../../components/ContentRenderer.astro';
 import { getEntry } from 'astro:content';
 
 // Get content from the markdown file using Astro content collections
-const entry = await getEntry('authors', 'abstract-submission');
+const entry = await getEntry('travel', 'accommodation');
 if (!entry) {
   throw new Error('Page content not found');
 }
 
 // Use the live markdown-loader to process the content with custom directives
 import { loadPageContent } from '../../utils/live-markdown-loader';
-const pageContent = loadPageContent('authors/abstract-submission');
+const pageContent = loadPageContent('travel/accommodation');
 ---
 
 <ContentLayout 
   title={entry.data.title} 
   description={entry.data.description}
-  bannerText={entry.data.title || "Abstract Submission"}
+  bannerText={entry.data.bannerText || "Accommodation"}
   bannerBackground={entry.data.bannerBackground}
 >
   {pageContent ? (

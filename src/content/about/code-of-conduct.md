@@ -2,10 +2,10 @@
 title: "Code of Conduct"
 description: "Conference code of conduct and behavioral guidelines"
 bannerText: "Code of Conduct"
+bannerBackground: "/detroit_skyline_night.jpg"
 ---
 
-# Code of Conduct
+Content to be added:
 
-Content to be added.
-* FRIB COC
-* IEEE COC
+- FRIB Code of Conduct
+- IEEE Code of Conduct

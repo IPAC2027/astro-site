@@ -17,7 +17,8 @@ const pageContent = loadPageContent('registration/conference-registration');
 <ContentLayout 
   title={entry.data.title} 
   description={entry.data.description}
-  bannerText={entry.data.bannerText || "Conference Registration"}
+  bannerText={entry.data.title || "Conference Registration"}
+  bannerBackground={entry.data.bannerBackground}
 >
   {pageContent ? (
     <ContentRenderer blocks={pageContent.blocks} />

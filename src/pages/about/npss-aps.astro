@@ -17,7 +17,8 @@ const pageContent = loadPageContent('about/npss-aps');
 <ContentLayout 
   title={entry.data.title} 
   description={entry.data.description}
-  bannerText={entry.data.bannerText || "NPSS-APS"}
+  bannerText={entry.data.title || "NPSS-APS"}
+  bannerBackground={entry.data.bannerBackground}
 >
   {pageContent ? (
     <ContentRenderer blocks={pageContent.blocks} />

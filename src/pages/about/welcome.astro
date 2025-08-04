@@ -17,7 +17,8 @@ const pageContent = loadPageContent('about/welcome');
 <ContentLayout 
   title={entry.data.title} 
   description={entry.data.description}
-  bannerText={entry.data.bannerText || "Welcome"}
+  bannerText={entry.data.title || "Welcome"}
+  bannerBackground={entry.data.bannerBackground}
 >
   {pageContent ? (
     <ContentRenderer blocks={pageContent.blocks} />
