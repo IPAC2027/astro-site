@@ -1,6 +1,6 @@
 ---
-title: "Call for Papers"
-description: "Submit your research to IPAC'27"
+title: "Abstract Submission"
+description: ""
 ---
 
 # Call for Papers
@@ -62,14 +62,7 @@ Papers are welcome in all areas of accelerator science and technology:
 All abstracts must be submitted through the online submission system. Detailed submission guidelines will be available when submission opens.
 :::
 
-## Review Process
 
-All submitted abstracts will undergo peer review by the Program Committee. Selection criteria include:
-
-- Scientific quality and originality
-- Relevance to accelerator science and technology
-- Clarity of presentation
-- Contribution to the field
 
 :::info
 For questions about paper submission, please contact the Program Committee at program@ipac27.org.
