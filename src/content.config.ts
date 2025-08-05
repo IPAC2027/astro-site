@@ -6,6 +6,7 @@ const about = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     bannerText: z.string().optional(),
+    bannerBackground: z.string().optional(),
   }),
 });
 
@@ -15,6 +16,7 @@ const program = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     bannerText: z.string().optional(),
+    bannerBackground: z.string().optional(),
   }),
 });
 
@@ -24,6 +26,7 @@ const registration = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     bannerText: z.string().optional(),
+    bannerBackground: z.string().optional(),
   }),
 });
 
@@ -33,6 +36,7 @@ const exhibitors = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     bannerText: z.string().optional(),
+    bannerBackground: z.string().optional(),
   }),
 });
 
@@ -42,6 +46,7 @@ const authors = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     bannerText: z.string().optional(),
+    bannerBackground: z.string().optional(),
   }),
 });
 
@@ -51,6 +56,7 @@ const travel = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     bannerText: z.string().optional(),
+    bannerBackground: z.string().optional(),
   }),
 });
 

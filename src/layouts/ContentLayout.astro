@@ -8,6 +8,7 @@ export interface Props {
   bannerTitle?: string;
   bannerDescription?: string;
   bannerText?: string;
+  bannerBackground?: string;
 }
 
 interface SectionItem {
@@ -30,7 +31,8 @@ const {
   parentName,
   bannerTitle,
   bannerDescription,
-  bannerText
+  bannerText,
+  bannerBackground
 } = Astro.props;
 
 // Get section from URL
@@ -96,16 +98,18 @@ import Footer from '../components/Footer.astro';
   <Navigation />
   
   <!-- Page Header Banner -->
-  <section class="bg-gradient-to-r from-primary-800 to-accent-800 text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative bg-gradient-to-r from-primary-800 to-accent-800 text-white py-16 overflow-hidden">
+    {bannerBackground && (
+      <div 
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+        style={`background-image: url('${bannerBackground}');`}
+      ></div>
+    )}
+    <div class="absolute inset-0 bg-black opacity-40"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-end">
         <div class="flex-1">
           <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">{finalBannerTitle}</h1>
-          {finalBannerDescription && (
-            <p class="text-xl text-gray-200 max-w-3xl">
-              {finalBannerDescription}
-            </p>
-          )}
         </div>
         {bannerText && (
           <div class="flex-shrink-0 ml-8 mr-8">
@@ -137,19 +141,50 @@ import Footer from '../components/Footer.astro';
             
             {currentSection && (
               <>
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">{currentSection.title}</h3>
-                <nav class="space-y-1">
-                  {currentSection.items.map(item => (
-                    <a 
-                      href={item.href}
-                      class={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        currentPath === item.href 
-                          ? 'bg-primary-100 text-primary-700' 
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                      }`}
-                    >
-                      {item.name}
-                    </a>
+                <!-- Main Section Header with Tree Icon -->
+                <div class="flex items-center mb-4 p-3 bg-primary-50 rounded-lg border-l-4 border-primary-500">
+                  <svg class="w-5 h-5 mr-2 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v0"></path>
+                  </svg>
+                  <h3 class="text-lg font-semibold text-primary-800">{currentSection.title}</h3>
+                </div>
+                
+                <!-- Navigation Tree -->
+                <nav class="space-y-1 relative">
+                  <!-- Tree line decoration -->
+                  <div class="absolute left-4 top-0 bottom-0 w-px bg-gray-200"></div>
+                  
+                  {currentSection.items.map((item, index) => (
+                    <div class="relative">
+                      <!-- Tree branch -->
+                      <div class="absolute left-4 top-4 w-3 h-px bg-gray-200"></div>
+                      <!-- Tree node -->
+                      <div class="absolute left-3 top-3 w-2 h-2 bg-gray-300 rounded-full"></div>
+                      
+                      <a 
+                        href={item.href}
+                        class={`block pl-8 pr-3 py-2 rounded-md text-sm font-medium transition-all duration-200 relative ${
+                          currentPath === item.href 
+                            ? 'bg-primary-100 text-primary-700 border-l-2 border-primary-500 shadow-sm' 
+                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 hover:pl-9'
+                        }`}
+                      >
+                        <!-- Active indicator -->
+                        {currentPath === item.href && (
+                          <div class="absolute left-3 top-3 w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+                        )}
+                        
+                        <span class="flex items-center">
+                          {currentPath === item.href && (
+                            <svg class="w-3 h-3 mr-2 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                          )}
+                          {item.name}
+                        </span>
+                      </a>
+                    </div>
                   ))}
                 </nav>
               </>
@@ -212,13 +247,13 @@ import Footer from '../components/Footer.astro';
   }
 
   /* Responsive multi-column breakpoints */
-  @media (min-width: 1080px) {
+  @media (min-width: 1200px) {
     :global(.content-list) {
       column-count: 2; /* 2 columns for tablets and laptops */
     }
   }
 
-  @media (min-width: 1600px) {
+  @media (min-width: 2560px) {
     :global(.content-list) {
       column-count: 3; /* 3 columns for large screens */
     }

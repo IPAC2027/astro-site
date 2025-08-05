@@ -1,0 +1,30 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import ContentRenderer from '../../components/ContentRenderer.astro';
+import { getEntry } from 'astro:content';
+
+// Get content from the markdown file using Astro content collections
+const entry = await getEntry('program', 'satellite-events');
+if (!entry) {
+  throw new Error('Page content not found');
+}
+
+// Use the live markdown-loader to process the content with custom directives
+import { loadPageContent } from '../../utils/live-markdown-loader';
+const pageContent = loadPageContent('program/satellite-events');
+---
+
+<ContentLayout 
+  title={entry.data.title} 
+  description={entry.data.description}
+  bannerText={entry.data.bannerText || "Satellite Events"}
+  bannerBackground={entry.data.bannerBackground}
+>
+  {pageContent ? (
+    <ContentRenderer blocks={pageContent.blocks} />
+  ) : (
+    <div class="prose prose-lg max-w-none">
+      <p>Content will be loaded from the markdown file.</p>
+    </div>
+  )}
+</ContentLayout>

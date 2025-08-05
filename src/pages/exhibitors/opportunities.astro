@@ -17,7 +17,8 @@ const pageContent = loadPageContent('exhibitors/opportunities');
 <ContentLayout 
   title={entry.data.title} 
   description={entry.data.description}
-  bannerText={entry.data.bannerText || "Opportunities"}
+  bannerText={entry.data.title || "Opportunities"}
+  bannerBackground={entry.data.bannerBackground}
 >
   {pageContent ? (
     <ContentRenderer blocks={pageContent.blocks} />

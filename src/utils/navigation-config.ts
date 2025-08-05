@@ -51,7 +51,7 @@ export const navigationConfig: NavigationSection[] = [
     name: 'Authors',
     submenu: [
       { name: 'Abstract Submission', href: '/authors/abstract-submission' },
-      { name: 'Contribution Classification', href: '/authors/contribution-classification' },
+      { name: 'Classifications', href: '/authors/classification' },
       { name: 'Paper Preparation', href: '/authors/paper-preparation' },
       { name: 'Speaker Guidelines', href: '/authors/speaker-guidelines' },
       { name: 'Poster Preparation', href: '/authors/poster-preparation' },
