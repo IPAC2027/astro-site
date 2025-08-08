@@ -106,7 +106,7 @@ import Footer from '../components/Footer.astro';
       ></div>
     )}
     <div class="absolute inset-0 bg-black opacity-40"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-end">
         <div class="flex-1">
           <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">{finalBannerTitle}</h1>
@@ -123,8 +123,8 @@ import Footer from '../components/Footer.astro';
   </section>
   
   <main class="flex-grow bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="flex gap-8">
+    <div class="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex gap-4">
         <!-- Sidebar Navigation -->
         <div class="w-64 flex-shrink-0">
           <div class="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
@@ -194,7 +194,7 @@ import Footer from '../components/Footer.astro';
 
         <!-- Main Content -->
         <div class="flex-1 min-w-0">
-          <div class="bg-white rounded-lg shadow-sm border">
+          <div class="rounded-lg shadow-sm">
             <!-- Page Header -->
             <div class="border-b border-gray-200 px-8 py-6">
               <h1 class="text-3xl font-bold text-gray-900">{title}</h1>
@@ -321,5 +321,38 @@ import Footer from '../components/Footer.astro';
 
   :global(.status-closed) {
     @apply bg-red-100 text-red-800;
+  }
+
+  /* Collapsible Animation Styles */
+  :global(details) {
+    transition: all 0.3s ease-in-out;
+  }
+
+  :global(details summary) {
+    transition: all 0.2s ease-in-out;
+    position: relative;
+  }
+
+  :global(details summary::after) {
+    content: "▶";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.2s ease-in-out;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  :global(details[open] summary::after) {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  :global(details summary:hover) {
+    background-color: #f9fafb !important;
+  }
+
+  :global(details[open] summary) {
+    border-bottom: 1px solid #e5e7eb;
   }
 </style>

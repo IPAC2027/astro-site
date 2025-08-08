@@ -1,5 +1,5 @@
 ---
-import type { ContentBlock } from '../types/content.ts';
+import type { ContentBlock, CollapsibleContent } from '../types/content.ts';
 
 export interface Props {
   blocks: ContentBlock[];
@@ -196,24 +196,18 @@ const { blocks } = Astro.props;
     
     case 'collapsible':
       if (typeof block.content === 'object' && 'title' in block.content) {
-        // If there are nested blocks, render them, otherwise use the markdown parser
-        if (block.content.nestedBlocks && block.content.nestedBlocks.length > 0) {
-          return (
-            <details class="mb-6 border border-gray-200 rounded-lg overflow-hidden" open={block.content.isOpen}>
-              <summary class="px-6 py-4 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200 border-b border-gray-200">
-                <span class="font-medium text-gray-900">{block.content.title}</span>
-              </summary>
-              <div class="px-6 py-4 bg-white">
-                <div class="prose prose-sm max-w-none text-gray-700">
-                  <Astro.self blocks={block.content.nestedBlocks} />
-                </div>
-              </div>
-            </details>
-          );
-        } else {
-          // Parse basic markdown content 
-          const parseMarkdownContent = (content: string) => {
-            const lines = content.split('\n');
+        const collapsibleContent = block.content as CollapsibleContent;
+        
+        // Unified collapsible implementation - handles both nested blocks and markdown content
+        const renderContent = () => {
+          // If there are nested blocks, render them recursively
+          if (collapsibleContent.nestedBlocks && collapsibleContent.nestedBlocks.length > 0) {
+            return <Astro.self blocks={collapsibleContent.nestedBlocks} />;
+          }
+          
+          // Otherwise, parse the markdown content
+          if (collapsibleContent.content) {
+            const lines = collapsibleContent.content.split('\n');
             const elements = [];
             
             for (let i = 0; i < lines.length; i++) {
@@ -225,10 +219,31 @@ const { blocks } = Astro.props;
                 elements.push(<h3 class="text-lg font-semibold text-gray-900 mb-3 mt-4 first:mt-0">{trimmedLine.slice(4)}</h3>);
               } else if (trimmedLine.startsWith('## ')) {
                 elements.push(<h2 class="text-xl font-semibold text-gray-900 mb-3 mt-4 first:mt-0">{trimmedLine.slice(3)}</h2>);
+              } else if (trimmedLine.startsWith('* ') || trimmedLine.startsWith('- ')) {
+                // Handle list items - collect consecutive ones
+                const listItems = [];
+                while (i < lines.length && (lines[i].trim().startsWith('* ') || lines[i].trim().startsWith('- '))) {
+                  const itemContent = lines[i].trim().substring(2).trim();
+                  const processedItem = itemContent
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/`(.*?)`/g, '<code>$1</code>');
+                  listItems.push(processedItem);
+                  i++;
+                }
+                i--; // Back up one since the loop will increment
+                
+                elements.push(
+                  <ul class="list-disc list-inside space-y-1 mb-4">
+                    {listItems.map(item => (
+                      <li set:html={item}></li>
+                    ))}
+                  </ul>
+                );
               } else {
-                // Parse bold text in paragraphs
+                // Regular paragraph - parse bold text
                 const parts = trimmedLine.split(/(\*\*.*?\*\*)/);
-                const parsedParts = parts.map(part => {
+                const parsedParts = parts.map((part: string) => {
                   if (part.startsWith('**') && part.endsWith('**')) {
                     return <strong>{part.slice(2, -2)}</strong>;
                   }
@@ -239,61 +254,23 @@ const { blocks } = Astro.props;
             }
             
             return elements;
-          };
+          }
           
-          return (
-            <details class="mb-6 border border-gray-200 rounded-lg overflow-hidden" open={block.content.isOpen}>
-              <summary class="px-6 py-4 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200 border-b border-gray-200">
-                <span class="font-medium text-gray-900">{block.content.title}</span>
-              </summary>
-              <div class="px-6 py-4 bg-white">
-                <div class="prose prose-sm max-w-none text-gray-700">
-                  {block.content.nestedBlocks ? 
-                    block.content.nestedBlocks.map((nestedBlock: any) => {
-                      if (nestedBlock.type === 'grid' && nestedBlock.content && typeof nestedBlock.content === 'object' && 'columns' in nestedBlock.content && 'items' in nestedBlock.content) {
-                        const { columns, items } = nestedBlock.content;
-                        const gridClass = columns === 2 ? 'content-grid' : columns === 3 ? 'content-grid-3' : 'content-grid-1';
-                        
-                        return (
-                          <div class={gridClass}>
-                            {items.map((item: any) => (
-                              <div class="bg-white rounded-lg p-6 shadow-sm border">
-                                {item.title && (
-                                  <h4 class="font-semibold text-gray-900 mb-2">{item.title}</h4>
-                                )}
-                                <div class="text-gray-600 text-sm">
-                                  {item.content.split('\n').map((line: string) => {
-                                    if (line.trim()) {
-                                      if (line.includes('**')) {
-                                        const parts = line.split(/(\*\*[^*]+\*\*)/);
-                                        const parsedParts = parts.map((part: string) => {
-                                          if (part.startsWith('**') && part.endsWith('**')) {
-                                            return <strong>{part.slice(2, -2)}</strong>;
-                                          }
-                                          return part;
-                                        });
-                                        return <div class="mb-1">{parsedParts}</div>;
-                                      } else {
-                                        return <div class="mb-1">{line}</div>;
-                                      }
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        );
-                      }
-                      return null;
-                    }) :
-                    parseMarkdownContent(block.content.content)
-                  }
-                </div>
+          return null;
+        };
+        
+        return (
+          <details class="mb-6 border border-gray-200 rounded-lg overflow-hidden" open={collapsibleContent.isOpen}>
+            <summary class="px-6 py-4 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200 border-b border-gray-200">
+              <span class="font-medium text-gray-900">{collapsibleContent.title}</span>
+            </summary>
+            <div class="px-6 py-4 bg-white">
+              <div class="prose prose-sm max-w-none text-gray-700">
+                {renderContent()}
               </div>
-            </details>
-          );
-        }
+            </div>
+          </details>
+        );
       }
       return null;
     
