@@ -17,14 +17,14 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 
 * **Wei, Jie (FRIB, USA), OC Chair**
 * Pilat, Fulvia (ORNL, USA) 
-* Valishev, Alexander (FNAL, USA) 
+* Sharankova, Ralitsa (FNAL, USA) 
 * Le Pimpec, Frederic (CLS, Canada) 
 * Sajaev, Vadim (ANL, USA) 
 * Liu, Lin (LNLS, Brazil) 
 * Kester, Oliver (TRIUMF, Canada) 
 * Liepe, Mattias (Cornell, USA) 
 * Fischer, Wolfram (BNL, USA)
-* Prestemon, Soren (LBNL, USA)
+* Wang, Dan (LBNL, USA)
 * Satogata, Todd (JLab, USA)
 * Huang, Zhirong (SLAC, USA)
 * Carlsten, Bruce (LANL, USA)
@@ -53,11 +53,11 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 
 :::collapsible{title="Scientific Program Committee Members", open="true"}
 * **Cousineau, Sarah (ORNL, USA), SPC Chair**
-* Valishev, Alexander (FNAL, USA) 
+* Sharankova, Ralitsa (FNAL, USA) 
 * Sajaev, Vadim (ANL, USA) 
 * Kester, Oliver (TRIUMF, Canada) 
 * Fischer, Wolfram (BNL, USA)
-* Prestemon, Soren (LBNL, USA)
+* Wang, Dan (LBNL, USA)
 * Satogata, Todd (JLab, USA)
 * Huang, Zhirong (SLAC, USA)
 * Ostroumov, Peter (FRIB, USA)
