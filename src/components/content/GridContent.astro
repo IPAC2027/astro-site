@@ -1,0 +1,80 @@
+---
+import type { ContentGrid } from '../../types/content.ts';
+
+export interface Props {
+  content: ContentGrid;
+}
+
+const { content } = Astro.props;
+
+/**
+ * Parse markdown content in card items and convert to renderable elements
+ * Supports lists, bold text, and regular paragraphs
+ */
+function parseCardMarkdown(content: string) {
+  const lines = content.split('\n').map(line => line.trim()).filter(line => line);
+  const elements = [];
+  
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    
+    // Check if this is a list item
+    if (line.startsWith('* ') || line.startsWith('- ')) {
+      // Collect all consecutive list items
+      const listItems = [];
+      while (i < lines.length && (lines[i].startsWith('* ') || lines[i].startsWith('- '))) {
+        const itemContent = lines[i].substring(2).trim();
+        // Process markdown formatting in list item
+        const processedItem = itemContent
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/\*(.*?)\*/g, '<em>$1</em>')
+          .replace(/`(.*?)`/g, '<code>$1</code>');
+        listItems.push(processedItem);
+        i++;
+      }
+      
+      // Create a list element
+      elements.push(
+        <ul class="list-disc list-inside space-y-1 text-sm">
+          {listItems.map(item => (
+            <li set:html={item}></li>
+          ))}
+        </ul>
+      );
+    } else {
+      // Regular text line - parse bold text and line breaks
+      const parts = line.split(/(\*\*.*?\*\*)/);
+      const parsedParts = parts.map(part => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong>{part.slice(2, -2)}</strong>;
+        }
+        return part;
+      });
+      elements.push(<div class="mb-1">{parsedParts}</div>);
+      i++;
+    }
+  }
+  
+  return elements;
+}
+
+// Determine grid CSS class based on column count
+const columns = Number(content.columns);
+const gridClass = columns === 3 ? 'content-grid-3' : 
+                  columns === 1 ? 'content-grid-1' : 'content-grid';
+---
+
+<div class={gridClass}>
+  {content.items.map(item => (
+    <div class="bg-white rounded-lg p-6 shadow-sm border">
+      {item.icon && (
+        <div class="text-2xl mb-3">{item.icon}</div>
+      )}
+      <h4 class="font-semibold text-gray-900 mb-2">{item.title}</h4>
+      <div class="text-gray-600 text-sm">
+        {parseCardMarkdown(item.content)}
+      </div>
+    </div>
+  ))}
+</div>

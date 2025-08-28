@@ -1,0 +1,209 @@
+---
+import type { CollapsibleContent } from '../../types/content.ts';
+import ContentRenderer from '../ContentRenderer.astro';
+
+export interface Props {
+  content: CollapsibleContent;
+}
+
+const { content } = Astro.props;
+---
+
+<div class="mb-6 border border-gray-200 rounded-lg overflow-hidden collapsible-container" data-initial-open={content.isOpen ? 'true' : 'false'}>
+  <button type="button" class="w-full px-6 py-4 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200 border-b border-gray-200 collapsible-summary text-left flex justify-between items-center">
+    <span class="font-medium text-gray-900">{content.title}</span>
+    <span class="collapsible-icon transition-transform duration-300">
+      <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </span>
+  </button>
+  <div class="collapsible-content">
+    <div class="collapsible-inner px-6 py-4 bg-white">
+      <div class="prose prose-sm max-w-none text-gray-700">
+        {content.nestedBlocks && content.nestedBlocks.length > 0 ? (
+          <ContentRenderer blocks={content.nestedBlocks} />
+        ) : (
+          <div set:html={content.content} />
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Clean collapsible styles */
+  .collapsible-container {
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  .collapsible-container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .collapsible-summary {
+    border: none;
+    background: none;
+    outline: none;
+  }
+  
+  .collapsible-summary:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .collapsible-summary:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: -2px;
+  }
+  
+  /* Content hidden by default */
+  .collapsible-content {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+  
+  /* Icon starts pointing right */
+  .collapsible-icon {
+    transform: rotate(-90deg);
+  }
+  
+  /* Open state */
+  .collapsible-container.is-open .collapsible-icon {
+    transform: rotate(0deg);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .collapsible-summary {
+      padding: 1rem;
+    }
+    
+    .collapsible-inner {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Web Animations API implementation for reliable collapsible animations
+  document.addEventListener('DOMContentLoaded', function() {
+    const collapsibleContainers = document.querySelectorAll('.collapsible-container');
+    
+    collapsibleContainers.forEach(container => {
+      const button = container.querySelector('.collapsible-summary') as HTMLButtonElement;
+      const content = container.querySelector('.collapsible-content') as HTMLElement;
+      const icon = container.querySelector('.collapsible-icon') as HTMLElement;
+      
+      if (!button || !content || !icon) return;
+      
+      const shouldBeInitiallyOpen = container.getAttribute('data-initial-open') === 'true';
+      let isOpen = shouldBeInitiallyOpen;
+      let isAnimating = false;
+      
+      // Set initial state immediately - prevent flash
+      if (isOpen) {
+        container.classList.add('is-open');
+        content.style.height = 'auto';
+        content.style.opacity = '1';
+      } else {
+        container.classList.remove('is-open');
+        content.style.height = '0px';
+        content.style.opacity = '0';
+      }
+      
+      // Handle click events
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Prevent multiple concurrent animations
+        if (isAnimating) return;
+        
+        isAnimating = true;
+        isOpen = !isOpen;
+        
+        if (isOpen) {
+          // Opening animation
+          container.classList.add('is-open');
+          
+          // Get target height by temporarily setting auto
+          content.style.height = 'auto';
+          const targetHeight = content.scrollHeight;
+          content.style.height = '0px';
+          
+          // Create opening animations
+          const heightAnimation = content.animate([
+            { height: '0px' },
+            { height: targetHeight + 'px' }
+          ], {
+            duration: 400,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            fill: 'forwards'
+          });
+          
+          const opacityAnimation = content.animate([
+            { opacity: '0' },
+            { opacity: '1' }
+          ], {
+            duration: 300,
+            delay: 100,
+            easing: 'ease-out',
+            fill: 'forwards'
+          });
+          
+          // When animation completes
+          Promise.all([heightAnimation.finished, opacityAnimation.finished]).then(() => {
+            content.style.height = 'auto';
+            isAnimating = false;
+          });
+          
+        } else {
+          // Closing animation
+          container.classList.remove('is-open');
+          
+          // Get current height
+          const currentHeight = content.scrollHeight;
+          content.style.height = currentHeight + 'px';
+          
+          // Create closing animations
+          const heightAnimation = content.animate([
+            { height: currentHeight + 'px' },
+            { height: '0px' }
+          ], {
+            duration: 350,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            fill: 'forwards'
+          });
+          
+          const opacityAnimation = content.animate([
+            { opacity: '1' },
+            { opacity: '0' }
+          ], {
+            duration: 250,
+            easing: 'ease-in',
+            fill: 'forwards'
+          });
+          
+          // When animation completes
+          Promise.all([heightAnimation.finished, opacityAnimation.finished]).then(() => {
+            isAnimating = false;
+          });
+        }
+      });
+      
+      // Handle window resize
+      let resizeTimeout: number;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = window.setTimeout(() => {
+          if (isOpen && !isAnimating) {
+            content.style.height = 'auto';
+          }
+        }, 150);
+      });
+    });
+  });
+</script>
+
