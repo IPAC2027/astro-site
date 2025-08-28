@@ -15,10 +15,10 @@ const currentPath = Astro.url.pathname;
 
 <nav class="bg-white shadow-lg sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-32">
+    <div class="flex justify-between h-20 md:h-32">
       <div class="flex items-center">
         <a href="/" class="flex-shrink-0 flex items-center">
-          <img class="h-16 w-auto" src="/ipac27.png" alt="IPAC27 Logo" />
+          <img class="h-12 md:h-16 w-auto" src="/ipac27.png" alt="IPAC27 Logo" />
         </a>
       </div>
       
@@ -77,12 +77,12 @@ const currentPath = Astro.url.pathname;
       <div class="md:hidden flex items-center">
         <button
           type="button"
-          class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+          class="mobile-menu-button inline-flex items-center justify-center p-3 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 transition-colors"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
           <span class="sr-only">Open main menu</span>
-          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg class="block h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
@@ -92,13 +92,13 @@ const currentPath = Astro.url.pathname;
 
   <!-- Mobile menu -->
   <div class="mobile-menu hidden md:hidden">
-    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-      {navigation.map((item: any) => (
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t shadow-lg">
+      {navigation.map((item: any, index: number) => (
         <div>
           {item.href ? (
             <a
               href={item.href}
-              class={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
+              class={`block px-4 py-3 rounded-md text-base font-medium transition-colors duration-200 ${
                 currentPath === item.href
                   ? 'text-primary-600 bg-primary-50'
                   : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
@@ -107,20 +107,31 @@ const currentPath = Astro.url.pathname;
               {item.name}
             </a>
           ) : (
-            <div class={`block px-3 py-2 rounded-md text-base font-medium ${
-              item.submenu && item.submenu.some((sub: any) => currentPath === sub.href)
-                ? 'text-primary-600 bg-primary-50'
-                : 'text-gray-700'
-            }`}>
-              {item.name}
-            </div>
+            <button 
+              class={`mobile-submenu-toggle w-full text-left px-4 py-3 rounded-md text-base font-medium transition-colors duration-200 flex items-center justify-between ${
+                item.submenu && item.submenu.some((sub: any) => currentPath === sub.href)
+                  ? 'text-primary-600 bg-primary-50'
+                  : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
+              }`}
+              data-menu-index={index}
+              aria-expanded="false"
+            >
+              <span>{item.name}</span>
+              <svg class="submenu-arrow w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
           )}
           {item.submenu && (
-            <div class="ml-4 mt-1 space-y-1">
+            <div 
+              class="mobile-submenu hidden ml-4 mt-1 space-y-1 border-l-2 border-gray-100 pl-4 overflow-hidden"
+              data-submenu-index={index}
+              style="max-height: 0; transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; opacity: 0;"
+            >
               {item.submenu.map((subitem: any) => (
                 <a
                   href={subitem.href}
-                  class={`block px-3 py-2 text-base rounded-md transition-colors duration-200 ${
+                  class={`block px-3 py-3 text-base rounded-md transition-colors duration-200 ${
                     currentPath === subitem.href
                       ? 'text-primary-600 bg-primary-50'
                       : 'text-gray-600 hover:text-primary-600 hover:bg-primary-50'
@@ -142,11 +153,111 @@ const currentPath = Astro.url.pathname;
   document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const mobileMenu = document.querySelector('.mobile-menu');
+    const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
     
+    // Main mobile menu toggle
     if (mobileMenuButton && mobileMenu) {
       mobileMenuButton.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
         mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        
+        // Close all submenus when main menu is closed
+        if (!isHidden) {
+          closeAllSubmenus();
+        }
       });
     }
+    
+    // Submenu accordion functionality
+    submenuToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const menuIndex = toggle.getAttribute('data-menu-index');
+        const currentSubmenu = document.querySelector(`[data-submenu-index="${menuIndex}"]`) as HTMLElement;
+        const currentArrow = toggle.querySelector('.submenu-arrow') as HTMLElement;
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other submenus first (accordion behavior)
+        submenuToggles.forEach(otherToggle => {
+          if (otherToggle !== toggle) {
+            const otherMenuIndex = otherToggle.getAttribute('data-menu-index');
+            const otherSubmenu = document.querySelector(`[data-submenu-index="${otherMenuIndex}"]`) as HTMLElement;
+            const otherArrow = otherToggle.querySelector('.submenu-arrow') as HTMLElement;
+            
+            if (otherSubmenu && otherArrow) {
+              otherSubmenu.style.maxHeight = '0';
+              otherSubmenu.style.opacity = '0';
+              otherToggle.setAttribute('aria-expanded', 'false');
+              otherArrow.style.transform = 'rotate(0deg)';
+              
+              setTimeout(() => {
+                otherSubmenu.classList.add('hidden');
+              }, 300);
+            }
+          }
+        });
+        
+        // Toggle current submenu
+        if (currentSubmenu && currentArrow) {
+          if (isExpanded) {
+            // Close current submenu
+            currentSubmenu.style.maxHeight = '0';
+            currentSubmenu.style.opacity = '0';
+            toggle.setAttribute('aria-expanded', 'false');
+            currentArrow.style.transform = 'rotate(0deg)';
+            
+            setTimeout(() => {
+              currentSubmenu.classList.add('hidden');
+            }, 300);
+          } else {
+            // Open current submenu
+            currentSubmenu.classList.remove('hidden');
+            const scrollHeight = currentSubmenu.scrollHeight;
+            
+            requestAnimationFrame(() => {
+              currentSubmenu.style.maxHeight = scrollHeight + 'px';
+              currentSubmenu.style.opacity = '1';
+              toggle.setAttribute('aria-expanded', 'true');
+              currentArrow.style.transform = 'rotate(180deg)';
+            });
+          }
+        }
+      });
+    });
+    
+    // Helper function to close all submenus
+    function closeAllSubmenus() {
+      submenuToggles.forEach(toggle => {
+        const menuIndex = toggle.getAttribute('data-menu-index');
+        const submenu = document.querySelector(`[data-submenu-index="${menuIndex}"]`) as HTMLElement;
+        const arrow = toggle.querySelector('.submenu-arrow') as HTMLElement;
+        
+        if (submenu && arrow) {
+          submenu.style.maxHeight = '0';
+          submenu.style.opacity = '0';
+          toggle.setAttribute('aria-expanded', 'false');
+          arrow.style.transform = 'rotate(0deg)';
+          
+          setTimeout(() => {
+            submenu.classList.add('hidden');
+          }, 300);
+        }
+      });
+    }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (mobileMenu && mobileMenuButton && e.target instanceof Node) {
+        const isClickInMenu = mobileMenu.contains(e.target);
+        const isClickOnButton = mobileMenuButton.contains(e.target);
+        
+        if (!isClickInMenu && !isClickOnButton && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+          closeAllSubmenus();
+        }
+      }
+    });
   });
 </script>

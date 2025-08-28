@@ -122,12 +122,37 @@ import Footer from '../components/Footer.astro';
     </div>
   </section>
   
-  <main class="flex-grow bg-gray-50">
-    <div class="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="flex-grow bg-gray-50">
+    <div class="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
+      <!-- Mobile Navigation Toggle (only visible on mobile) -->
+      <div class="md:hidden mb-4">
+        <button 
+          id="mobile-sidebar-toggle"
+          class="w-full bg-white border border-gray-200 rounded-lg p-4 flex items-center justify-between text-left shadow-sm hover:bg-gray-50 transition-colors"
+          aria-expanded="false"
+          aria-controls="mobile-sidebar"
+        >
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-3 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <span class="font-medium text-gray-900">
+              {currentSection ? `${currentSection.title} Menu` : 'Navigation Menu'}
+            </span>
+          </div>
+          <svg id="mobile-toggle-icon" class="w-5 h-5 text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+
       <div class="flex gap-4">
-        <!-- Sidebar Navigation -->
-        <div class="w-64 flex-shrink-0">
-          <div class="bg-white rounded-lg shadow-sm border p-6 sticky top-8">
+        <!-- Sidebar Navigation - Hidden on mobile, shown when toggled -->
+        <div 
+          id="mobile-sidebar"
+          class="w-full md:w-64 md:flex-shrink-0 hidden md:block"
+        >
+          <div class="bg-white rounded-lg shadow-sm border p-4 md:p-6 md:sticky md:top-8">
             {showBackToParent && parentLink && parentName && (
               <div class="mb-4">
                 <a href={parentLink} class="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center">
@@ -152,27 +177,28 @@ import Footer from '../components/Footer.astro';
                 
                 <!-- Navigation Tree -->
                 <nav class="space-y-1 relative">
-                  <!-- Tree line decoration -->
-                  <div class="absolute left-4 top-0 bottom-0 w-px bg-gray-200"></div>
+                  <!-- Tree line decoration (hidden on mobile) -->
+                  <div class="absolute left-4 top-0 bottom-0 w-px bg-gray-200 hidden md:block"></div>
                   
                   {currentSection.items.map((item, index) => (
                     <div class="relative">
-                      <!-- Tree branch -->
-                      <div class="absolute left-4 top-4 w-3 h-px bg-gray-200"></div>
-                      <!-- Tree node -->
-                      <div class="absolute left-3 top-3 w-2 h-2 bg-gray-300 rounded-full"></div>
+                      <!-- Tree branch (hidden on mobile) -->
+                      <div class="absolute left-4 top-4 w-3 h-px bg-gray-200 hidden md:block"></div>
+                      <!-- Tree node (hidden on mobile) -->
+                      <div class="absolute left-3 top-3 w-2 h-2 bg-gray-300 rounded-full hidden md:block"></div>
                       
                       <a 
                         href={item.href}
-                        class={`block pl-8 pr-3 py-2 rounded-md text-sm font-medium transition-all duration-200 relative ${
+                        class={`block pl-2 md:pl-8 pr-3 py-3 md:py-2 rounded-md text-sm font-medium transition-all duration-200 relative ${
                           currentPath === item.href 
                             ? 'bg-primary-100 text-primary-700 border-l-2 border-primary-500 shadow-sm' 
-                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 hover:pl-9'
+                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 md:hover:pl-9'
                         }`}
+                        onclick="if (window.innerWidth < 768) { document.getElementById('mobile-sidebar').classList.add('hidden'); document.getElementById('mobile-sidebar-toggle').setAttribute('aria-expanded', 'false'); }"
                       >
                         <!-- Active indicator -->
                         {currentPath === item.href && (
-                          <div class="absolute left-3 top-3 w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+                          <div class="absolute left-3 top-3 w-2 h-2 bg-primary-500 rounded-full animate-pulse hidden md:block"></div>
                         )}
                         
                         <span class="flex items-center">
@@ -196,16 +222,16 @@ import Footer from '../components/Footer.astro';
         <div class="flex-1 min-w-0">
           <div class="rounded-lg shadow-sm">
             <!-- Page Header -->
-            <div class="border-b border-gray-200 px-8 py-6">
-              <h1 class="text-3xl font-bold text-gray-900">{title}</h1>
+            <div class="border-b border-gray-200 px-4 md:px-8 py-4 md:py-6">
+              <h1 class="text-2xl md:text-3xl font-bold text-gray-900">{title}</h1>
               {description && (
-                <p class="text-lg text-gray-600 mt-2">{description}</p>
+                <p class="text-base md:text-lg text-gray-600 mt-2">{description}</p>
               )}
             </div>
 
             <!-- Page Content -->
-            <div class="px-8 py-6">
-              <div class="prose prose-lg max-w-none">
+            <div class="px-4 md:px-8 py-4 md:py-6">
+              <div class="prose prose-sm md:prose-lg max-w-none">
                 <slot />
               </div>
             </div>
@@ -355,4 +381,71 @@ import Footer from '../components/Footer.astro';
   :global(details[open] summary) {
     border-bottom: 1px solid #e5e7eb;
   }
+
+  /* Mobile sidebar animations */
+  @media (max-width: 767px) {
+    #mobile-sidebar {
+      transition: all 0.3s ease-in-out;
+    }
+    
+    #mobile-sidebar.hidden {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    
+    #mobile-sidebar:not(.hidden) {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 </style>
+
+<script>
+  // Mobile sidebar toggle functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('mobile-sidebar-toggle');
+    const sidebar = document.getElementById('mobile-sidebar');
+    const toggleIcon = document.getElementById('mobile-toggle-icon');
+    
+    if (toggleButton && sidebar && toggleIcon) {
+      toggleButton.addEventListener('click', function() {
+        const isHidden = sidebar.classList.contains('hidden');
+        
+        if (isHidden) {
+          sidebar.classList.remove('hidden');
+          toggleButton.setAttribute('aria-expanded', 'true');
+          toggleIcon.style.transform = 'rotate(180deg)';
+        } else {
+          sidebar.classList.add('hidden');
+          toggleButton.setAttribute('aria-expanded', 'false');
+          toggleIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+      
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', function(event) {
+        if (window.innerWidth < 768 && event.target instanceof Node) {
+          const isClickInsideSidebar = sidebar.contains(event.target);
+          const isClickOnToggle = toggleButton.contains(event.target);
+          
+          if (!isClickInsideSidebar && !isClickOnToggle && !sidebar.classList.contains('hidden')) {
+            sidebar.classList.add('hidden');
+            toggleButton.setAttribute('aria-expanded', 'false');
+            toggleIcon.style.transform = 'rotate(0deg)';
+          }
+        }
+      });
+      
+      // Close sidebar when window is resized to desktop
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768) {
+          sidebar.classList.remove('hidden');
+          toggleButton.setAttribute('aria-expanded', 'false');
+          toggleIcon.style.transform = 'rotate(0deg)';
+        } else {
+          sidebar.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>
