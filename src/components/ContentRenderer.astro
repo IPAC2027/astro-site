@@ -22,13 +22,29 @@ const { blocks } = Astro.props;
       if (typeof content !== 'string') {
         return null;
       }
-      const parts = content.split(/(\*\*.*?\*\*)/g);
+      
+      // Parse markdown formatting: images first, then hyperlinks, then bold text
+      let processedContent = content;
+      
+      // First, process images ![alt](src)
+      processedContent = processedContent.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />');
+      
+      // Then, process hyperlinks [text](url)
+      processedContent = processedContent.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-800 underline" target="_blank" rel="noopener noreferrer">$1</a>');
+      
+      // Then process bold text **text**
+      const parts = processedContent.split(/(\*\*.*?\*\*)/g);
       const parsedParts = parts.map((part: string) => {
         if (part.startsWith('**') && part.endsWith('**')) {
           return <strong>{part.slice(2, -2)}</strong>;
         }
+        // Return as raw HTML for images and hyperlinks that were already processed
+        if (part.includes('<img ') || part.includes('<a href=')) {
+          return <span set:html={part}></span>;
+        }
         return part;
       });
+      
       return <p class="content-text">{parsedParts}</p>;
     }
     
@@ -36,8 +52,10 @@ const { blocks } = Astro.props;
       return (
         <ul class="content-list">
           {Array.isArray(block.content) && block.content.map(item => {
-            // Process markdown formatting within list items
+            // Process markdown formatting within list items: images first, then hyperlinks, then other formatting
             const processedItem = item
+              .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />')
+              .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-800 underline" target="_blank" rel="noopener noreferrer">$1</a>')
               .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
               .replace(/\*(.*?)\*/g, '<em>$1</em>')
               .replace(/`(.*?)`/g, '<code>$1</code>');
@@ -118,8 +136,10 @@ const { blocks } = Astro.props;
               const listItems = [];
               while (i < lines.length && (lines[i].startsWith('* ') || lines[i].startsWith('- '))) {
                 const itemContent = lines[i].substring(2).trim();
-                // Process markdown formatting in list item
+              // Process markdown formatting in list item
                 const processedItem = itemContent
+                  .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />')
+                  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-800 underline" target="_blank" rel="noopener noreferrer">$1</a>')
                   .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                   .replace(/\*(.*?)\*/g, '<em>$1</em>')
                   .replace(/`(.*?)`/g, '<code>$1</code>');
@@ -136,11 +156,21 @@ const { blocks } = Astro.props;
                 </ul>
               );
             } else {
-              // Regular text line - parse bold text and line breaks
-              const parts = line.split(/(\*\*.*?\*\*)/);
+              // Regular text line - parse images, bold text and line breaks
+              let processedLine = line;
+              // Process images first
+              processedLine = processedLine.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />');
+              // Then process hyperlinks
+              processedLine = processedLine.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-800 underline" target="_blank" rel="noopener noreferrer">$1</a>');
+              
+              const parts = processedLine.split(/(\*\*.*?\*\*)/);
               const parsedParts = parts.map(part => {
                 if (part.startsWith('**') && part.endsWith('**')) {
                   return <strong>{part.slice(2, -2)}</strong>;
+                }
+                // Return as raw HTML for images and hyperlinks that were already processed
+                if (part.includes('<img ') || part.includes('<a href=')) {
+                  return <span set:html={part}></span>;
                 }
                 return part;
               });
