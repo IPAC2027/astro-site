@@ -18,29 +18,32 @@ The International Particle Accelerator Conference is the premier annual gatherin
 
 ### Conference Highlights
 
+- 1,000+ international participants
+- 70+ Scientific Talks
 - Five days of cutting-edge scientific presentations
 - Industrial exhibition showcasing the latest technologies
 - Networking opportunities with global experts
 - Student poster session and career development
-- Tutorials for early-career researchers
 - Social events in vibrant Detroit
 
 :::grid{columns=2}
-:::card{icon="📅" title="Conference Dates"}
-May 23-28, 2027
+:::card{icon="📅" title="Conference Dates: May 23-28, 2027"}
+
+
+<calendar>
+
+[Add to Calendar](https://calendar.google.com/calendar/render?action=TEMPLATE&text=IPAC'27+Conference&dates=20270523T080000Z/20270528T180000Z&details=18th+International+Particle+Accelerator+Conference&location=Huntington+Place,+Detroit,+MI,+USA)
 :::
 
 :::card{icon="📍" title="Location"}
-Huntington Place, Detroit, MI, USA
+**Huntington Place, Detroit, MI, USA**
+
+<iframe src="https://maps.google.com/maps?q=Huntington+Place,+1+Washington+Blvd,+Detroit,+MI+48226&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="350" style="border: 0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+[View Directions](https://maps.google.com/maps?daddr=Huntington+Place,+1+Washington+Blvd,+Detroit,+MI+48226)
 :::
 
-:::card{icon="👥" title="Expected Attendees"}
-1,000+ international participants
-:::
 
-:::card{icon="🎯" title="Program Format"}
-Plenary, parallel, and poster sessions
-:::
 :::
 
 ## More Information

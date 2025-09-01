@@ -8,4 +8,5 @@ bannerBackground: "/detroit_skyline_night.jpg"
 Content to be added:
 
 - FRIB Code of Conduct
-- IEEE Code of Conduct
+- IEEE/APS Code of Conduct
+

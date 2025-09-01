@@ -178,3 +178,64 @@
 .status-closed {
   @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800;
 }
+
+/* Embedded content styling */
+.embed-container {
+  @apply relative w-full overflow-hidden rounded-lg;
+}
+
+.embed-container iframe {
+  @apply w-full border-0 rounded-lg;
+  min-height: 200px;
+}
+
+/* Responsive iframe containers */
+.embed-responsive {
+  @apply relative pb-[56.25%] h-0 overflow-hidden;
+}
+
+.embed-responsive iframe {
+  @apply absolute top-0 left-0 w-full h-full;
+}
+
+/* Calendar embed specific styling */
+.calendar-embed {
+  @apply bg-white border border-gray-200 rounded-lg overflow-hidden;
+}
+
+.calendar-embed iframe {
+  @apply w-full;
+  min-height: 250px;
+}
+
+/* Map embed specific styling */
+.map-embed {
+  @apply bg-gray-100 border border-gray-200 rounded-lg overflow-hidden;
+}
+
+.map-embed iframe {
+  @apply w-full;
+  min-height: 250px;
+}
+
+/* Conference calendar styling */
+.conference-calendar {
+  @apply w-full mx-auto;
+  max-width: 320px;
+}
+
+.conference-calendar .calendar-day {
+  @apply transition-colors duration-150;
+}
+
+.conference-calendar .calendar-day:hover {
+  @apply bg-gray-100;
+}
+
+.conference-calendar .calendar-day.highlighted {
+  @apply bg-primary-600 text-white;
+}
+
+.conference-calendar .calendar-day.highlighted:hover {
+  @apply bg-primary-700;
+}
