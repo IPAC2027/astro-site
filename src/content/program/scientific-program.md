@@ -12,14 +12,13 @@ The scientific program for IPAC'27 will be announced closer to the conference da
 
 ## Program Overview
 
-IPAC'27 will feature a comprehensive program covering the latest developments in particle accelerator science and technology. The conference will include invited talks, contributed presentations, poster sessions, and tutorials.
+IPAC'27 will feature a comprehensive program covering the latest developments in particle accelerator science and technology. The conference will include invited talks, contributed presentations, and poster sessions.
 
 ### Key Program Elements
 
 - Plenary sessions with invited speakers
-- Parallel sessions organized by topic
+- Parallel sessions for invited and contriubted speakers
 - Student poster session
-- Tutorial sessions
 - Industrial exhibition
 - Social events and networking opportunities
 
@@ -28,7 +27,7 @@ IPAC'27 will feature a comprehensive program covering the latest developments in
 World-renowned experts will present the latest advances in accelerator physics.
 :::
 
-:::card{icon="📊" title="Contributed Papers"}
+:::card{icon="📊" title="Contributed Talks"}
 Original research presentations from the global accelerator community.
 :::
 
