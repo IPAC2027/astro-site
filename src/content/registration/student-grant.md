@@ -1,6 +1,7 @@
 ---
 title: "Student Grant Application"
 description: "Apply for student travel grants to attend IPAC'27"
+bannerBackground: "/images/banners/Registration/student_grant.jpg"
 ---
 
 

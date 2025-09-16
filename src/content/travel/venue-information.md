@@ -1,6 +1,8 @@
 ---
 title: "Venue Information"
 description: "Information about the Huntington Place conference venue"
+bannerText: "IPAC'27 Venue"
+bannerBackground: "/images/banners/Travel/venue.png"
 ---
 
 

@@ -2,7 +2,7 @@
 title: "FRIB Tour"
 description: "Tour of the Facility for Rare Isotope Beams"
 bannerText: "FRIB Tour"
-bannerBackground: "/images/banners/frib-tour.png"
+bannerBackground: "/images/banners/Registration/frib-tour.png"
 ---
 
 :::highlight

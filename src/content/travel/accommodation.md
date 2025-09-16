@@ -2,6 +2,7 @@
 title: "Accommodation"
 description: "Hotels and accommodation options for IPAC'27 attendees"
 bannerText: "Accommodation"
+bannerBackground: "/images/banners/Travel/accomodation.png"
 ---
 
 

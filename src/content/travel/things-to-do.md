@@ -2,6 +2,7 @@
 title: "Things to Do"
 description: "Attractions and activities in Detroit for IPAC'27 attendees"
 bannerText: "Things to Do in Detroit"
+bannerBackground: "/images/banners/Travel/things.jpg"
 ---
 
 # Things to Do in Detroit

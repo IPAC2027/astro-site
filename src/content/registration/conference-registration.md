@@ -2,6 +2,7 @@
 title: "Conference Registration"
 description: "Register for IPAC'27 and secure your participation"
 bannerText: "Conference Registration"
+bannerBackground: "/images/banners/Registration/registration.png"
 ---
 
 # Conference Registration

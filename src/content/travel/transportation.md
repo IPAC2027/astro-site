@@ -2,6 +2,7 @@
 title: "Getting to Detroit"
 description: "Transportation options for traveling to Detroit and IPAC'27"
 bannerText: "Getting to Detroit"
+bannerBackground: "/images/banners/Travel/dtw.jpg"
 ---
 
 
