@@ -3,8 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import HeroSection from '../components/HeroSection.astro';
+import StatsSection from '../components/StatsSection.astro';
 import CountdownSection from '../components/CountdownSection.astro';
 import ImportantDatesAboutSection from '../components/ImportantDatesAboutSection.astro';
+import ProgramHighlightsSection from '../components/ProgramHighlightsSection.astro';
+import CommunitySection from '../components/CommunitySection.astro';
 import NewsSection from '../components/NewsSection.astro';
 import { homeContent } from '../data/homeContent.ts';
 ---
@@ -14,12 +17,18 @@ import { homeContent } from '../data/homeContent.ts';
   
   <HeroSection {...homeContent.hero} />
   
+  <StatsSection globalImpact={homeContent.globalImpact} />
+  
   <CountdownSection {...homeContent.countdown} />
 
   <ImportantDatesAboutSection 
     importantDates={homeContent.importantDates} 
     about={homeContent.about} 
   />
+
+  <ProgramHighlightsSection {...homeContent.programHighlights} />
+
+  <CommunitySection {...homeContent.community} />
 
   <NewsSection {...homeContent.news} />
 

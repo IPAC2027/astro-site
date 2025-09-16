@@ -1,0 +1,217 @@
+---
+import type { Sponsor, Exhibitor } from '../data/exhibitors';
+import { sponsors, exhibitors, getSponsorsByTier, getExhibitorsByCategory, sponsorTiers } from '../data/exhibitors';
+
+export interface ExhibitorsPageProps {
+  showSponsors?: boolean;
+  showExhibitors?: boolean;
+  featuredOnly?: boolean;
+}
+
+const { showSponsors = true, showExhibitors = true, featuredOnly = false } = Astro.props;
+
+const platinumSponsors = getSponsorsByTier('platinum');
+const goldSponsors = getSponsorsByTier('gold');
+const silverSponsors = getSponsorsByTier('silver');
+const bronzeSponsors = getSponsorsByTier('bronze');
+
+const displayExhibitors = featuredOnly 
+  ? exhibitors.filter(e => e.featured)
+  : exhibitors;
+
+const categories = [...new Set(displayExhibitors.map(e => e.category))];
+
+const getSponsorSize = (tier: string) => {
+  switch (tier) {
+    case 'platinum':
+      return 'h-24 md:h-32';
+    case 'gold':
+      return 'h-20 md:h-24';
+    case 'silver':
+      return 'h-16 md:h-20';
+    case 'bronze':
+      return 'h-14 md:h-16';
+    default:
+      return 'h-12 md:h-14';
+  }
+};
+---
+
+<div class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    {showSponsors && (
+      <section class="mb-20">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Sponsors & Partners</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            IPAC27 is made possible by the generous support of these organizations
+          </p>
+        </div>
+
+        {/* Platinum Sponsors */}
+        {platinumSponsors.length > 0 && (
+          <div class="mb-16">
+            <h3 class="text-2xl font-semibold text-center text-gray-900 mb-8 flex items-center justify-center">
+              <span class="inline-block w-4 h-4 rounded-full bg-gray-300 mr-3"></span>
+              Platinum Sponsors
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {platinumSponsors.map((sponsor) => (
+                <a href={sponsor.link} target="_blank" rel="noopener noreferrer"
+                   class="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300 group">
+                  <div class="flex items-center justify-center mb-4">
+                    <img 
+                      src={sponsor.logo} 
+                      alt={`${sponsor.name} logo`}
+                      class={`${getSponsorSize('platinum')} w-auto object-contain`}
+                    />
+                  </div>
+                  <h4 class="text-lg font-semibold text-center text-gray-900 mb-2">{sponsor.name}</h4>
+                  {sponsor.description && (
+                    <p class="text-sm text-gray-600 text-center">{sponsor.description}</p>
+                  )}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Gold Sponsors */}
+        {goldSponsors.length > 0 && (
+          <div class="mb-16">
+            <h3 class="text-2xl font-semibold text-center text-gray-900 mb-8 flex items-center justify-center">
+              <span class="inline-block w-4 h-4 rounded-full bg-yellow-500 mr-3"></span>
+              Gold Sponsors
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {goldSponsors.map((sponsor) => (
+                <a href={sponsor.link} target="_blank" rel="noopener noreferrer"
+                   class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group">
+                  <div class="flex items-center justify-center">
+                    <img 
+                      src={sponsor.logo} 
+                      alt={`${sponsor.name} logo`}
+                      class={`${getSponsorSize('gold')} w-auto object-contain`}
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Silver Sponsors */}
+        {silverSponsors.length > 0 && (
+          <div class="mb-16">
+            <h3 class="text-2xl font-semibold text-center text-gray-900 mb-8 flex items-center justify-center">
+              <span class="inline-block w-4 h-4 rounded-full bg-gray-400 mr-3"></span>
+              Silver Sponsors
+            </h3>
+            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {silverSponsors.map((sponsor) => (
+                <a href={sponsor.link} target="_blank" rel="noopener noreferrer"
+                   class="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 group">
+                  <div class="flex items-center justify-center">
+                    <img 
+                      src={sponsor.logo} 
+                      alt={`${sponsor.name} logo`}
+                      class={`${getSponsorSize('silver')} w-auto object-contain`}
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Bronze Sponsors */}
+        {bronzeSponsors.length > 0 && (
+          <div class="mb-16">
+            <h3 class="text-2xl font-semibold text-center text-gray-900 mb-8 flex items-center justify-center">
+              <span class="inline-block w-4 h-4 rounded-full bg-amber-600 mr-3"></span>
+              Bronze Sponsors
+            </h3>
+            <div class="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+              {bronzeSponsors.map((sponsor) => (
+                <a href={sponsor.link} target="_blank" rel="noopener noreferrer"
+                   class="bg-white rounded-lg p-3 shadow-md hover:shadow-lg transition-shadow duration-300 group">
+                  <div class="flex items-center justify-center">
+                    <img 
+                      src={sponsor.logo} 
+                      alt={`${sponsor.name} logo`}
+                      class={`${getSponsorSize('bronze')} w-auto object-contain`}
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+    )}
+
+    {showExhibitors && (
+      <section>
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Exhibition & Industry Partners</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Discover cutting-edge products and services from leading companies in accelerator technology
+          </p>
+        </div>
+
+        {categories.map((category) => {
+          const categoryExhibitors = getExhibitorsByCategory(category);
+          if (featuredOnly) {
+            return categoryExhibitors.filter(e => e.featured);
+          }
+          return (
+            categoryExhibitors.length > 0 && (
+              <div class="mb-12">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6">{category}</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {categoryExhibitors.map((exhibitor) => (
+                    <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                      <div class="p-6">
+                        <div class="flex items-center mb-4">
+                          <img 
+                            src={exhibitor.logo} 
+                            alt={`${exhibitor.name} logo`}
+                            class="h-12 w-auto object-contain mr-4"
+                          />
+                          <div>
+                            <h4 class="text-lg font-semibold text-gray-900">{exhibitor.name}</h4>
+                            {exhibitor.booth && (
+                              <span class="text-sm text-primary-600 font-medium">Booth {exhibitor.booth}</span>
+                            )}
+                          </div>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">{exhibitor.description}</p>
+                        <div class="flex flex-wrap gap-2">
+                          {exhibitor.website && (
+                            <a href={exhibitor.website} target="_blank" rel="noopener noreferrer"
+                               class="inline-flex items-center text-primary-600 hover:text-primary-700 text-sm font-medium">
+                              Visit Website
+                              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                              </svg>
+                            </a>
+                          )}
+                          {exhibitor.featured && (
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                              Featured
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          );
+        })}
+      </section>
+    )}
+  </div>
+</div>

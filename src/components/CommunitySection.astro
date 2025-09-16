@@ -1,0 +1,275 @@
+---
+import type { Sponsor, Exhibitor } from '../data/exhibitors';
+
+export interface CommunitySection {
+  title: string;
+  subtitle: string;
+  stats: {
+    communities: number;
+    institutions: number;
+    industries: number;
+  };
+  statsLabels: {
+    communities: string;
+    institutions: string;
+    industries: string;
+  };
+  statsDescriptions: {
+    communities: string;
+    institutions: string;
+    industries: string;
+  };
+  sponsorsTitle: string;
+  sponsors: Exhibitor[];
+  sponsorCta: {
+    title: string;
+    description: string;
+    buttons: {
+      primary: {
+        text: string;
+        href: string;
+      };
+      secondary: {
+        text: string;
+        href: string;
+      };
+    };
+  };
+  testimonial?: {
+    quote: string;
+    author: string;
+    title: string;
+    institution: string;
+  };
+}
+
+const { title, subtitle, stats, statsLabels, statsDescriptions, sponsorsTitle, sponsors, sponsorCta, testimonial } = Astro.props;
+
+const getSponsorSize = (tier: string) => {
+  switch (tier) {
+    case 'platinum':
+      return 'h-20 md:h-24';
+    case 'gold':
+      return 'h-16 md:h-20';
+    case 'silver':
+      return 'h-14 md:h-16';
+    case 'bronze':
+      return 'h-12 md:h-14';
+    default:
+      return 'h-12 md:h-14';
+  }
+};
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-heading font-bold text-gray-900 mb-4">{title}</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
+    </div>
+    
+    <!-- Community Stats -->
+    <div class="animate-card bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-8 md:p-12 mb-16 border border-primary-100 animate-initial">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="community-stat relative animate-initial">
+          <div class="mb-4">
+            <div class="text-4xl md:text-5xl font-bold text-primary-600 mb-2 community-counter" data-target={stats.communities}>0+</div>
+            <p class="text-lg font-semibold text-gray-800">{statsLabels.communities}</p>
+            <p class="text-sm text-gray-600 mt-1">{statsDescriptions.communities}</p>
+          </div>
+        </div>
+        
+        <div class="community-stat relative md:border-l md:border-r border-primary-200 animate-initial">
+          <div class="mb-4">
+            <div class="text-4xl md:text-5xl font-bold text-accent-600 mb-2 community-counter" data-target={stats.institutions}>0+</div>
+            <p class="text-lg font-semibold text-gray-800">{statsLabels.institutions}</p>
+            <p class="text-sm text-gray-600 mt-1">{statsDescriptions.institutions}</p>
+          </div>
+        </div>
+        
+        <div class="community-stat relative animate-initial">
+          <div class="mb-4">
+            <div class="text-4xl md:text-5xl font-bold text-primary-600 mb-2 community-counter" data-target={stats.industries}>0+</div>
+            <p class="text-lg font-semibold text-gray-800">{statsLabels.industries}</p>
+            <p class="text-sm text-gray-600 mt-1">{statsDescriptions.industries}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Testimonial -->
+    {testimonial && (
+      <div class="animate-card bg-gray-50 rounded-2xl p-8 md:p-12 mb-16 animate-initial">
+        <div class="max-w-4xl mx-auto text-center">
+          <svg class="w-12 h-12 text-primary-600 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          
+          <blockquote class="text-xl md:text-2xl text-gray-800 font-medium leading-relaxed mb-6">
+            "{testimonial.quote}"
+          </blockquote>
+          
+          <div class="flex items-center justify-center">
+            <div class="text-center">
+              <p class="font-semibold text-gray-900">{testimonial.author}</p>
+              <p class="text-gray-600">{testimonial.title}</p>
+              <p class="text-sm text-gray-500">{testimonial.institution}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+    
+    <!-- Sponsors -->
+    <div class="text-center">
+      <h3 class="text-2xl font-semibold text-gray-900 mb-8">{sponsorsTitle}</h3>
+      
+      <!-- Sponsor Logos Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 items-center justify-items-center">
+        {sponsors.map((exhibitor: Exhibitor) => (
+          <a 
+            href={exhibitor.website} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="group block p-4 rounded-lg hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+          >
+            <img 
+              src={exhibitor.logo} 
+              alt={`${exhibitor.name} logo`}
+              class={`${getSponsorSize(exhibitor.tier)} w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100`}
+            />
+          </a>
+        ))}
+      </div>
+      
+      <!-- Become a Sponsor CTA -->
+      <div class="animate-card mt-16 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl p-8 md:p-12 text-white text-center animate-initial">
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">{sponsorCta.title}</h3>
+        <p class="text-lg md:text-xl opacity-90 mb-6 max-w-2xl mx-auto">
+          {sponsorCta.description}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={sponsorCta.buttons.primary.href} 
+             class="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
+            {sponsorCta.buttons.primary.text}
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12"></path>
+            </svg>
+          </a>
+          <a href={sponsorCta.buttons.secondary.href} 
+             class="border-2 border-white text-white hover:bg-white hover:text-primary-600 px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
+            {sponsorCta.buttons.secondary.text}
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Scroll animation styles */
+  .animate-initial {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition-delay: var(--animation-delay, 0ms);
+  }
+  
+  .animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .animate-out {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  
+  /* Stagger animation delays for community stats */
+  .community-stat:nth-child(1) { --animation-delay: 0ms; }
+  .community-stat:nth-child(2) { --animation-delay: 200ms; }
+  .community-stat:nth-child(3) { --animation-delay: 400ms; }
+</style>
+
+<script>
+  // Scroll-triggered animations
+  class ScrollAnimations {
+    private observer: IntersectionObserver;
+    
+    constructor() {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const element = entry.target as HTMLElement;
+              element.classList.add('animate-in');
+              element.classList.remove('animate-out');
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px -100px 0px'
+        }
+      );
+    }
+    
+    public observeElements(selector: string): void {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach((element) => {
+        this.observer.observe(element);
+      });
+    }
+    
+    public disconnect(): void {
+      this.observer.disconnect();
+    }
+  }
+  
+  // Initialize animations when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollAnimations = new ScrollAnimations();
+    
+    // Animate community elements
+    scrollAnimations.observeElements('.community-stat');
+    scrollAnimations.observeElements('.animate-card');
+    
+    // Animate community counters
+    animateCommunityCounters();
+  });
+  
+  // Animated counter effect with + symbol for community stats
+  function animateCommunityCounters() {
+    const counters = document.querySelectorAll('.community-counter');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const counter = entry.target as HTMLElement;
+          const target = parseInt(counter.getAttribute('data-target') || '0');
+          const duration = 2000; // 2 seconds
+          const step = target / (duration / 16); // 60fps
+          
+          let current = 0;
+          const timer = setInterval(() => {
+            current += step;
+            counter.textContent = Math.floor(current).toLocaleString() + '+';
+            
+            if (current >= target) {
+              counter.textContent = target.toLocaleString() + '+';
+              clearInterval(timer);
+            }
+          }, 16);
+          
+          observer.unobserve(counter);
+        }
+      });
+    });
+    
+    counters.forEach((counter) => observer.observe(counter));
+  }
+</script>
