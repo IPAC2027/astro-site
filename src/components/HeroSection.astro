@@ -25,7 +25,7 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
 
 <section 
   id="hero-section"
-  class="relative bg-gradient-to-br from-primary-900 via-primary-800 to-accent-900 text-white overflow-hidden transition-all duration-[2000ms] hero-custom-ease hero-initial"
+  class="relative bg-gradient-to-br from-primary-900 via-primary-800 to-accent-900 text-white overflow-hidden min-h-screen"
 >
   {backgroundImage && (
     <div 
@@ -34,18 +34,18 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
     ></div>
   )}
   <div class="absolute inset-0 bg-black opacity-40"></div>
-  <div class="relative h-full flex items-center justify-center transition-all duration-[2000ms] hero-custom-ease">
+  <div class="relative h-full flex items-center justify-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-      <div class="text-center transform transition-all duration-[2000ms] hero-custom-ease">
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 transform transition-all duration-[2000ms] hero-custom-ease">
+      <div class="text-center">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6">
         {title}
       </h1>
-      <h2 class="text-xl md:text-2xl lg:text-3xl font-light mb-8 transform transition-all duration-[2000ms] hero-custom-ease">
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-light mb-8">
         {subtitle}
       </h2>
       
       <!-- Conference Details -->
-      <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 md:p-6 lg:p-8 mb-6 md:mb-8 max-w-2xl mx-auto transform transition-all duration-[2000ms] hero-custom-ease">
+      <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 md:p-6 lg:p-8 mb-6 md:mb-8 max-w-2xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-center">
           <div>
             <div class="text-accent-300 text-2xl md:text-3xl font-bold">{conferenceDetails.dates}</div>
@@ -59,7 +59,7 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
       </div>
 
       <!-- Call to Action Buttons -->
-      <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center transform transition-all duration-[2000ms] hero-custom-ease px-4">
+      <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
         <a href={callToAction.primary.href} class="group bg-accent-500 hover:bg-accent-600 text-white px-8 md:px-10 py-4 rounded-lg font-semibold transition-all duration-200 text-center shadow-lg hover:shadow-xl">
           <span class="flex items-center justify-center">
             {callToAction.primary.text}
@@ -94,23 +94,9 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
 </section>
 
 <style>
-  /* Custom easing function: slow start, accelerate, then slow end */
-  .hero-custom-ease {
-    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  }
-  
-  /* Initial state - large height */
-  .hero-initial {
-    min-height: 100vh;
-  }
-  
-  /* Final state - smaller height */
-  .hero-shrunk {
-    min-height: 80vh;
-  }
-  
-  /* Ensure content stays perfectly centered during transition */
+  /* Ensure hero section maintains full viewport height */
   #hero-section {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -121,20 +107,10 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: inherit;
     padding: 2rem 0; /* Add some padding to prevent content from touching edges */
   }
   
-  /* Responsive adjustments for better centering */
-  @media (max-height: 600px) {
-    .hero-initial {
-      min-height: 100vh;
-    }
-    .hero-shrunk {
-      min-height: 90vh;
-    }
-  }
-  
+  /* Responsive adjustments */
   @media (max-height: 500px) {
     #hero-section > .relative {
       padding: 1rem 0;
@@ -150,23 +126,8 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
     width: 100%;
   }
   
-  /* Animation delay utility */
+  /* Animation delay utility for background elements */
   .animation-delay-2000 {
     animation-delay: 2s;
   }
 </style>
-
-<script>
-  // Trigger the shrink animation after page load
-  document.addEventListener('DOMContentLoaded', function() {
-    const heroSection = document.getElementById('hero-section');
-    
-    if (heroSection) {
-      // Small delay to ensure initial state is rendered
-      setTimeout(() => {
-        heroSection.classList.remove('hero-initial');
-        heroSection.classList.add('hero-shrunk');
-      }, 1000); // Start animation after 1000ms (1 second)
-    }
-  });
-</script>
