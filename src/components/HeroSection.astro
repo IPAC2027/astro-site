@@ -25,13 +25,15 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
 
 <section 
   id="hero-section"
-  class="relative bg-gradient-to-br from-primary-900 via-primary-800 to-accent-900 text-white overflow-hidden min-h-screen"
+  class="relative bg-gradient-to-br from-primary-900 via-primary-800 to-accent-900 text-white overflow-hidden"
 >
   {backgroundImage && (
-    <div 
-      class="absolute inset-0 cinematic-bg" 
-      style={`background-image: url('${backgroundImage}');`}
-    ></div>
+    <div class="absolute inset-0 cinematic-bg-container">
+      <div 
+        class="cinematic-bg-image" 
+        style={`background-image: url('${backgroundImage}');`}
+      ></div>
+    </div>
   )}
   <div class="absolute inset-0 bg-black opacity-30"></div>
   <div class="relative h-full flex items-center justify-center">
@@ -94,9 +96,10 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
 </section>
 
 <style>
-  /* Ensure hero section maintains full viewport height */
+  /* Hero section structure */
   #hero-section {
-    min-height: 90vh;
+    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -113,45 +116,115 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
     z-index: 10;
   }
   
-  /* Cinematic Camera Movement Effect */
-  .cinematic-bg {
-    background-size: 150%;
-    background-repeat: no-repeat;
-    background-position: 0% 50%;
-    animation: cinematicPan 40s ease-in-out infinite;
-    transform-origin: center center;
+  /* Cinematic Background Container */
+  .cinematic-bg-container {
+    width: 100%;
+    height: 100%;
   }
   
-  @keyframes cinematicPan {
+  /* Cinematic Background Image with proper covering */
+  .cinematic-bg-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%) scale(1.2);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    animation: cinematicMove 40s ease-in-out infinite;
+  }
+  
+  /* Ensure no gaps on any aspect ratio */
+  @media (max-aspect-ratio: 16/9) {
+    .cinematic-bg-image {
+      transform: translate(-50%, -50%) scale(1.4);
+    }
+  }
+  
+  @media (max-aspect-ratio: 4/3) {
+    .cinematic-bg-image {
+      transform: translate(-50%, -50%) scale(1.6);
+    }
+  }
+  
+  @media (max-aspect-ratio: 1/1) {
+    .cinematic-bg-image {
+      transform: translate(-50%, -50%) scale(1.8);
+    }
+  }
+  
+  @media (max-aspect-ratio: 3/4) {
+    .cinematic-bg-image {
+      transform: translate(-50%, -50%) scale(2.2);
+    }
+  }
+  
+  /* Cinematic movement animation */
+  @keyframes cinematicMove {
     0% {
-      background-size: 135%;
-      background-position: 0% 50%;
-      transform: scale(1);
+      transform: translate(-50%, -50%) scale(1.2);
     }
     25% {
-      background-size: 160%;
-      background-position: 30% 40%;
-      transform: scale(1.05);
+      transform: translate(-48%, -52%) scale(1.25);
     }
     50% {
-      background-size: 145%;
-      background-position: 70% 60%;
-      transform: scale(1.02);
+      transform: translate(-52%, -48%) scale(1.22);
     }
     75% {
-      background-size: 135%;
-      background-position: 40% 30%;
-      transform: scale(1.08);
+      transform: translate(-49%, -51%) scale(1.28);
     }
     100% {
-      background-size: 135%;
-      background-position: 0% 50%;
-      transform: scale(1);
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+  }
+  
+  /* Adjust animation for different aspect ratios */
+  @media (max-aspect-ratio: 16/9) {
+    @keyframes cinematicMove {
+      0% {
+        transform: translate(-50%, -50%) scale(1.4);
+      }
+      25% {
+        transform: translate(-48%, -52%) scale(1.45);
+      }
+      50% {
+        transform: translate(-52%, -48%) scale(1.42);
+      }
+      75% {
+        transform: translate(-49%, -51%) scale(1.48);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.4);
+      }
+    }
+  }
+  
+  @media (max-aspect-ratio: 1/1) {
+    @keyframes cinematicMove {
+      0% {
+        transform: translate(-50%, -50%) scale(1.8);
+      }
+      25% {
+        transform: translate(-50%, -48%) scale(1.85);
+      }
+      50% {
+        transform: translate(-50%, -52%) scale(1.82);
+      }
+      75% {
+        transform: translate(-50%, -49%) scale(1.88);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.8);
+      }
     }
   }
   
   /* Enhanced depth with subtle parallax */
-  .cinematic-bg::after {
+  .cinematic-bg-image::after {
     content: '';
     position: absolute;
     top: 0;
@@ -168,7 +241,7 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
     50% { opacity: 0.6; }
   }
   
-  /* Responsive adjustments */
+  /* Responsive padding adjustments */
   @media (max-height: 500px) {
     #hero-section > .relative {
       padding: 1rem 0;
@@ -192,14 +265,12 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
   
   /* Accessibility: Reduce motion for users who prefer it */
   @media (prefers-reduced-motion: reduce) {
-    .cinematic-bg,
-    .cinematic-bg::after {
+    .cinematic-bg-image,
+    .cinematic-bg-image::after {
       animation: none;
     }
-    .cinematic-bg {
-      background-size: 150%;
-      background-position: center center;
-      transform: none;
+    .cinematic-bg-image {
+      transform: translate(-50%, -50%) scale(1.2);
     }
   }
   
