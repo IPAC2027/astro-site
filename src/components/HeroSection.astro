@@ -29,11 +29,11 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
 >
   {backgroundImage && (
     <div 
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+      class="absolute inset-0 cinematic-bg" 
       style={`background-image: url('${backgroundImage}');`}
     ></div>
   )}
-  <div class="absolute inset-0 bg-black opacity-40"></div>
+  <div class="absolute inset-0 bg-black opacity-30"></div>
   <div class="relative h-full flex items-center justify-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <div class="text-center">
@@ -96,10 +96,11 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
 <style>
   /* Ensure hero section maintains full viewport height */
   #hero-section {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
   }
   
   #hero-section > .relative {
@@ -107,7 +108,64 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 0; /* Add some padding to prevent content from touching edges */
+    padding: 2rem 0;
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Cinematic Camera Movement Effect */
+  .cinematic-bg {
+    background-size: 150%;
+    background-repeat: no-repeat;
+    background-position: 0% 50%;
+    animation: cinematicPan 40s ease-in-out infinite;
+    transform-origin: center center;
+  }
+  
+  @keyframes cinematicPan {
+    0% {
+      background-size: 135%;
+      background-position: 0% 50%;
+      transform: scale(1);
+    }
+    25% {
+      background-size: 160%;
+      background-position: 30% 40%;
+      transform: scale(1.05);
+    }
+    50% {
+      background-size: 145%;
+      background-position: 70% 60%;
+      transform: scale(1.02);
+    }
+    75% {
+      background-size: 135%;
+      background-position: 40% 30%;
+      transform: scale(1.08);
+    }
+    100% {
+      background-size: 135%;
+      background-position: 0% 50%;
+      transform: scale(1);
+    }
+  }
+  
+  /* Enhanced depth with subtle parallax */
+  .cinematic-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    animation: lightPulse 25s ease-in-out infinite;
+  }
+  
+  @keyframes lightPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
   }
   
   /* Responsive adjustments */
@@ -124,6 +182,25 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
     justify-content: center;
     align-items: center;
     width: 100%;
+  }
+  
+  /* Enhanced button hover effects for cinematic feel */
+  .group:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Accessibility: Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .cinematic-bg,
+    .cinematic-bg::after {
+      animation: none;
+    }
+    .cinematic-bg {
+      background-size: 150%;
+      background-position: center center;
+      transform: none;
+    }
   }
   
   /* Animation delay utility for background elements */
