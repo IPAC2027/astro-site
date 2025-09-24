@@ -120,6 +120,48 @@ const { content, group } = Astro.props;
       // Get group information for accordion behavior
       const groupName = container.getAttribute('data-group');
       
+      // Handle custom close event for accordion behavior
+      button.addEventListener('forceClose', function(e) {
+        e.preventDefault();
+        
+        // Only close if currently open and not already animating
+        if (!isOpen || isAnimating) return;
+        
+        isAnimating = true;
+        isOpen = false;
+        
+        // Closing animation
+        container.classList.remove('is-open');
+        
+        // Get current height
+        const currentHeight = content.scrollHeight;
+        content.style.height = currentHeight + 'px';
+        
+        // Create closing animations
+        const heightAnimation = content.animate([
+          { height: currentHeight + 'px' },
+          { height: '0px' }
+        ], {
+          duration: 350,
+          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          fill: 'forwards'
+        });
+        
+        const opacityAnimation = content.animate([
+          { opacity: '1' },
+          { opacity: '0' }
+        ], {
+          duration: 250,
+          easing: 'ease-in',
+          fill: 'forwards'
+        });
+        
+        // When animation completes
+        Promise.all([heightAnimation.finished, opacityAnimation.finished]).then(() => {
+          isAnimating = false;
+        });
+      });
+      
       // Handle click events
       button.addEventListener('click', function(e) {
         e.preventDefault();
@@ -132,33 +174,15 @@ const { content, group } = Astro.props;
           const groupContainers = document.querySelectorAll(`[data-group="${groupName}"]`);
           groupContainers.forEach((otherContainer) => {
             if (otherContainer !== container && otherContainer.classList.contains('is-open')) {
-              // Directly trigger close animation on other containers to avoid recursive clicking
+              // Get the other container's state management
+              const otherButton = otherContainer.querySelector('.collapsible-summary') as HTMLButtonElement;
               const otherContent = otherContainer.querySelector('.collapsible-content') as HTMLElement;
-              const otherIcon = otherContainer.querySelector('.collapsible-icon') as HTMLElement;
               
-              if (otherContent) {
-                // Mark as closed and animate
-                otherContainer.classList.remove('is-open');
-                const currentHeight = otherContent.scrollHeight;
-                otherContent.style.height = currentHeight + 'px';
-                
-                const heightAnimation = otherContent.animate([
-                  { height: currentHeight + 'px' },
-                  { height: '0px' }
-                ], {
-                  duration: 350,
-                  easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                  fill: 'forwards'
-                });
-                
-                const opacityAnimation = otherContent.animate([
-                  { opacity: '1' },
-                  { opacity: '0' }
-                ], {
-                  duration: 250,
-                  easing: 'ease-in',
-                  fill: 'forwards'
-                });
+              if (otherContent && otherButton) {
+                // Find and update the other container's state by accessing its closure variables
+                // We'll use a custom event to properly close the other collapsible
+                const closeEvent = new CustomEvent('forceClose', { detail: { skipGroupCheck: true } });
+                otherButton.dispatchEvent(closeEvent);
               }
             }
           });
