@@ -4,12 +4,15 @@ import ContentRenderer from '../ContentRenderer.astro';
 
 export interface Props {
   content: CollapsibleContent;
+  group?: string; // Optional group name for accordion behavior
 }
 
-const { content } = Astro.props;
+const { content, group } = Astro.props;
 ---
 
-<div class="mb-6 border border-gray-200 rounded-lg overflow-hidden collapsible-container" data-initial-open={content.isOpen ? 'true' : 'false'}>
+<div class="mb-6 border border-gray-200 rounded-lg overflow-hidden collapsible-container" 
+     data-initial-open={content.isOpen ? 'true' : 'false'}
+     data-group={group || ''}>
   <button type="button" class="w-full px-6 py-4 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors duration-200 border-b border-gray-200 collapsible-summary text-left flex justify-between items-center">
     <span class="font-medium text-gray-900">{content.title}</span>
     <span class="collapsible-icon transition-transform duration-300">
@@ -114,12 +117,52 @@ const { content } = Astro.props;
         content.style.opacity = '0';
       }
       
+      // Get group information for accordion behavior
+      const groupName = container.getAttribute('data-group');
+      
       // Handle click events
       button.addEventListener('click', function(e) {
         e.preventDefault();
         
         // Prevent multiple concurrent animations
         if (isAnimating) return;
+        
+        // If this is part of a group and we're opening, close others in the group
+        if (groupName && !isOpen) {
+          const groupContainers = document.querySelectorAll(`[data-group="${groupName}"]`);
+          groupContainers.forEach((otherContainer) => {
+            if (otherContainer !== container && otherContainer.classList.contains('is-open')) {
+              // Directly trigger close animation on other containers to avoid recursive clicking
+              const otherContent = otherContainer.querySelector('.collapsible-content') as HTMLElement;
+              const otherIcon = otherContainer.querySelector('.collapsible-icon') as HTMLElement;
+              
+              if (otherContent) {
+                // Mark as closed and animate
+                otherContainer.classList.remove('is-open');
+                const currentHeight = otherContent.scrollHeight;
+                otherContent.style.height = currentHeight + 'px';
+                
+                const heightAnimation = otherContent.animate([
+                  { height: currentHeight + 'px' },
+                  { height: '0px' }
+                ], {
+                  duration: 350,
+                  easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                  fill: 'forwards'
+                });
+                
+                const opacityAnimation = otherContent.animate([
+                  { opacity: '1' },
+                  { opacity: '0' }
+                ], {
+                  duration: 250,
+                  easing: 'ease-in',
+                  fill: 'forwards'
+                });
+              }
+            }
+          });
+        }
         
         isAnimating = true;
         isOpen = !isOpen;

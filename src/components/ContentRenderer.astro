@@ -5,9 +5,10 @@ import ConferenceCalendar from './content/ConferenceCalendar.astro';
 
 export interface Props {
   blocks: ContentBlock[];
+  collapsibleGroup?: string; // Optional group name for accordion behavior
 }
 
-const { blocks } = Astro.props;
+const { blocks, collapsibleGroup } = Astro.props;
 ---
 
 {blocks.map(block => {
@@ -246,7 +247,7 @@ const { blocks } = Astro.props;
     case 'collapsible':
       if (typeof block.content === 'object' && 'title' in block.content) {
         const collapsibleContent = block.content as CollapsibleContent;
-        return <CollapsibleContentComponent content={collapsibleContent} />;
+        return <CollapsibleContentComponent content={collapsibleContent} group={collapsibleGroup} />;
       }
       return null;
     
