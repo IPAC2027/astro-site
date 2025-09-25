@@ -9,6 +9,28 @@ export interface Props {
 }
 
 const { blocks, collapsibleGroup } = Astro.props;
+
+// Helper function to process markdown formatting
+const processMarkdown = (content: string): string => {
+  let processedContent = content;
+  
+  // First, process images ![alt](src)
+  processedContent = processedContent.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />');
+  
+  // Then, process hyperlinks [text](url)
+  processedContent = processedContent.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-800 underline" target="_blank" rel="noopener noreferrer">$1</a>');
+  
+  // Process bold text **text**
+  processedContent = processedContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  
+  // Process italic text *text*
+  processedContent = processedContent.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  
+  // Process inline code `text`
+  processedContent = processedContent.replace(/`(.*?)`/g, '<code>$1</code>');
+  
+  return processedContent;
+};
 ---
 
 {blocks.map(block => {
@@ -25,97 +47,109 @@ const { blocks, collapsibleGroup } = Astro.props;
         return null;
       }
       
-      // Parse markdown formatting: images first, then hyperlinks, then bold text
-      let processedContent = content;
-      
-      // First, process images ![alt](src)
-      processedContent = processedContent.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />');
-      
-      // Then, process hyperlinks [text](url)
-      processedContent = processedContent.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-800 underline" target="_blank" rel="noopener noreferrer">$1</a>');
-      
-      // Then process bold text **text**
-      const parts = processedContent.split(/(\*\*.*?\*\*)/g);
-      const parsedParts = parts.map((part: string) => {
-        if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong>{part.slice(2, -2)}</strong>;
-        }
-        // Return as raw HTML for images and hyperlinks that were already processed
-        if (part.includes('<img ') || part.includes('<a href=')) {
-          return <span set:html={part}></span>;
-        }
-        return part;
-      });
-      
-      return <p class="content-text">{parsedParts}</p>;
+      const processedContent = processMarkdown(content);
+      return <p class="content-text" set:html={processedContent}></p>;
     }
     
     case 'list':
       return (
         <ul class="content-list">
           {Array.isArray(block.content) && block.content.map(item => {
-            // Process markdown formatting within list items: images first, then hyperlinks, then other formatting
-            const processedItem = item
-              .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />')
-              .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-800 underline" target="_blank" rel="noopener noreferrer">$1</a>')
-              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-              .replace(/\*(.*?)\*/g, '<em>$1</em>')
-              .replace(/`(.*?)`/g, '<code>$1</code>');
-            
+            const processedItem = processMarkdown(item);
             return <li set:html={processedItem}></li>;
           })}
         </ul>
       );
     
-    case 'highlight':
+    case 'highlight': {
+      const content = Array.isArray(block.content) ? block.content.join(' ') : block.content;
+      if (typeof content !== 'string') {
+        return null;
+      }
+      
+      const processedContent = processMarkdown(content);
+      
       return (
         <div class="content-highlight">
-          <p class="text-primary-800 font-medium m-0">{block.content}</p>
+          <p class="text-primary-800 font-medium m-0" set:html={processedContent}></p>
         </div>
       );
+    }
     
-    case 'warning':
+    case 'warning': {
+      const content = Array.isArray(block.content) ? block.content.join(' ') : block.content;
+      if (typeof content !== 'string') {
+        return null;
+      }
+      
+      const processedContent = processMarkdown(content);
+      
       return (
         <div class="content-warning">
           <div class="flex items-start">
             <svg class="w-5 h-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
             </svg>
-            <p class="text-amber-800 font-medium m-0">{block.content}</p>
+            <p class="text-amber-800 font-medium m-0" set:html={processedContent}></p>
           </div>
         </div>
       );
+    }
     
-    case 'success':
+    case 'success': {
+      const content = Array.isArray(block.content) ? block.content.join(' ') : block.content;
+      if (typeof content !== 'string') {
+        return null;
+      }
+      
+      const processedContent = processMarkdown(content);
+      
       return (
         <div class="content-success">
           <div class="flex items-start">
             <svg class="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <p class="text-green-800 font-medium m-0">{block.content}</p>
+            <p class="text-green-800 font-medium m-0" set:html={processedContent}></p>
           </div>
         </div>
       );
+    }
     
-    case 'info':
+    case 'info': {
+      const content = Array.isArray(block.content) ? block.content.join(' ') : block.content;
+      if (typeof content !== 'string') {
+        return null;
+      }
+      
+      const processedContent = processMarkdown(content);
+      
       return (
         <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
           <div class="flex items-start">
             <svg class="w-5 h-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <p class="text-blue-800 font-medium m-0">{block.content}</p>
+            <p class="text-blue-800 font-medium m-0" set:html={processedContent}></p>
           </div>
         </div>
       );
+    }
     
-    case 'card':
+    case 'card': {
+      const content = Array.isArray(block.content) ? block.content.join(' ') : block.content;
+      if (typeof content !== 'string') {
+        return null;
+      }
+      
+      const processedContent = processMarkdown(content);
+      
       return (
         <div class="content-card">
-          <p class="text-gray-700 m-0">{block.content}</p>
+          <p class="text-gray-700 m-0" set:html={processedContent}></p>
         </div>
       );
+    }
     
     case 'grid':
       if (typeof block.content === 'object' && 'columns' in block.content) {
@@ -138,13 +172,7 @@ const { blocks, collapsibleGroup } = Astro.props;
               const listItems = [];
               while (i < lines.length && (lines[i].startsWith('* ') || lines[i].startsWith('- '))) {
                 const itemContent = lines[i].substring(2).trim();
-              // Process markdown formatting in list item
-                const processedItem = itemContent
-                  .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />')
-                  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-800 underline" target="_blank" rel="noopener noreferrer">$1</a>')
-                  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                  .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                  .replace(/`(.*?)`/g, '<code>$1</code>');
+                const processedItem = processMarkdown(itemContent);
                 listItems.push(processedItem);
                 i++;
               }
@@ -175,23 +203,10 @@ const { blocks, collapsibleGroup } = Astro.props;
                 continue;
               }
               
-              // Process images first
-              processedLine = processedLine.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />');
-              // Then process hyperlinks
-              processedLine = processedLine.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary-600 hover:text-primary-800 underline" target="_blank" rel="noopener noreferrer">$1</a>');
+              // Process markdown formatting
+              processedLine = processMarkdown(processedLine);
               
-              const parts = processedLine.split(/(\*\*.*?\*\*)/);
-              const parsedParts = parts.map(part => {
-                if (part.startsWith('**') && part.endsWith('**')) {
-                  return <strong>{part.slice(2, -2)}</strong>;
-                }
-                // Return as raw HTML for images and hyperlinks that were already processed
-                if (part.includes('<img ') || part.includes('<a href=')) {
-                  return <span set:html={part}></span>;
-                }
-                return part;
-              });
-              elements.push(<div class="mb-1">{parsedParts}</div>);
+              elements.push(<p class="mb-1 text-sm" set:html={processedLine}></p>);
               i++;
             }
           }

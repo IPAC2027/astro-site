@@ -21,7 +21,7 @@ const pageContent = loadPageContent('about/q-and-a');
   bannerBackground={entry.data.bannerBackground}
 >
   {pageContent ? (
-    <ContentRenderer blocks={pageContent.blocks} />
+    <ContentRenderer blocks={pageContent.blocks} collapsibleGroup="classification" />
   ) : (
     <div class="prose prose-lg max-w-none">
       <p>Content will be loaded from the markdown file.</p>
