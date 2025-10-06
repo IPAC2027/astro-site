@@ -15,7 +15,7 @@ Abstract Submission - Opens Fall 2026
 
 :::grid{columns=2}
 :::card{icon="📝" title="Abstract Submission Opens"}
-**October 1, 2026**  
+**October 6, 2026**  
 Online submission system available
 :::
 
