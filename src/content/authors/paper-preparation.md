@@ -29,6 +29,13 @@ The [latest OpenDocument (ODF) Templates](https://www.jacow.org/Authors/OpenDocu
 :::
 
 
+### Length of contributions
+Papers for invited oral presentations may be up to 5 pages. Papers for both contributed oral and poster presentations may be up to 3 pages. If contributions contain numerous references, these may be carried over to an extra page. No other parts of the paper but references are allowed on this extra page.
+
+:::highlight
+Page limits will be strictly respected, all papers exceeding their limit will be returned to the author for revision or, at last, rejected.
+:::
+
 ## Editing Tools
 
 :::grid{columns=2}

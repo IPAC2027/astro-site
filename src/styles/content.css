@@ -1,5 +1,10 @@
 /* Common page styles for IPAC'27 website */
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Content containers */
 .content-container {
   @apply max-w-none;
