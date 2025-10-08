@@ -138,6 +138,10 @@ export interface GridItem {
   content: string;
   /** Optional icon (emoji or icon class) */
   icon?: string;
+  /** Whether to apply styled background to the icon */
+  styledIcon?: boolean;
+  /** Optional width (e.g., "1/2", "1/3", "2/3", "1/4", "3/4") for custom card width */
+  width?: string;
 }
 
 /**

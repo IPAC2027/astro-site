@@ -185,7 +185,8 @@ function parseDirectiveProps(propsString: string): Record<string, string> {
   if (!propsString) return props;
   
   // Use a more sophisticated parsing approach for both quoted and unquoted values
-  const regex = /(\w+)=(?:"([^"]*)"|(\w+))/g;
+  // Support hyphens in property names like styled-icon
+  const regex = /([\w-]+)=(?:"([^"]*)"|(\w+))/g;
   let match;
   
   while ((match = regex.exec(propsString)) !== null) {
@@ -323,7 +324,9 @@ function parseGridDirective(content: string, props: Record<string, string>): Con
             items.push({
               title: cardProps.title || 'Untitled Card',
               content: cardContent.trim(),
-              icon: cardProps.icon
+              icon: cardProps.icon,
+              styledIcon: cardProps['styled-icon'] === 'true',
+              width: cardProps.width
             });
             
             // Don't increment i here as we might be at the start of the next card

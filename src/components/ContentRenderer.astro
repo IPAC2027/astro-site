@@ -2,6 +2,7 @@
 import type { ContentBlock, CollapsibleContent } from '../types/content.ts';
 import CollapsibleContentComponent from './content/CollapsibleContent.astro';
 import ConferenceCalendar from './content/ConferenceCalendar.astro';
+import katex from 'katex';
 
 export interface Props {
   blocks: ContentBlock[];
@@ -30,6 +31,15 @@ const processMarkdown = (content: string): string => {
     escapedChars[placeholder] = char;
     escapeIndex++;
     return placeholder;
+  });
+  
+  // Process inline LaTeX math $...$
+  processedContent = processedContent.replace(/\$([^$]+)\$/g, (match, latex) => {
+    try {
+      return katex.renderToString(latex, { throwOnError: false, displayMode: false });
+    } catch (e) {
+      return match; // Return original if rendering fails
+    }
   });
   
   // First, process images ![alt](src)
@@ -181,7 +191,13 @@ const processMarkdown = (content: string): string => {
     case 'grid':
       if (typeof block.content === 'object' && 'columns' in block.content) {
         const columns = Number(block.content.columns);
-        const gridClass = columns === 3 ? 'content-grid-3' : 
+        
+        // Check if any card has custom width
+        const hasCustomWidth = block.content.items.some(item => item.width);
+        
+        // Use flexbox for custom widths, CSS grid for equal columns
+        const gridClass = hasCustomWidth ? 'flex flex-wrap gap-6 mb-8' :
+                          columns === 3 ? 'content-grid-3' : 
                           columns === 1 ? 'content-grid-1' : 'content-grid';
         
         // Parse markdown content in card items
@@ -243,19 +259,27 @@ const processMarkdown = (content: string): string => {
         
         return (
           <div class={gridClass}>
-            {block.content.items.map(item => (
-              <div class="bg-white rounded-lg p-6 shadow-sm border">
-                <div class="flex items-center mb-3">
-                  {item.icon && (
-                    <div class="text-2xl mr-3">{item.icon}</div>
-                  )}
-                  <h4 class="font-semibold text-gray-900 m-0">{item.title}</h4>
+            {block.content.items.map(item => {
+              // Process LaTeX in title
+              const processedTitle = processMarkdown(item.title);
+              
+              // Build style for custom width using flex-basis, accounting for gap
+              const widthStyle = item.width ? `flex: 0 0 calc(${item.width === '1/3' ? '33.333%' : item.width === '2/3' ? '66.667%' : item.width === '1/2' ? '50%' : item.width === '1/4' ? '25%' : item.width === '3/4' ? '75%' : item.width === 'full' ? '100%' : item.width} - 12px); max-width: calc(${item.width === '1/3' ? '33.333%' : item.width === '2/3' ? '66.667%' : item.width === '1/2' ? '50%' : item.width === '1/4' ? '25%' : item.width === '3/4' ? '75%' : item.width === 'full' ? '100%' : item.width} - 12px);` : '';
+              
+              return (
+                <div class="bg-white rounded-lg p-6 shadow-sm border" style={widthStyle}>
+                  <div class="flex items-center mb-3">
+                    {item.icon && (
+                      <div class={item.styledIcon ? "card-icon" : "text-2xl mr-3"}>{item.icon}</div>
+                    )}
+                    <h4 class="font-semibold text-gray-900 m-0" set:html={processedTitle}></h4>
+                  </div>
+                  <div class="text-gray-600 text-sm">
+                    {parseCardMarkdown(item.content)}
+                  </div>
                 </div>
-                <div class="text-gray-600 text-sm">
-                  {parseCardMarkdown(item.content)}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         );
       }
