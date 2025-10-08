@@ -3,45 +3,30 @@ title: "Abstract Submission"
 description: ""
 ---
 
-# Call for Papers
+:::highlight
+Abstract submission will open on October 9, 2026, and close on December 3, 2026.
+:::
 
-We invite you to submit abstracts for oral and poster presentations at IPAC'27. This is your opportunity to share your latest research with the global accelerator physics community.
+## Call for Papers
+
+We invite you to submit abstracts for contributed oral and/or poster presentations at IPAC'27. All scientific contributions to IPAC’27 will be managed using the [JACoW Indico system](https://indico.jacow.org/e/IPAC27).
 
 :::status{type="coming-soon"}
-Abstract Submission - Opens Fall 2026
+Abstract Submission - Oct. 9, 2026
 :::
 
-## Important Dates
+## Submission Instructions
 
-:::grid{columns=2}
-:::card{icon="📝" title="Abstract Submission Opens"}
-**October 6, 2026**  
-Online submission system available
-:::
+### Check your JACoW account
 
-:::card{icon="⏰" title="Abstract Submission Deadline"}
-**January 15, 2027**  
-11:59 PM (EST)
-:::
+All submitting authors should own an account within the JACoW Repository before submitting an abstract. First, determine if you have a JACoW Indico account, if not, follow the instructions and eventually create an account.  Please refer to the [JACoW webpage for more detailed instructions.](https://ipac-docs.jacow.org/General/JACoWlogin/) 
 
-:::card{icon="📧" title="Acceptance Notification"}
-**March 1, 2027**  
-Authors notified of acceptance
-:::
+It is important that author information, including **email address** and **main affiliation**, is up to date. This information will be used in the Indico system for correct indexing in the abstract booklet and the conference proceedings. 
 
-:::card{icon="📄" title="Final Paper Deadline"}
-**June 1, 2027**  
-Camera-ready papers due
-:::
-:::
+### Login IPAC'27 Indico site and submit abstract
 
-## Submission Categories
+Use the JACoW account to login the IPAC'27 indico site and Submit your abstract(s) by clicking on the “**Submit new abstract**” link and following the [JACoW documentation](https://ipac-docs.jacow.org/General/submission/)
 
-### Oral Presentations
-- **Invited Talks**: 30 minutes including discussion
-- **Contributed Talks**: 20 minutes including discussion
+### Abstract Formatting
 
-### Poster Presentations
-- **Student Poster Session**: Dedicated session for student research
-- **General Poster Sessions**: Integrated with coffee breaks
 

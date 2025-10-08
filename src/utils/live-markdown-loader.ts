@@ -129,7 +129,7 @@ function parseMarkdownToBlocks(content: string, config: MarkdownParseConfig = DE
         } else if (line.startsWith('## ')) {
           blocks.push({ type: 'subtitle', content: line.substring(3) });
         } else if (line.startsWith('### ')) {
-          blocks.push({ type: 'subtitle', content: line.substring(4) });
+          blocks.push({ type: 'subsubtitle', content: line.substring(4) });
         } else if (line.startsWith('* ') || line.startsWith('- ')) {
           // Handle markdown lists - collect consecutive list items
           const listItems: string[] = [];

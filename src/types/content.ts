@@ -8,6 +8,7 @@ export type ContentBlockType =
   | 'text' 
   | 'title' 
   | 'subtitle' 
+  | 'subsubtitle' 
   | 'list' 
   | 'highlight' 
   | 'warning' 
@@ -41,7 +42,7 @@ export interface BaseContentBlock {
  * Content block for simple text, titles, and subtitles
  */
 export interface TextContentBlock extends BaseContentBlock {
-  type: 'text' | 'title' | 'subtitle';
+  type: 'text' | 'title' | 'subtitle' | 'subsubtitle';
   content: string;
 }
 

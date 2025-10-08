@@ -41,6 +41,9 @@ const processMarkdown = (content: string): string => {
     case 'subtitle':
       return <h3 class="content-subtitle">{block.content}</h3>;
     
+    case 'subsubtitle':
+      return <h4 class="content-subsubtitle">{block.content}</h4>;
+    
     case 'text': {
       const content = Array.isArray(block.content) ? block.content.join(' ') : block.content;
       if (typeof content !== 'string') {
