@@ -10,9 +10,27 @@ export interface Props {
 
 const { blocks, collapsibleGroup } = Astro.props;
 
+// Helper function to create slug from text
+const createSlug = (text: string | string[]): string => {
+  const textStr = Array.isArray(text) ? text.join(' ') : text;
+  return textStr.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+};
+
 // Helper function to process markdown formatting
 const processMarkdown = (content: string): string => {
   let processedContent = content;
+  
+  // First, handle escaped characters by replacing them with placeholders
+  const escapedChars: { [key: string]: string } = {};
+  let escapeIndex = 0;
+  
+  // Replace escaped asterisks, brackets, backticks, etc. with unique placeholders
+  processedContent = processedContent.replace(/\\([*_\[\]`\\])/g, (match, char) => {
+    const placeholder = `__ESCAPED_${escapeIndex}__`;
+    escapedChars[placeholder] = char;
+    escapeIndex++;
+    return placeholder;
+  });
   
   // First, process images ![alt](src)
   processedContent = processedContent.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="height: 80px; width: auto; margin-bottom: 1rem;" />');
@@ -29,17 +47,23 @@ const processMarkdown = (content: string): string => {
   // Process inline code `text`
   processedContent = processedContent.replace(/`(.*?)`/g, '<code>$1</code>');
   
+  // Finally, restore escaped characters
+  Object.keys(escapedChars).forEach(placeholder => {
+    processedContent = processedContent.replace(new RegExp(placeholder, 'g'), escapedChars[placeholder]);
+  });
+  
   return processedContent;
 };
 ---
-
 {blocks.map(block => {
   switch (block.type) {
     case 'title':
       return <h2 class="content-title">{block.content}</h2>;
     
-    case 'subtitle':
-      return <h3 class="content-subtitle">{block.content}</h3>;
+    case 'subtitle': {
+      const slug = typeof block.content === 'string' ? createSlug(block.content) : '';
+      return <h3 id={slug} class="content-subtitle">{block.content}</h3>;
+    }
     
     case 'subsubtitle':
       return <h4 class="content-subsubtitle">{block.content}</h4>;

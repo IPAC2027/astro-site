@@ -13,6 +13,8 @@
 .content-subtitle {
   @apply text-xl md:text-2xl font-bold text-gray-800 mb-4 mt-6;
   font-size: 1.375rem !important;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
 }
 
 .content-subsubtitle {
