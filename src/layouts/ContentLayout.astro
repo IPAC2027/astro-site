@@ -202,8 +202,11 @@ import Footer from '../components/Footer.astro';
                           class={`block pl-2 md:pl-8 pr-3 py-3 md:py-2 rounded-md text-sm font-medium transition-all duration-200 relative ${
                             currentPath === item.href 
                               ? 'bg-primary-100 text-primary-700 border-l-2 border-primary-500 shadow-sm' 
-                              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50 md:hover:pl-9'
+                              : 'text-gray-600 hover:text-gray-900 md:hover:pl-9'
                           }`}
+                          style={currentPath !== item.href ? 'background: linear-gradient(to right, transparent 0%, transparent 1.5rem, var(--hover-bg, transparent) 1.5rem);' : ''}
+                          onmouseenter="this.style.setProperty('--hover-bg', 'rgb(249 250 251)')"
+                          onmouseleave="this.style.setProperty('--hover-bg', 'transparent')"
                           onclick="if (window.innerWidth < 768) { document.getElementById('mobile-sidebar').classList.add('hidden'); document.getElementById('mobile-sidebar-toggle').setAttribute('aria-expanded', 'false'); }"
                         >
                           <!-- Active indicator -->
