@@ -30,23 +30,23 @@ const currentPath = Astro.url.pathname;
             {item.href ? (
               <a
                 href={item.href}
-                class={`px-4 py-2 rounded-lg text-base font-medium transition-colors ${
+                class={`px-4 py-2 rounded-lg text-base font-medium transition-all duration-200 ${
                   currentPath === item.href || (item.submenu && item.submenu.some((sub: any) => currentPath === sub.href))
-                    ? 'bg-accent-50 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300'
-                    : 'text-primary-700 dark:text-primary-200 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-primary-700'
+                    ? 'bg-accent-50 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 shadow-sm'
+                    : 'text-primary-700 dark:text-primary-200 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-primary-700 hover:shadow-sm transform hover:scale-105'
                 }`}
               >
                 {item.name}
               </a>
             ) : (
-              <button class={`px-4 py-2 rounded-lg text-base font-medium transition-colors ${
+              <button class={`px-4 py-2 rounded-lg text-base font-medium transition-all duration-200 ${
                 item.submenu && item.submenu.some((sub: any) => currentPath === sub.href)
-                  ? 'bg-accent-50 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300'
-                  : 'text-primary-700 dark:text-primary-200 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-primary-700'
+                  ? 'bg-accent-50 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 shadow-sm'
+                  : 'text-primary-700 dark:text-primary-200 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-primary-700 hover:shadow-sm transform hover:scale-105'
               }`}>
                 {item.name}
                 {item.submenu && (
-                  <svg class="ml-1 h-4 w-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="ml-1 h-4 w-4 inline-block transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 )}
@@ -54,11 +54,11 @@ const currentPath = Astro.url.pathname;
             )}
             
             {item.submenu && (
-              <div class="absolute left-0 top-full mt-1 w-48 bg-white dark:bg-primary-800 rounded-lg shadow-lg border dark:border-primary-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div class="absolute left-0 top-full mt-1 w-48 bg-white dark:bg-primary-800 rounded-lg shadow-xl dark:shadow-primary-900/50 border-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-1">
                 {item.submenu.map((subitem: any) => (
                   <a
                     href={subitem.href}
-                    class={`block px-4 py-2 text-base hover:bg-accent-50 dark:hover:bg-primary-700 hover:text-accent-600 dark:hover:text-accent-400 first:rounded-t-lg last:rounded-b-lg transition-colors ${
+                    class={`block px-4 py-2 text-base hover:bg-accent-50 dark:hover:bg-primary-700 hover:text-accent-600 dark:hover:text-accent-400 first:rounded-t-lg last:rounded-b-lg transition-all duration-200 hover:pl-6 ${
                       currentPath === subitem.href
                         ? 'text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-primary-700'
                         : 'text-primary-700 dark:text-primary-200'

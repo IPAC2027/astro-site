@@ -9,7 +9,7 @@ const { content } = Astro.props;
 
 /**
  * Parse markdown content in card items and convert to renderable elements
- * Supports lists, bold text, and regular paragraphs
+ * Supports lists, bold text, links, and regular paragraphs
  */
 function parseCardMarkdown(content: string) {
   const lines = content.split('\n').map(line => line.trim()).filter(line => line);
@@ -25,8 +25,9 @@ function parseCardMarkdown(content: string) {
       const listItems = [];
       while (i < lines.length && (lines[i].startsWith('* ') || lines[i].startsWith('- '))) {
         const itemContent = lines[i].substring(2).trim();
-        // Process markdown formatting in list item
+        // Process markdown formatting in list item (order matters!)
         const processedItem = itemContent
+          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-accent-600 dark:text-accent-400 hover:text-accent-700 dark:hover:text-accent-300 underline transition-all duration-200 hover:underline-offset-4">$1</a>')
           .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
           .replace(/\*(.*?)\*/g, '<em>$1</em>')
           .replace(/`(.*?)`/g, '<code>$1</code>');
@@ -43,15 +44,14 @@ function parseCardMarkdown(content: string) {
         </ul>
       );
     } else {
-      // Regular text line - parse bold text and line breaks
-      const parts = line.split(/(\*\*.*?\*\*)/);
-      const parsedParts = parts.map(part => {
-        if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong>{part.slice(2, -2)}</strong>;
-        }
-        return part;
-      });
-      elements.push(<div class="mb-1">{parsedParts}</div>);
+      // Regular text line - parse markdown formatting (order matters!)
+      let processedLine = line
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-accent-600 dark:text-accent-400 hover:text-accent-700 dark:hover:text-accent-300 underline transition-all duration-200 hover:underline-offset-4">$1</a>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`(.*?)`/g, '<code>$1</code>');
+      
+      elements.push(<div class="mb-1" set:html={processedLine}></div>);
       i++;
     }
   }
@@ -67,7 +67,7 @@ const gridClass = columns === 3 ? 'content-grid-3' :
 
 <div class={gridClass}>
   {content.items.map(item => (
-    <div class="bg-white dark:bg-primary-800 rounded-lg p-6 shadow-sm border border-primary-200 dark:border-primary-700 transition-colors duration-300">
+    <div class="bg-white dark:bg-primary-800 rounded-lg p-6 border-0 shadow-md hover:shadow-xl dark:shadow-primary-900/50 dark:hover:shadow-primary-900/80 transition-all duration-300 transform hover:scale-[1.02]">
       {item.icon && (
         <div class="text-2xl mb-3">{item.icon}</div>
       )}

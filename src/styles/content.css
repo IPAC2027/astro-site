@@ -99,10 +99,22 @@ h4.content-subsubtitle {
 .content-text a {
   color: #059669 !important; /* accent-600 */
   text-decoration: underline !important;
+  transition: all 0.3s ease !important;
+  text-underline-offset: 2px !important;
 }
 
 .dark .content-text a {
   color: #34d399 !important; /* accent-400 */
+}
+
+.content-text a:hover {
+  color: #047857 !important; /* accent-700 */
+  text-underline-offset: 4px !important;
+  text-decoration-thickness: 2px !important;
+}
+
+.dark .content-text a:hover {
+  color: #6ee7b7 !important; /* accent-300 */
 }
 
 .content-list {
@@ -140,10 +152,22 @@ h4.content-subsubtitle {
 .content-list a {
   color: #059669 !important;
   text-decoration: underline !important;
+  transition: all 0.3s ease !important;
+  text-underline-offset: 2px !important;
 }
 
 .dark .content-list a {
   color: #34d399 !important;
+}
+
+.content-list a:hover {
+  color: #047857 !important;
+  text-underline-offset: 4px !important;
+  text-decoration-thickness: 2px !important;
+}
+
+.dark .content-list a:hover {
+  color: #6ee7b7 !important;
 }
 
 /* Page headers */
@@ -231,6 +255,37 @@ h4.content-subsubtitle {
 
 .content-card-grid-3 {
   @apply grid grid-cols-1 md:grid-cols-3 gap-6 mb-8;
+}
+
+/* Grid card links styling */
+.content-grid a,
+.content-grid-1 a,
+.content-grid-3 a {
+  color: #059669 !important; /* accent-600 */
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+  text-decoration-thickness: 1px !important;
+  transition: all 0.2s ease !important;
+}
+
+.dark .content-grid a,
+.dark .content-grid-1 a,
+.dark .content-grid-3 a {
+  color: #34d399 !important; /* accent-400 */
+}
+
+.content-grid a:hover,
+.content-grid-1 a:hover,
+.content-grid-3 a:hover {
+  color: #047857 !important; /* accent-700 */
+  text-underline-offset: 4px !important;
+  text-decoration-thickness: 2px !important;
+}
+
+.dark .content-grid a:hover,
+.dark .content-grid-1 a:hover,
+.dark .content-grid-3 a:hover {
+  color: #6ee7b7 !important; /* accent-300 */
 }
 
 /* Highlighted content areas */

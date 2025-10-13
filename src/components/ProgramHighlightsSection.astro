@@ -108,7 +108,7 @@ const getColorClasses = (color: string) => {
       {tracks.map((track) => {
         const colors = getColorClasses(track.color);
         return (
-          <div class={`program-card group relative rounded-2xl border-2 ${colors.border} ${colors.bg} p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 animate-initial`}>
+          <div class={`program-card group relative rounded-2xl shadow-lg hover:shadow-2xl ${colors.bg} p-8 transform hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300 animate-initial`}>
             <!-- Icon -->
             <div class={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${colors.icon} mb-6 group-hover:scale-110 transition-transform duration-300`}>
               <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -151,23 +151,23 @@ const getColorClasses = (color: string) => {
     
     <!-- Bottom CTA -->
     <div class="text-center mt-16">
-      <div class="animate-card bg-white dark:bg-primary-800 rounded-2xl p-8 shadow-lg border border-primary-200 dark:border-primary-700 animate-initial">
+      <div class="animate-card bg-white dark:bg-primary-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl dark:shadow-primary-900/50 dark:hover:shadow-primary-900/80 transform hover:scale-[1.01] transition-all duration-300 animate-initial">
         <h3 class="text-2xl font-semibold text-primary-900 dark:text-primary-100 mb-4">Ready to Join IPAC27?</h3>
         <p class="text-primary-600 dark:text-primary-300 mb-6 max-w-2xl mx-auto">
           Be part of the world's premier particle accelerator conference and contribute to cutting-edge research
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/registration/conference-registration" 
-             class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
+             class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 inline-flex items-center justify-center">
             Register Now
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12"></path>
             </svg>
           </a>
           <a href="/authors/abstract-submission" 
-             class="border-2 border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center">
+             class="border-2 border-primary-600 text-primary-600 dark:text-primary-400 dark:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-800 px-8 py-4 rounded-lg font-semibold shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 inline-flex items-center justify-center">
             Submit Abstract
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
             </svg>
           </a>
