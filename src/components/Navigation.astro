@@ -13,7 +13,7 @@ const navigation = [
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="bg-white shadow-lg sticky top-0 z-50">
+<nav class="bg-white dark:bg-primary-800 shadow-md sticky top-0 z-50 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-20 md:h-32">
       <div class="flex items-center">
@@ -32,8 +32,8 @@ const currentPath = Astro.url.pathname;
                 href={item.href}
                 class={`px-4 py-2 rounded-lg text-base font-medium transition-colors ${
                   currentPath === item.href || (item.submenu && item.submenu.some((sub: any) => currentPath === sub.href))
-                    ? 'bg-primary-100 text-primary-700'
-                    : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
+                    ? 'bg-accent-50 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300'
+                    : 'text-primary-700 dark:text-primary-200 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-primary-700'
                 }`}
               >
                 {item.name}
@@ -41,8 +41,8 @@ const currentPath = Astro.url.pathname;
             ) : (
               <button class={`px-4 py-2 rounded-lg text-base font-medium transition-colors ${
                 item.submenu && item.submenu.some((sub: any) => currentPath === sub.href)
-                  ? 'bg-primary-100 text-primary-700'
-                  : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
+                  ? 'bg-accent-50 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300'
+                  : 'text-primary-700 dark:text-primary-200 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-primary-700'
               }`}>
                 {item.name}
                 {item.submenu && (
@@ -54,14 +54,14 @@ const currentPath = Astro.url.pathname;
             )}
             
             {item.submenu && (
-              <div class="absolute left-0 top-full mt-1 w-48 bg-white rounded-lg shadow-lg border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div class="absolute left-0 top-full mt-1 w-48 bg-white dark:bg-primary-800 rounded-lg shadow-lg border dark:border-primary-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 {item.submenu.map((subitem: any) => (
                   <a
                     href={subitem.href}
-                    class={`block px-4 py-2 text-base hover:bg-primary-50 hover:text-primary-600 first:rounded-t-lg last:rounded-b-lg transition-colors ${
+                    class={`block px-4 py-2 text-base hover:bg-accent-50 dark:hover:bg-primary-700 hover:text-accent-600 dark:hover:text-accent-400 first:rounded-t-lg last:rounded-b-lg transition-colors ${
                       currentPath === subitem.href
-                        ? 'text-primary-600 bg-primary-50'
-                        : 'text-gray-700'
+                        ? 'text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-primary-700'
+                        : 'text-primary-700 dark:text-primary-200'
                     }`}
                   >
                     {subitem.name}
@@ -77,7 +77,7 @@ const currentPath = Astro.url.pathname;
       <div class="md:hidden flex items-center">
         <button
           type="button"
-          class="mobile-menu-button inline-flex items-center justify-center p-3 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 transition-colors"
+          class="mobile-menu-button inline-flex items-center justify-center p-3 rounded-md text-primary-600 dark:text-primary-300 hover:text-primary-700 dark:hover:text-primary-200 hover:bg-primary-100 dark:hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-500 transition-colors"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
@@ -92,7 +92,7 @@ const currentPath = Astro.url.pathname;
 
   <!-- Mobile menu -->
   <div class="mobile-menu hidden md:hidden">
-    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t shadow-lg">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-primary-800 border-t dark:border-primary-700 shadow-lg transition-colors duration-300">
       {navigation.map((item: any, index: number) => (
         <div>
           {item.href ? (
@@ -100,8 +100,8 @@ const currentPath = Astro.url.pathname;
               href={item.href}
               class={`block px-4 py-3 rounded-md text-base font-medium transition-colors duration-200 ${
                 currentPath === item.href
-                  ? 'text-primary-600 bg-primary-50'
-                  : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
+                  ? 'text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-primary-700'
+                  : 'text-primary-700 dark:text-primary-200 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-primary-700'
               }`}
             >
               {item.name}
@@ -110,8 +110,8 @@ const currentPath = Astro.url.pathname;
             <button 
               class={`mobile-submenu-toggle w-full text-left px-4 py-3 rounded-md text-base font-medium transition-colors duration-200 flex items-center justify-between ${
                 item.submenu && item.submenu.some((sub: any) => currentPath === sub.href)
-                  ? 'text-primary-600 bg-primary-50'
-                  : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
+                  ? 'text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-primary-700'
+                  : 'text-primary-700 dark:text-primary-200 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-primary-700'
               }`}
               data-menu-index={index}
               aria-expanded="false"
@@ -124,17 +124,17 @@ const currentPath = Astro.url.pathname;
           )}
           {item.submenu && (
             <div 
-              class="mobile-submenu hidden ml-4 mt-1 space-y-1 border-l-2 border-gray-100 pl-4 overflow-hidden"
+              class="mobile-submenu hidden ml-4 mt-1 space-y-1 border-l-2 border-primary-200 pl-4 overflow-hidden"
               data-submenu-index={index}
               style="max-height: 0; transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; opacity: 0;"
             >
               {item.submenu.map((subitem: any) => (
-                <a
+                                <a
                   href={subitem.href}
                   class={`block px-3 py-3 text-base rounded-md transition-colors duration-200 ${
                     currentPath === subitem.href
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-600 hover:text-primary-600 hover:bg-primary-50'
+                      ? 'text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-primary-700'
+                      : 'text-primary-600 dark:text-primary-300 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-primary-700'
                   }`}
                 >
                   {subitem.name}

@@ -37,14 +37,14 @@ const getSponsorSize = (tier: string) => {
 };
 ---
 
-<div class="py-16 bg-gray-50">
+<div class="py-16 bg-primary-50 dark:bg-primary-900">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     {showSponsors && (
       <section class="mb-20">
         <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Sponsors & Partners</h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 class="text-4xl font-bold text-primary-900 dark:text-primary-100 mb-4">Our Sponsors & Partners</h2>
+          <p class="text-xl text-primary-600 dark:text-primary-300 max-w-3xl mx-auto">
             IPAC27 is made possible by the generous support of these organizations
           </p>
         </div>
@@ -52,14 +52,14 @@ const getSponsorSize = (tier: string) => {
         {/* Platinum Sponsors */}
         {platinumSponsors.length > 0 && (
           <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-center text-gray-900 mb-8 flex items-center justify-center">
-              <span class="inline-block w-4 h-4 rounded-full bg-gray-300 mr-3"></span>
+            <h3 class="text-2xl font-semibold text-center text-primary-900 dark:text-primary-100 mb-8 flex items-center justify-center">
+              <span class="inline-block w-4 h-4 rounded-full bg-primary-300 dark:bg-primary-600 mr-3"></span>
               Platinum Sponsors
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {platinumSponsors.map((sponsor) => (
                 <a href={sponsor.link} target="_blank" rel="noopener noreferrer"
-                   class="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300 group">
+                   class="bg-white dark:bg-primary-800 rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow duration-300 group">
                   <div class="flex items-center justify-center mb-4">
                     <img 
                       src={sponsor.logo} 
@@ -67,9 +67,9 @@ const getSponsorSize = (tier: string) => {
                       class={`${getSponsorSize('platinum')} w-auto object-contain`}
                     />
                   </div>
-                  <h4 class="text-lg font-semibold text-center text-gray-900 mb-2">{sponsor.name}</h4>
+                  <h4 class="text-lg font-semibold text-center text-primary-900 dark:text-primary-100 mb-2">{sponsor.name}</h4>
                   {sponsor.description && (
-                    <p class="text-sm text-gray-600 text-center">{sponsor.description}</p>
+                    <p class="text-sm text-primary-600 dark:text-primary-300 text-center">{sponsor.description}</p>
                   )}
                 </a>
               ))}
@@ -80,14 +80,14 @@ const getSponsorSize = (tier: string) => {
         {/* Gold Sponsors */}
         {goldSponsors.length > 0 && (
           <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-center text-gray-900 mb-8 flex items-center justify-center">
+            <h3 class="text-2xl font-semibold text-center text-primary-900 dark:text-primary-100 mb-8 flex items-center justify-center">
               <span class="inline-block w-4 h-4 rounded-full bg-yellow-500 mr-3"></span>
               Gold Sponsors
             </h3>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {goldSponsors.map((sponsor) => (
                 <a href={sponsor.link} target="_blank" rel="noopener noreferrer"
-                   class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group">
+                   class="bg-white dark:bg-primary-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300 group">
                   <div class="flex items-center justify-center">
                     <img 
                       src={sponsor.logo} 
@@ -104,14 +104,14 @@ const getSponsorSize = (tier: string) => {
         {/* Silver Sponsors */}
         {silverSponsors.length > 0 && (
           <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-center text-gray-900 mb-8 flex items-center justify-center">
-              <span class="inline-block w-4 h-4 rounded-full bg-gray-400 mr-3"></span>
+            <h3 class="text-2xl font-semibold text-center text-primary-900 dark:text-primary-100 mb-8 flex items-center justify-center">
+              <span class="inline-block w-4 h-4 rounded-full bg-primary-400 dark:bg-primary-500 mr-3"></span>
               Silver Sponsors
             </h3>
             <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {silverSponsors.map((sponsor) => (
                 <a href={sponsor.link} target="_blank" rel="noopener noreferrer"
-                   class="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 group">
+                   class="bg-white dark:bg-primary-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 group">
                   <div class="flex items-center justify-center">
                     <img 
                       src={sponsor.logo} 
@@ -128,14 +128,14 @@ const getSponsorSize = (tier: string) => {
         {/* Bronze Sponsors */}
         {bronzeSponsors.length > 0 && (
           <div class="mb-16">
-            <h3 class="text-2xl font-semibold text-center text-gray-900 mb-8 flex items-center justify-center">
+            <h3 class="text-2xl font-semibold text-center text-primary-900 dark:text-primary-100 mb-8 flex items-center justify-center">
               <span class="inline-block w-4 h-4 rounded-full bg-amber-600 mr-3"></span>
               Bronze Sponsors
             </h3>
             <div class="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
               {bronzeSponsors.map((sponsor) => (
                 <a href={sponsor.link} target="_blank" rel="noopener noreferrer"
-                   class="bg-white rounded-lg p-3 shadow-md hover:shadow-lg transition-shadow duration-300 group">
+                   class="bg-white dark:bg-primary-800 rounded-lg p-3 shadow-md hover:shadow-lg transition-shadow duration-300 group">
                   <div class="flex items-center justify-center">
                     <img 
                       src={sponsor.logo} 
@@ -154,8 +154,8 @@ const getSponsorSize = (tier: string) => {
     {showExhibitors && (
       <section>
         <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">Exhibition & Industry Partners</h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 class="text-4xl font-bold text-primary-900 dark:text-primary-100 mb-4">Exhibition & Industry Partners</h2>
+          <p class="text-xl text-primary-600 dark:text-primary-300 max-w-3xl mx-auto">
             Discover cutting-edge products and services from leading companies in accelerator technology
           </p>
         </div>
@@ -168,10 +168,10 @@ const getSponsorSize = (tier: string) => {
           return (
             categoryExhibitors.length > 0 && (
               <div class="mb-12">
-                <h3 class="text-2xl font-semibold text-gray-900 mb-6">{category}</h3>
+                <h3 class="text-2xl font-semibold text-primary-900 dark:text-primary-100 mb-6">{category}</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {categoryExhibitors.map((exhibitor) => (
-                    <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                    <div class="bg-white dark:bg-primary-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                       <div class="p-6">
                         <div class="flex items-center mb-4">
                           <img 
@@ -180,13 +180,13 @@ const getSponsorSize = (tier: string) => {
                             class="h-12 w-auto object-contain mr-4"
                           />
                           <div>
-                            <h4 class="text-lg font-semibold text-gray-900">{exhibitor.name}</h4>
+                            <h4 class="text-lg font-semibold text-primary-900 dark:text-primary-100">{exhibitor.name}</h4>
                             {exhibitor.booth && (
                               <span class="text-sm text-primary-600 font-medium">Booth {exhibitor.booth}</span>
                             )}
                           </div>
                         </div>
-                        <p class="text-gray-600 text-sm mb-4">{exhibitor.description}</p>
+                        <p class="text-primary-600 dark:text-primary-300 text-sm mb-4">{exhibitor.description}</p>
                         <div class="flex flex-wrap gap-2">
                           {exhibitor.website && (
                             <a href={exhibitor.website} target="_blank" rel="noopener noreferrer"

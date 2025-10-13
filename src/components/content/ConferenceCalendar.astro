@@ -44,9 +44,9 @@ const conferenceStart = new Date(2027, 4, 23); // May 23, 2027
 const conferenceEnd = new Date(2027, 4, 28);   // May 28, 2027
 ---
 
-<div class="conference-calendar bg-white rounded-lg border border-gray-200 overflow-hidden">
+<div class="conference-calendar bg-white dark:bg-primary-800 rounded-lg border border-primary-200 dark:border-primary-700 overflow-hidden transition-colors duration-300">
   <!-- Calendar Header -->
-  <div class="bg-primary-600 text-white px-4 py-3">
+  <div class="bg-primary-600 dark:bg-primary-700 text-white px-4 py-3">
     <h3 class="text-lg font-semibold text-center">
       {monthNames[month - 1]} {year}
     </h3>
@@ -58,7 +58,7 @@ const conferenceEnd = new Date(2027, 4, 28);   // May 28, 2027
     <!-- Day Headers -->
     <div class="grid grid-cols-7 gap-1 mb-2">
       {dayNames.map(day => (
-        <div class="text-xs font-medium text-gray-500 text-center py-1">
+        <div class="text-xs font-medium text-primary-500 dark:text-primary-400 text-center py-1">
           {day}
         </div>
       ))}
@@ -74,12 +74,12 @@ const conferenceEnd = new Date(2027, 4, 28);   // May 28, 2027
         const isHighlighted = highlightDates.includes(day);
         const isToday = false; // Not needed for future dates
         
-        let cellClass = "h-8 flex items-center justify-center text-sm rounded";
+        let cellClass = "h-8 flex items-center justify-center text-sm rounded calendar-day";
         
         if (isHighlighted) {
-          cellClass += " bg-primary-600 text-white font-semibold";
+          cellClass += " bg-primary-600 dark:bg-primary-500 text-white font-semibold highlighted";
         } else {
-          cellClass += " text-gray-700 hover:bg-gray-100";
+          cellClass += " text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-700";
         }
 
         return (
@@ -91,11 +91,11 @@ const conferenceEnd = new Date(2027, 4, 28);   // May 28, 2027
     </div>
 
     <!-- Legend -->
-    <div class="mt-4 pt-3 border-t border-gray-200">
+    <div class="mt-4 pt-3 border-t border-primary-200 dark:border-primary-700">
       <div class="flex items-center justify-center space-x-4 text-xs">
         <div class="flex items-center space-x-2">
-          <div class="w-3 h-3 bg-primary-600 rounded"></div>
-          <span class="text-gray-600">IPAC'27 Conference Days</span>
+          <div class="w-3 h-3 bg-primary-600 dark:bg-primary-500 rounded"></div>
+          <span class="text-primary-600 dark:text-primary-300">IPAC'27 Conference Days</span>
         </div>
       </div>
       
