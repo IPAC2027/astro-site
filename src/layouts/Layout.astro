@@ -144,8 +144,9 @@ const isDev = import.meta.env.DEV;
 				document.documentElement.classList.remove('dark');
 			}
 			
-			// Store theme preference
-			window.localStorage.setItem('theme', theme);
+			// Note: We don't store the theme here anymore
+			// The theme is only stored when user manually toggles it
+			// This allows automatic time-based theme to work on each visit
 		</script>
 		
 		<!-- Google Analytics -->
