@@ -125,7 +125,7 @@ export const homeContent = {
           "AI/ML applications"
         ],
         link: "/program/scientific-program",
-        color: "primary"
+        color: "blue"
       },
       {
         title: "Accelerator Technology",
@@ -138,7 +138,7 @@ export const homeContent = {
           "Control systems"
         ],
         link: "/program/scientific-program",
-        color: "accent"
+        color: "cyan"
       },
       {
         title: "Student Program",
