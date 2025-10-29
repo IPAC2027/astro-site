@@ -65,7 +65,7 @@ const getColorClasses = (colorScheme: string) => {
 };
 ---
 
-<section class="py-20 bg-gradient-to-b from-white dark:from-primary-900 to-primary-50 dark:to-primary-800 transition-colors duration-300">
+<section class="py-16 bg-gradient-to-b from-primary-50 via-white to-primary-50 dark:from-primary-900 dark:via-primary-800 dark:to-primary-900 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
       
@@ -86,7 +86,7 @@ const getColorClasses = (colorScheme: string) => {
               
               <!-- Title Card integrated into timeline -->
               <div class="ml-8 group cursor-default">
-                <div class="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-800 dark:to-primary-700 border-2 border-primary-200 dark:border-primary-600 rounded-lg p-4 shadow-md transition-colors duration-300">
+                <div class="bg-gradient-to-br from-primary-50/30 to-accent-50/30 dark:from-primary-800/30 dark:to-primary-700/30 backdrop-blur-sm border border-primary-200/20 dark:border-primary-600/20 rounded-lg p-4 transition-all duration-300">
                   <div class="text-lg font-bold text-primary-700 dark:text-primary-200 mb-1">{importantDates.title}</div>
                   <p class="text-sm text-primary-600 dark:text-primary-300">{importantDates.subtitle}</p>
                 </div>
@@ -104,7 +104,7 @@ const getColorClasses = (colorScheme: string) => {
                   
                   <!-- Date Card -->
                   <div class={`ml-8 group hover:scale-105 transition-all duration-300 cursor-default`}>
-                    <div class={`${colors.bg} ${colors.border} border-2 rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300`}>
+                    <div class={`${colors.bg} border ${colors.border} border-opacity-20 dark:border-opacity-20 rounded-lg p-4 shadow-none hover:shadow-sm transition-all duration-300`}>
                       <div class={`text-base font-bold ${colors.text} mb-1`}>{date.period}</div>
                       <h3 class="font-semibold text-primary-900 dark:text-primary-100 text-base mb-1">{date.title}</h3>
                       {date.description && (
@@ -127,7 +127,7 @@ const getColorClasses = (colorScheme: string) => {
               
               <!-- Conference Start Card -->
               <div class="ml-8 group hover:scale-105 transition-all duration-300">
-                <div class="bg-gradient-to-r from-red-50 to-accent-50 dark:from-red-900/30 dark:to-accent-900/30 border-2 border-red-200 dark:border-red-700 rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300">
+                <div class="bg-gradient-to-r from-red-50/50 to-accent-50/50 dark:from-red-900/10 dark:to-accent-900/10 backdrop-blur-sm border border-red-200/20 dark:border-red-700/20 rounded-lg p-4 shadow-none hover:shadow-sm transition-all duration-300">
                   <div class="text-base font-bold text-red-600 dark:text-red-400 mb-1">{importantDates.conferenceStart.date}</div>
                   <h3 class="font-semibold text-primary-900 dark:text-primary-100 text-base flex items-center">
                     {importantDates.conferenceStart.title}
@@ -156,8 +156,8 @@ const getColorClasses = (colorScheme: string) => {
         <div class="animate-card animate-initial mb-12">
           <div class="relative">
             <!-- Decorative background pattern -->
-            <div class="absolute inset-0 bg-gradient-to-br from-primary-50 via-accent-50 to-blue-50 dark:from-primary-800 dark:via-primary-700 dark:to-primary-800 rounded-2xl transform rotate-1"></div>
-            <div class="relative bg-white dark:bg-primary-800 rounded-2xl shadow-2xl hover:shadow-3xl overflow-hidden transform -rotate-0.5 hover:rotate-0 hover:scale-[1.01] transition-all duration-500">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-50/20 via-accent-50/20 to-blue-50/20 dark:from-primary-800/20 dark:via-primary-700/20 dark:to-primary-800/20 rounded-2xl transform rotate-1"></div>
+            <div class="relative bg-white/50 dark:bg-primary-800/50 backdrop-blur-sm rounded-2xl shadow-sm hover:shadow-md border border-primary-100/30 dark:border-primary-700/30 overflow-hidden transform hover:scale-[1.01] transition-all duration-500">
               <div class="p-8">
                 <div class="flex items-start space-x-6">
                   <!-- Enhanced Chair Photo -->
@@ -185,7 +185,7 @@ const getColorClasses = (colorScheme: string) => {
                     </div>
                         
                         <!-- Enhanced signature section -->
-                        <div class="bg-gradient-to-r from-primary-50/50 to-accent-50/50 dark:from-primary-700/50 dark:to-primary-600/50 rounded-lg p-4 border border-primary-100 dark:border-primary-600 transition-colors duration-300">
+                        <div class="bg-gradient-to-r from-primary-50/20 to-accent-50/20 dark:from-primary-700/20 dark:to-primary-600/20 backdrop-blur-sm rounded-lg p-4 border border-primary-100/20 dark:border-primary-600/20 transition-all duration-300">
                           <div class="flex items-center space-x-3">
                             <div class="w-1 h-12 bg-gradient-to-b from-primary-500 to-accent-500 rounded-full"></div>
                             <div>

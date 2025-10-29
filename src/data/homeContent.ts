@@ -71,17 +71,17 @@ export const homeContent = {
   },
   
   about: {
-    title: "About IPAC27",
+    title: "About IPAC' 27",
     description: [
       "The International Particle Accelerator Conference (IPAC) is the premier global forum for presenting and discussing the latest developments in particle accelerator science and technology.",
-      "IPAC27 will bring together accelerator physicists, engineers, and industry professionals from around the world to share groundbreaking research, innovative technologies, and collaborative opportunities that advance the field of particle acceleration."
+      "IPAC' 27 will bring together accelerator physicists, engineers, and industry professionals from around the world to share groundbreaking research, innovative technologies, and collaborative opportunities that advance the field of particle acceleration."
     ],
     learnMoreLink: {
       text: "Learn more about IPAC27",
       href: "/about"
     },
     chairWelcome: {
-      message: "We are excited to welcome you to IPAC27, where innovation meets collaboration. This conference represents the pinnacle of accelerator science, bringing together brilliant minds to shape the future of particle accelerator science, technology, and their applications.",
+      message: "We are excited to welcome you to IPAC' 27 in Detroit, Michigan, where innovation meets collaboration. This conference represents the pinnacle of accelerator science, bringing together brilliant minds to shape the future of particle accelerator science, technology, and their applications.",
       chair: {
         name: "Prof. Wei, Jie",
         title: "Conference Chair",
@@ -135,6 +135,7 @@ export const homeContent = {
           "Superconducting magnets",
           "RF systems & cavities",
           "Vacuum technology",
+          "Instrumentations",
           "Control systems"
         ],
         link: "/program/scientific-program",
@@ -154,7 +155,7 @@ export const homeContent = {
       }, 
       {
         title: "Awards & Recognitions",
-        description: "Celebrating excellence in accelerator science and technology",
+        description: "Join us to recognize and celebrate excellence in accelerator science and technology",
         icon: "M6 9V2h12v7c0 2.21-1.79 4-4 4v3h2a1 1 0 110 2H8a1 1 0 110-2h2v-3c-2.21 0-4-1.79-4-4zm2-5v5c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V4H8z",
         highlights: [
           "Awards ceremony",

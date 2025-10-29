@@ -15,7 +15,7 @@ export interface NewsProps {
 const { title, subtitle, articles } = Astro.props;
 ---
 
-<section class="py-16 bg-white dark:bg-primary-800 transition-colors duration-300">
+<section class="py-16 bg-gradient-to-b from-primary-50 to-white dark:from-primary-900 dark:to-primary-800 transition-colors duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <h2 class="text-3xl font-heading font-bold text-primary-900 dark:text-primary-100 mb-4">{title}</h2>
@@ -24,7 +24,7 @@ const { title, subtitle, articles } = Astro.props;
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {articles.map((article: NewsArticle) => (
-        <article class="bg-white dark:bg-primary-800 rounded-lg shadow-lg hover:shadow-2xl dark:shadow-primary-900/50 dark:hover:shadow-primary-900/80 transform hover:scale-[1.02] transition-all duration-300">
+        <article class="bg-white/50 dark:bg-primary-800/50 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md border border-primary-100/20 dark:border-primary-700/20 transform hover:scale-[1.02] transition-all duration-300">
           <div class="p-6">
             <div class="text-sm text-accent-600 dark:text-accent-400 font-semibold mb-2">{article.date}</div>
             <h3 class="text-xl font-semibold text-primary-900 dark:text-primary-100 mb-3">{article.title}</h3>
