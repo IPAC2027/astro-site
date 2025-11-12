@@ -43,7 +43,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * Koseki, Tadashi (KEK, Japan)
 * Hara, Toru (RIKEN/Spring-8, Japan)
 * He, Yuan (IMP, China)
-* Deng, Haixiao (SHINE, China)
+* Deng, Haixiao (SARI, China)
 * Shin, Seunghwan (4GSR/KBSI, Korea)
 * Lin, Ming-Chyuan (NSRRC, Taiwan)
 * Klysubun, Prapong (SLRI, Thailand)
