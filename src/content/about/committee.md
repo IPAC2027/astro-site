@@ -45,7 +45,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * He, Yuan (IMP, China)
 * Deng, Haixiao (SARI, China)
 * Shin, Seunghwan (4GSR/KBSI, Korea)
-* Lin, Ming-Chyuan (NSRRC, Taiwan)
+* Lin, Ming-Chyuan (NSRRC, ROC)
 * Klysubun, Prapong (SLRI, Thailand)
 * Advisor: McIntosh, Peter (STFC, UK)
 :::
