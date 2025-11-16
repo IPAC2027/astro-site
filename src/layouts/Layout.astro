@@ -22,6 +22,11 @@ const isDev = import.meta.env.DEV;
 		<link rel="icon" type="image/png" href="/ipac27.png" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		
+		<!-- Prevent search engine indexing on development site -->
+		<meta name="robots" content="noindex, nofollow" />
+		<meta name="googlebot" content="noindex, nofollow" />
+		
 		<title>{title}</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
