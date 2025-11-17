@@ -89,6 +89,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * **Hao, Yue (MSU), LOC Chair**
 * Anisimov, Petr (LANL), Scientific Secretariat
 * Geiger, Kristy (Eventive Thinking), Professional Conference Organizer
+* Hulbert, Casey (MSU)
 * Kanemura, Takuji (MSU)
 * Maruta, Tomofumi (MSU)
 * Miller, Samuel (MSU)
@@ -96,6 +97,8 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * Patterer, Robert (MSU), Treasurer
 * Plastun, Alexander (MSU)
 * Rao, Xing (MSU)
+* Swartz, Anna (MSU)
 * Wang, Ling (MSU), Editor in Chief
+* Wootton, Kent (ANL)
 * Zhang, Tong (MSU) 
 :::
