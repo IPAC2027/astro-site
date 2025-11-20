@@ -4,7 +4,7 @@ export const homeContent = {
   hero: {
     title: "IPAC' 27",
     subtitle: "18th International Particle Accelerator Conference",
-    backgroundImage: "/detroit_skyline_night.jpg", // You can change this to your desired image
+    backgroundImage: "/images/detroit_skyline_night.jpg", // You can change this to your desired image
     conferenceDetails: {
       dates: "May 23-28, 2027",
       location: "Detroit, MI",
@@ -71,22 +71,21 @@ export const homeContent = {
   },
   
   about: {
-    title: "About IPAC' 27",
+    title: "Welcome to IPAC' 27",
     description: [
-      "The International Particle Accelerator Conference (IPAC) is the premier global forum for presenting and discussing the latest developments in particle accelerator science and technology.",
-      "IPAC' 27 will bring together accelerator physicists, engineers, and industry professionals from around the world to share groundbreaking research, innovative technologies, and collaborative opportunities that advance the field of particle acceleration."
+      "The 18th International Particle Accelerator Conference (IPAC' 27) will be held in Detroit, Michigan at Huntington Place. The IPAC'27 conference is sponsored by , financially and technically, by the IEEE Nuclear Plasma Science Society(NPSS) and the American Physical Society (APS) Division of Physics of Beams (DPB) and hosted by Facility for Rare Isotope Beams, Michigan State University.",
     ],
     learnMoreLink: {
       text: "Learn more about IPAC27",
       href: "/about"
     },
     chairWelcome: {
-      message: "We are excited to welcome you to IPAC' 27 in Detroit, Michigan, where innovation meets collaboration. This conference represents the pinnacle of accelerator science, bringing together brilliant minds to shape the future of particle accelerator science, technology, and their applications.",
+      message: "We are delighted to welcome you to IPAC’27 in Detroit, Michigan, where innovation meets collaboration. This conference stands at the forefront of accelerator science, bringing together the world’s leading researchers, industrial exhibitors, early-career scientists, and aspiring students to share advances that will shape the next generation of particle accelerator science, technology, and applications. \n\n As we look ahead to IPAC’27, we invite you to join a global community whose ideas, expertise, and collaborations continue to drive our field forward. We hope the conference will inspire new directions, spark meaningful connections, and celebrate the progress and innovation that define the accelerator community.",
       chair: {
         name: "Prof. Wei, Jie",
         title: "Conference Chair",
         institution: "FRIB & Michigan State University",
-        image: "/images/chair-placeholder.jpg"
+        image: "/images/chair.jpg"
       }
     }
   },
