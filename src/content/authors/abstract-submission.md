@@ -4,7 +4,7 @@ description: ""
 ---
 
 :::highlight
-Abstract submission will open on October 9, 2026, and close on December 3, 2026.
+Abstract submission will open on October, 2026, and close on December 2026. Detailed information will be announced in Mid 2026.
 :::
 
 ## Call for Papers
