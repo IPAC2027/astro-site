@@ -91,3 +91,27 @@ export function getSectionItems(sectionKey: string): NavigationItem[] {
   const section = getSectionConfig(sectionKey);
   return section?.submenu || [];
 }
+
+// Helper function to get previous and next pages within a section
+export function getPrevNextPages(currentPath: string): { prev: NavigationItem | null; next: NavigationItem | null } {
+  // Find which section this path belongs to
+  const pathParts = currentPath.split('/').filter(Boolean);
+  const sectionKey = pathParts[0];
+  
+  const section = getSectionConfig(sectionKey);
+  if (!section) {
+    return { prev: null, next: null };
+  }
+  
+  const items = section.submenu;
+  const currentIndex = items.findIndex(item => item.href === currentPath);
+  
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+  
+  return {
+    prev: currentIndex > 0 ? items[currentIndex - 1] : null,
+    next: currentIndex < items.length - 1 ? items[currentIndex + 1] : null
+  };
+}

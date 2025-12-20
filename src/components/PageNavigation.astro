@@ -1,0 +1,316 @@
+---
+// Page Navigation Component for smooth transitions between content pages
+
+export interface NavItem {
+  name: string;
+  href: string;
+}
+
+export interface Props {
+  prev: NavItem | null;
+  next: NavItem | null;
+}
+
+const { prev, next } = Astro.props;
+---
+
+{(prev || next) && (
+  <nav class="page-navigation mt-12 pt-8 border-t border-primary-200 dark:border-primary-700">
+    <div class="flex flex-col sm:flex-row justify-between items-stretch gap-4">
+      <!-- Previous Page -->
+      {prev ? (
+        <a 
+          href={prev.href}
+          class="group flex-1 flex items-center p-4 rounded-xl border border-primary-200 dark:border-primary-700 bg-white dark:bg-primary-800 hover:border-accent-300 dark:hover:border-accent-600 hover:shadow-md transition-all duration-300 hover:-translate-x-1"
+          data-page-transition="prev"
+        >
+          <div class="flex-shrink-0 mr-4">
+            <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-700 flex items-center justify-center group-hover:bg-accent-100 dark:group-hover:bg-accent-900/50 transition-colors duration-300">
+              <svg class="w-5 h-5 text-primary-500 dark:text-primary-400 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs font-medium text-primary-400 dark:text-primary-500 uppercase tracking-wider mb-1">Previous</p>
+            <p class="text-sm sm:text-base font-semibold text-primary-900 dark:text-primary-100 truncate group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors duration-300">{prev.name}</p>
+          </div>
+        </a>
+      ) : (
+        <div class="flex-1 hidden sm:block"></div>
+      )}
+
+      <!-- Next Page -->
+      {next ? (
+        <a 
+          href={next.href}
+          class="group flex-1 flex items-center justify-end p-4 rounded-xl border border-primary-200 dark:border-primary-700 bg-white dark:bg-primary-800 hover:border-accent-300 dark:hover:border-accent-600 hover:shadow-md transition-all duration-300 hover:translate-x-1"
+          data-page-transition="next"
+        >
+          <div class="flex-1 min-w-0 text-right">
+            <p class="text-xs font-medium text-primary-400 dark:text-primary-500 uppercase tracking-wider mb-1">Next</p>
+            <p class="text-sm sm:text-base font-semibold text-primary-900 dark:text-primary-100 truncate group-hover:text-accent-700 dark:group-hover:text-accent-300 transition-colors duration-300">{next.name}</p>
+          </div>
+          <div class="flex-shrink-0 ml-4">
+            <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-700 flex items-center justify-center group-hover:bg-accent-100 dark:group-hover:bg-accent-900/50 transition-colors duration-300">
+              <svg class="w-5 h-5 text-primary-500 dark:text-primary-400 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        </a>
+      ) : (
+        <div class="flex-1 hidden sm:block"></div>
+      )}
+    </div>
+    
+    <!-- Scroll indicator for next page -->
+    {next && (
+      <div class="scroll-indicator hidden sm:flex flex-col items-center mt-8 opacity-0 transition-opacity duration-500" id="scroll-indicator">
+        <p class="text-xs text-primary-400 dark:text-primary-500 mb-2">Scroll to bottom & hold for next page</p>
+        <div class="w-6 h-10 border-2 border-primary-300 dark:border-primary-600 rounded-full flex justify-center">
+          <div class="w-1.5 h-3 bg-primary-400 dark:bg-primary-500 rounded-full mt-2 animate-bounce"></div>
+        </div>
+      </div>
+    )}
+  </nav>
+)}
+
+<style>
+  /* Page transition animations */
+  @keyframes slideInFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOutToLeft {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+  }
+  
+  @keyframes slideOutToRight {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+  }
+  
+  :global(.page-enter-from-right) {
+    animation: slideInFromRight 0.4s ease-out forwards;
+  }
+  
+  :global(.page-enter-from-left) {
+    animation: slideInFromLeft 0.4s ease-out forwards;
+  }
+  
+  :global(.page-exit-to-left) {
+    animation: slideOutToLeft 0.3s ease-in forwards;
+  }
+  
+  :global(.page-exit-to-right) {
+    animation: slideOutToRight 0.3s ease-in forwards;
+  }
+</style>
+
+<script>
+  // Smooth page transition handler
+  document.addEventListener('DOMContentLoaded', () => {
+    const pageNavLinks = document.querySelectorAll('[data-page-transition]');
+    const mainContent = document.querySelector('.flex-1.min-w-0');
+    
+    // Show scroll indicator when near bottom of page
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    if (scrollIndicator) {
+      const checkScrollPosition = () => {
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Show indicator when within 300px of bottom
+        if (documentHeight - scrollTop - windowHeight < 300) {
+          scrollIndicator.classList.remove('opacity-0');
+          scrollIndicator.classList.add('opacity-100');
+        } else {
+          scrollIndicator.classList.remove('opacity-100');
+          scrollIndicator.classList.add('opacity-0');
+        }
+      };
+      
+      window.addEventListener('scroll', checkScrollPosition, { passive: true });
+      checkScrollPosition(); // Initial check
+    }
+    
+    // Handle navigation with smooth transitions
+    pageNavLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const direction = (link as HTMLElement).dataset.pageTransition;
+        const href = link.getAttribute('href');
+        
+        if (!mainContent || !href) return;
+        
+        // Add exit animation
+        if (direction === 'next') {
+          mainContent.classList.add('page-exit-to-left');
+        } else {
+          mainContent.classList.add('page-exit-to-right');
+        }
+        
+        // Store direction for the next page
+        sessionStorage.setItem('pageTransitionDirection', direction || '');
+        
+        // Navigate after animation
+        setTimeout(() => {
+          window.location.href = href;
+        }, 300);
+      });
+    });
+    
+    // Apply entrance animation on page load
+    const transitionDirection = sessionStorage.getItem('pageTransitionDirection');
+    if (transitionDirection && mainContent) {
+      if (transitionDirection === 'next') {
+        mainContent.classList.add('page-enter-from-right');
+      } else if (transitionDirection === 'prev') {
+        mainContent.classList.add('page-enter-from-left');
+      }
+      
+      // Clear the stored direction
+      sessionStorage.removeItem('pageTransitionDirection');
+      
+      // Remove animation class after completion
+      setTimeout(() => {
+        mainContent.classList.remove('page-enter-from-right', 'page-enter-from-left');
+      }, 400);
+    }
+    
+    // Scroll-triggered navigation - triggered when reaching bottom
+    let scrollTimeout: ReturnType<typeof setTimeout>;
+    let isNavigating = false;
+    const nextLink = document.querySelector('[data-page-transition="next"]') as HTMLAnchorElement;
+    
+    if (nextLink && scrollIndicator) {
+      let atBottomTime = 0;
+      const HOLD_DURATION = 800; // ms to hold at bottom before navigating
+      
+      const handleScroll = () => {
+        if (isNavigating) return;
+        
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const distanceFromBottom = documentHeight - scrollTop - windowHeight;
+        
+        // When very close to bottom (within 5px)
+        if (distanceFromBottom < 5) {
+          if (atBottomTime === 0) {
+            atBottomTime = Date.now();
+            // Update indicator text
+            scrollIndicator.innerHTML = `
+              <p class="text-xs text-accent-500 dark:text-accent-400 mb-2 font-medium">Hold to continue...</p>
+              <div class="w-8 h-8 border-2 border-accent-400 dark:border-accent-500 rounded-full flex items-center justify-center">
+                <div class="w-4 h-4 bg-accent-500 dark:bg-accent-400 rounded-full animate-ping"></div>
+              </div>
+            `;
+          }
+          
+          // Check if held at bottom long enough
+          const heldDuration = Date.now() - atBottomTime;
+          if (heldDuration >= HOLD_DURATION) {
+            isNavigating = true;
+            
+            // Visual feedback on the next link
+            nextLink.classList.add('ring-2', 'ring-accent-500', 'ring-offset-2', 'scale-105');
+            scrollIndicator.innerHTML = `
+              <p class="text-xs text-accent-600 dark:text-accent-400 mb-2 font-semibold">Loading next page...</p>
+              <svg class="w-6 h-6 text-accent-500 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            `;
+            
+            // Navigate
+            setTimeout(() => {
+              nextLink.click();
+            }, 300);
+          }
+        } else {
+          // Reset if scrolled away from bottom
+          atBottomTime = 0;
+          if (scrollIndicator && distanceFromBottom < 300) {
+            scrollIndicator.innerHTML = `
+              <p class="text-xs text-primary-400 dark:text-primary-500 mb-2">Scroll to bottom & hold for next page</p>
+              <div class="w-6 h-10 border-2 border-primary-300 dark:border-primary-600 rounded-full flex justify-center">
+                <div class="w-1.5 h-3 bg-primary-400 dark:bg-primary-500 rounded-full mt-2 animate-bounce"></div>
+              </div>
+            `;
+          }
+        }
+      };
+      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      // Also handle wheel events for over-scroll detection
+      window.addEventListener('wheel', (e) => {
+        if (isNavigating) return;
+        
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const distanceFromBottom = documentHeight - scrollTop - windowHeight;
+        
+        // If at bottom and scrolling down
+        if (distanceFromBottom < 5 && e.deltaY > 30) {
+          if (atBottomTime === 0) {
+            atBottomTime = Date.now();
+          }
+          
+          // Faster trigger on active scroll attempt
+          const heldDuration = Date.now() - atBottomTime;
+          if (heldDuration >= 400) {
+            isNavigating = true;
+            nextLink.classList.add('ring-2', 'ring-accent-500', 'ring-offset-2', 'scale-105');
+            scrollIndicator.innerHTML = `
+              <p class="text-xs text-accent-600 dark:text-accent-400 mb-2 font-semibold">Loading next page...</p>
+              <svg class="w-6 h-6 text-accent-500 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            `;
+            setTimeout(() => {
+              nextLink.click();
+            }, 300);
+          }
+        }
+      }, { passive: true });
+    }
+  });
+</script>

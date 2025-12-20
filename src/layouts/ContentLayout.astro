@@ -17,6 +17,7 @@ export interface Props {
   bannerText?: string;
   bannerBackground?: string;
   headings?: Heading[];
+  showHeadings?: boolean;
 }
 
 interface SectionItem {
@@ -41,7 +42,8 @@ const {
   bannerDescription,
   bannerText,
   bannerBackground,
-  headings = []
+  headings = [],
+  showHeadings = false
 } = Astro.props;
 
 // Get section from URL
@@ -49,8 +51,11 @@ const currentPath = Astro.url.pathname;
 const pathParts = currentPath.split('/').filter(Boolean);
 const sectionKey = pathParts[0];
 
-// Import centralized navigation configuration
-import { navigationConfig, getSectionItems } from '../utils/navigation-config.ts';
+import { navigationConfig, getSectionItems, getPrevNextPages } from '../utils/navigation-config.ts';
+import PageNavigation from '../components/PageNavigation.astro';
+
+// Get prev/next pages for navigation
+const { prev, next } = getPrevNextPages(currentPath);
 
 // Create sections config for backward compatibility with banner functionality
 const sections: Record<string, SectionConfig> = {
@@ -161,7 +166,7 @@ import Footer from '../components/Footer.astro';
           id="mobile-sidebar"
           class="w-full md:w-64 md:flex-shrink-0 hidden md:block"
         >
-          <div class="bg-white dark:bg-primary-800 rounded-lg shadow-sm border dark:border-primary-700 p-4 md:p-6 md:sticky md:top-8 transition-colors duration-300">
+          <div class="bg-white dark:bg-primary-800 rounded-lg shadow-sm border dark:border-primary-700 p-4 md:p-6 md:sticky md:top-28 transition-colors duration-300">
             {showBackToParent && parentLink && parentName && (
               <div class="mb-4">
                 <a href={parentLink} class="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center">
@@ -226,7 +231,7 @@ import Footer from '../components/Footer.astro';
                       </div>
                       
                       {/* Show headings as sub-items if this is the current page */}
-                      {currentPath === item.href && headings && headings.length > 0 && (
+                      {currentPath === item.href && showHeadings && headings && headings.length > 0 && (
                         <div class="ml-4 md:ml-8 space-y-1 mt-1">
                           {headings.map((heading) => (
                             <a
@@ -258,10 +263,13 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <!-- Page Content -->
-            <div class="px-4 md:px-8 py-4 md:py-6">
+            <div class="px-4 md:px-8 py-4 md:py-6 bg-white dark:bg-primary-800 transition-colors duration-300">
               <div class="prose prose-sm md:prose-lg max-w-none">
                 <slot />
               </div>
+              
+              <!-- Page Navigation (Prev/Next) -->
+              <PageNavigation prev={prev} next={next} />
             </div>
           </div>
         </div>
@@ -282,6 +290,33 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
+  /* Sidebar scrollbar styling */
+  #mobile-sidebar > div {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(203 213 225) transparent;
+  }
+  
+  #mobile-sidebar > div::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  #mobile-sidebar > div::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  #mobile-sidebar > div::-webkit-scrollbar-thumb {
+    background-color: rgb(203 213 225);
+    border-radius: 3px;
+  }
+  
+  :global(.dark) #mobile-sidebar > div {
+    scrollbar-color: rgb(71 85 105) transparent;
+  }
+  
+  :global(.dark) #mobile-sidebar > div::-webkit-scrollbar-thumb {
+    background-color: rgb(71 85 105);
+  }
+
   /* Custom content styles that make content easier to manage */
   :global(.content-section) {
     @apply mb-8;

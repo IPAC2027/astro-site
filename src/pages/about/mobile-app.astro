@@ -12,6 +12,14 @@ if (!entry) {
 // Use the live markdown-loader to process the content with custom directives
 import { loadPageContent } from '../../utils/live-markdown-loader';
 const pageContent = loadPageContent('about/mobile-app');
+
+// Extract level 2 headers for table of contents
+const headings = pageContent?.blocks
+  .filter(block => block.type === 'subtitle' && typeof block.content === 'string')
+  .map(block => ({
+    text: block.content as string,
+    slug: (block.content as string).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+  })) || [];
 ---
 
 <ContentLayout 
@@ -19,6 +27,7 @@ const pageContent = loadPageContent('about/mobile-app');
   description={entry.data.description}
   bannerText={entry.data.title || "Mobile App"}
   bannerBackground={entry.data.bannerBackground}
+  headings={headings}
 >
   {pageContent ? (
     <ContentRenderer blocks={pageContent.blocks} />
