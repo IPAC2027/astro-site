@@ -140,10 +140,11 @@ const { prev, next } = Astro.props;
 </style>
 
 <script is:inline>
-  // Smooth page transition handler
-  document.addEventListener('DOMContentLoaded', () => {
-    const pageNavLinks = document.querySelectorAll('[data-page-transition]');
-    const mainContent = document.querySelector('.flex-1.min-w-0');
+  (function() {
+    // Smooth page transition handler
+    function initPageNavigation() {
+      const pageNavLinks = document.querySelectorAll('[data-page-transition]');
+      const mainContent = document.querySelector('.flex-1.min-w-0');
     
     // Show scroll indicator when near bottom of page
     const scrollIndicator = document.getElementById('scroll-indicator');
@@ -213,9 +214,9 @@ const { prev, next } = Astro.props;
     }
     
     // Scroll-triggered navigation - triggered when reaching bottom
-    let scrollTimeout: ReturnType<typeof setTimeout>;
-    let isNavigating = false;
-    const nextLink = document.querySelector('[data-page-transition="next"]') as HTMLAnchorElement;
+    var scrollTimeout;
+    var isNavigating = false;
+    const nextLink = document.querySelector('[data-page-transition="next"]');
     
     if (nextLink && scrollIndicator) {
       let atBottomTime = 0;
@@ -312,5 +313,13 @@ const { prev, next } = Astro.props;
         }
       }, { passive: true });
     }
-  });
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPageNavigation);
+    } else {
+      initPageNavigation();
+    }
+  })();
 </script>
