@@ -139,7 +139,7 @@ const { prev, next } = Astro.props;
   }
 </style>
 
-<script>
+<script is:inline>
   // Smooth page transition handler
   document.addEventListener('DOMContentLoaded', () => {
     const pageNavLinks = document.querySelectorAll('[data-page-transition]');
