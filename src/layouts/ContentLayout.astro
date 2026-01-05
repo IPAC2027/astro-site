@@ -46,8 +46,8 @@ const {
   showHeadings = false
 } = Astro.props;
 
-// Get section from URL
-const currentPath = Astro.url.pathname;
+// Get section from URL - normalize path by removing trailing slash
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const pathParts = currentPath.split('/').filter(Boolean);
 const sectionKey = pathParts[0];
 
