@@ -52,6 +52,7 @@ export interface TextContentBlock extends BaseContentBlock {
 export interface ListContentBlock extends BaseContentBlock {
   type: 'list';
   content: string[];
+  multiColumn?: boolean;
 }
 
 /**

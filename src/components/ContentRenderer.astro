@@ -90,7 +90,7 @@ const processMarkdown = (content: string): string => {
     
     case 'list':
       return (
-        <ul class="content-list">
+        <ul class={block.multiColumn !== false ? 'content-list' : 'content-list-single'}>
           {Array.isArray(block.content) && block.content.map(item => {
             const processedItem = processMarkdown(item);
             return <li set:html={processedItem}></li>;

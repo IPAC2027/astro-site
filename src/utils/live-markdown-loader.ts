@@ -132,28 +132,42 @@ function parseMarkdownToBlocks(content: string, config: MarkdownParseConfig = DE
           blocks.push({ type: 'subsubtitle', content: line.substring(4) });
         } else if (line.startsWith('* ') || line.startsWith('- ')) {
           // Handle markdown lists - collect consecutive list items
+          // Use * for multi-column lists, - for single-column lists
+          const listMarker = line.startsWith('* ') ? '*' : '-';
+          const isMultiColumn = listMarker === '*';
           const listItems: string[] = [];
           
           // Add the current line
           listItems.push(line.substring(2).trim());
           
-          // Look ahead to collect consecutive list items
+          // Look ahead to collect consecutive list items with the same marker
           let nextIndex = i + 1;
           while (nextIndex < lines.length) {
             const nextLine = lines[nextIndex].trim();
-            if (nextLine.startsWith('* ') || nextLine.startsWith('- ')) {
+            
+            // Skip all consecutive blank lines
+            if (nextLine === '') {
+              nextIndex++;
+              continue;
+            }
+            
+            // Check if it's a list item with the same marker
+            const nextMarker = nextLine.startsWith('* ') ? '*' : nextLine.startsWith('- ') ? '-' : null;
+            
+            if (nextMarker === listMarker) {
               listItems.push(nextLine.substring(2).trim());
               nextIndex++;
-            } else if (nextLine === '') {
-              // Skip empty lines between list items
-              nextIndex++;
             } else {
-              // End of list
+              // End of list - found a non-blank, non-matching line
               break;
             }
           }
           
-          blocks.push({ type: 'list', content: listItems });
+          blocks.push({ 
+            type: 'list', 
+            content: listItems,
+            multiColumn: isMultiColumn
+          });
           i = nextIndex - 1; // -1 because the main loop will increment
         } else {
           // Regular text

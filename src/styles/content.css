@@ -337,6 +337,75 @@ h4.content-subsubtitle {
   }
 }
 
+/* Single-column list (using - marker) */
+.content-list-single {
+  color: #334155 !important; /* primary-700 */
+  margin-bottom: 1.5rem !important;
+  padding-left: 1.5rem !important;
+  line-height: 1.7 !important;
+  column-count: 1;
+  column-gap: 2rem;
+  list-style-type: disc !important;
+}
+
+.dark .content-list-single {
+  color: #e2e8f0 !important; /* primary-200 - very light for lists */
+}
+
+.content-list-single li {
+  margin-bottom: 0.5rem !important;
+  color: #334155 !important; /* primary-700 */
+}
+
+.dark .content-list-single li {
+  color: #e2e8f0 !important; /* primary-200 */
+}
+
+.content-list-single strong,
+.content-list-single b {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+.dark .content-list-single strong,
+.dark .content-list-single b {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.content-list-single a {
+  color: #059669 !important;
+  text-decoration: underline !important;
+  transition: all 0.3s ease !important;
+  text-underline-offset: 2px !important;
+}
+
+.dark .content-list-single a {
+  color: #34d399 !important;
+}
+
+.content-list-single a:hover {
+  color: #047857 !important;
+  text-underline-offset: 4px !important;
+  text-decoration-thickness: 2px !important;
+}
+
+.dark .content-list-single a:hover {
+  color: #6ee7b7 !important;
+}
+
+/* Nested list indentation */
+ol .content-list-single,
+ol .content-list {
+  margin-top: 0.5rem !important;
+  margin-left: 1.5rem !important;
+}
+
+/* Indent lists that follow numbered items (workaround for lists after numbered text) */
+.content-text + .content-list-single {
+  margin-left: 1.5rem !important;
+}
+
 .content-list-checkmark li::before {
   content: "✓ ";
   @apply text-emerald-500 font-bold mr-2;
