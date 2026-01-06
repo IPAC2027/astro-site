@@ -134,7 +134,7 @@ Files must **follow naming conventions**. Otherwise, the “Submit” button wil
 
 For complete instructions on using Indico, refer to the official documentation: [Submit a paper to the conference](https://ipac-docs.jacow.org/Paper/submit/).
 
-:::highlight
+:::info
 For questions related to paper preparation, formatting, references, Indico access and file submission, please contact the [IPAC'27 Scientific Secretariat](/contact).
 :::
 

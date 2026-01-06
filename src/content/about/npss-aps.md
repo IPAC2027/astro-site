@@ -14,7 +14,7 @@ The partnership between NPSS and APS ensures the highest scientific standards an
 
 ## IEEE Nuclear and Plasma Sciences Society (NPSS)
 
-![IEEE NPSS Logo](/IEEE_NPSS_Logo.png)
+![IEEE NPSS Logo](/images/logos/sponsors/IEEE_NPSS_Logo.png)
 
 **IEEE Nuclear and Plasma Sciences Society**  
 *Professional Society for Nuclear and Plasma Sciences*
@@ -50,7 +50,7 @@ NPSS has been instrumental in the development and success of the IPAC conference
 
 ## American Physical Society (APS)
 
-![APS Logo](/APS_logo.svg)
+![APS Logo](/images/logos/sponsors/APS_logo.svg)
 
 **American Physical Society**  
 *Advancing and Diffusing the Knowledge of Physics*
