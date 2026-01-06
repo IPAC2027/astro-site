@@ -216,6 +216,7 @@ const { prev, next } = Astro.props;
     // Scroll-triggered navigation - triggered when reaching bottom
     var scrollTimeout;
     var isNavigating = false;
+    var lastScrollTop = 0;
     const nextLink = document.querySelector('[data-page-transition="next"]');
     
     if (nextLink && scrollIndicator) {
@@ -230,8 +231,12 @@ const { prev, next } = Astro.props;
         const documentHeight = document.documentElement.scrollHeight;
         const distanceFromBottom = documentHeight - scrollTop - windowHeight;
         
-        // When very close to bottom (within 5px)
-        if (distanceFromBottom < 5) {
+        // Determine scroll direction
+        const scrollingDown = scrollTop > lastScrollTop;
+        lastScrollTop = scrollTop;
+        
+        // When very close to bottom (within 5px) AND scrolling down
+        if (distanceFromBottom < 5 && scrollingDown) {
           if (atBottomTime === 0) {
             atBottomTime = Date.now();
             // Update indicator text
@@ -264,7 +269,7 @@ const { prev, next } = Astro.props;
             }, 300);
           }
         } else {
-          // Reset if scrolled away from bottom
+          // Reset if scrolled away from bottom or scrolling up
           atBottomTime = 0;
           if (scrollIndicator && distanceFromBottom < 300) {
             scrollIndicator.innerHTML = `
