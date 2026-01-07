@@ -46,17 +46,20 @@ export interface CommunitySection {
 const { title, subtitle, stats, statsLabels, statsDescriptions, sponsorsTitle, sponsors, sponsorCta, testimonial } = Astro.props;
 
 const getSponsorSize = (tier: string) => {
+  // All tiers have the same base size; distinction shows only on hover
+  return 'h-20 md:h-24';
+};
+
+const getHoverScale = (tier: string) => {
   switch (tier) {
+    case 'diamond':
+      return 'hover:scale-[1.15]'; // Diamond - 15% enlargement
     case 'platinum':
-      return 'h-20 md:h-24';
+      return 'hover:scale-110'; // Platinum - 10% enlargement
     case 'gold':
-      return 'h-16 md:h-20';
-    case 'silver':
-      return 'h-14 md:h-16';
-    case 'bronze':
-      return 'h-12 md:h-14';
+      return 'hover:scale-105'; // Gold - 5% enlargement
     default:
-      return 'h-12 md:h-14';
+      return 'hover:scale-105';
   }
 };
 ---
@@ -125,22 +128,38 @@ const getSponsorSize = (tier: string) => {
     <div class="text-center">
       <h3 class="text-2xl font-semibold text-primary-900 dark:text-primary-100 mb-8">{sponsorsTitle}</h3>
       
-      <!-- Sponsor Logos Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 items-center justify-items-center">
-        {sponsors.map((exhibitor: Exhibitor) => (
-          <a 
-            href={exhibitor.website} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="group block p-4 rounded-lg hover:bg-primary-50/30 dark:hover:bg-primary-700/30 backdrop-blur-sm shadow-none hover:shadow-sm border border-transparent hover:border-primary-100/20 dark:hover:border-primary-700/20 transition-all duration-300 transform hover:scale-110">
-          >
-            <img 
-              src={exhibitor.logo} 
-              alt={`${exhibitor.name} logo`}
-              class={`${getSponsorSize(exhibitor.tier)} w-auto object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100`}
-            />
-          </a>
-        ))}
+      <!-- Sponsor Logos Scrolling Row -->
+      <div class="relative overflow-hidden py-4">
+        <div class="exhibitor-scroll flex gap-8 items-center" id="exhibitor-scroll">
+          {sponsors.map((exhibitor: Exhibitor) => (
+            <a 
+              href={exhibitor.website} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class={`exhibitor-item group block p-4 rounded-lg transition-all duration-300 transform ${getHoverScale(exhibitor.tier)} flex-shrink-0`}>
+              <img 
+                src={exhibitor.logo} 
+                alt={`${exhibitor.name} logo`}
+                class={`${getSponsorSize(exhibitor.tier)} w-auto object-contain transition-all duration-300 opacity-80 group-hover:opacity-100`}
+              />
+            </a>
+          ))}
+          <!-- Duplicate for seamless loop -->
+          {sponsors.map((exhibitor: Exhibitor) => (
+            <a 
+              href={exhibitor.website} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class={`exhibitor-item group block p-4 rounded-lg transition-all duration-300 transform ${getHoverScale(exhibitor.tier)} flex-shrink-0`}
+              aria-hidden="true">
+              <img 
+                src={exhibitor.logo} 
+                alt={`${exhibitor.name} logo`}
+                class={`${getSponsorSize(exhibitor.tier)} w-auto object-contain transition-all duration-300 opacity-80 group-hover:opacity-100`}
+              />
+            </a>
+          ))}
+        </div>
       </div>
       
       <!-- Become a Sponsor CTA -->
@@ -272,4 +291,61 @@ const getSponsorSize = (tier: string) => {
     
     counters.forEach((counter) => observer.observe(counter));
   }
+  
+  // Auto-scrolling exhibitor logos
+  function initExhibitorScroll() {
+    const scrollContainer = document.getElementById('exhibitor-scroll');
+    if (!scrollContainer) return;
+    
+    let scrollPosition = 0;
+    const scrollSpeed = 0.5; // pixels per frame
+    let isPaused = false;
+    
+    // Pause on hover
+    scrollContainer.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+    
+    scrollContainer.addEventListener('mouseleave', () => {
+      isPaused = false;
+    });
+    
+    function autoScroll() {
+      if (!isPaused) {
+        scrollPosition += scrollSpeed;
+        
+        // Reset position when scrolled through half (where duplicates start)
+        const scrollWidth = scrollContainer.scrollWidth / 2;
+        if (scrollPosition >= scrollWidth) {
+          scrollPosition = 0;
+        }
+        
+        scrollContainer.style.transform = `translateX(-${scrollPosition}px)`;
+      }
+      
+      requestAnimationFrame(autoScroll);
+    }
+    
+    autoScroll();
+  }
+  
+  // Initialize on load
+  document.addEventListener('DOMContentLoaded', () => {
+    initExhibitorScroll();
+  });
+  
+  // Also initialize if already loaded
+  if (document.readyState === 'complete') {
+    initExhibitorScroll();
+  }
 </script>
+
+<style>
+  .exhibitor-scroll {
+    will-change: transform;
+  }
+  
+  .exhibitor-item {
+    min-width: 180px;
+  }
+</style>

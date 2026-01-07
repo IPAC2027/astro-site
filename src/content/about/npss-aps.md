@@ -4,7 +4,7 @@ description: "About the IEEE Nuclear and Plasma Sciences Society and American Ph
 bannerText: "NPSS-APS"
 ---
 
-# NPSS-APS Partnership
+## NPSS-APS Partnership
 
 IPAC'27 is organized under the auspices of the IEEE Nuclear and Plasma Sciences Society (NPSS) and in cooperation with the American Physical Society (APS) Division of Physics of Beams.
 

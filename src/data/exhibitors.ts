@@ -13,7 +13,7 @@ export interface Exhibitor {
   website?: string;
   description: string;
   category: string;
-  tier: 'platinum' | 'gold' | 'silver' | 'bronze';
+  tier: 'diamond' | 'platinum' | 'gold';
   contact?: {
     email?: string;
     phone?: string;
@@ -52,38 +52,97 @@ export const sponsors: Sponsor[] = [
 
 // Exhibitors and Industry Partners
 export const exhibitors: Exhibitor[] = [
-  // Add more exhibitors as they register
+  // Diamond Tier
   {
-    id: "ieee-npss",
-    name: "IEEE NPSS",
-    logo: "/logos/IEEE_NPSS_Logo.png",
-    website: "https://ieee-npss.org/",
-    description: "Professional organization advancing nuclear and plasma sciences technology",
-    category: "Professional Organizations",
-    tier: "platinum",
-    booth: "A101",
+    id: "diamond-1",
+    name: "Diamond Exhibitor 1",
+    logo: "/images/logos/exhibitors/diamond/sample_1.jpg",
+    website: "#",
+    description: "Diamond tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "diamond",
+    booth: "D101",
     featured: true
   },
   {
-    id: "aps",
-    name: "American Physical Society",
-    logo: "/logos/APS_logo.svg",
-    website: "https://www.aps.org/",
-    description: "Leading physics society promoting physics research and education",
-    category: "Professional Organizations",
+    id: "diamond-2",
+    name: "Diamond Exhibitor 2",
+    logo: "/images/logos/exhibitors/diamond/sample_5.jpg",
+    website: "#",
+    description: "Diamond tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "diamond",
+    booth: "D102",
+    featured: true
+  },
+  
+  // Platinum Tier
+  {
+    id: "platinum-1",
+    name: "Platinum Exhibitor 1",
+    logo: "/images/logos/exhibitors/platinum/sample_2.jpg",
+    website: "#",
+    description: "Platinum tier exhibitor - placeholder",
+    category: "Industry Partner",
     tier: "platinum",
-    booth: "A102",
+    booth: "P101",
     featured: true
   },
   {
-    id: "frib",
-    name: "FRIB",
-    logo: "/logos/FRIB_logo_white.png",
-    website: "https://frib.msu.edu/",
-    description: "Facility for Rare Isotope Beams - State-of-the-art nuclear science research facility",
-    category: "Research Facilities",
+    id: "platinum-2",
+    name: "Platinum Exhibitor 2",
+    logo: "/images/logos/exhibitors/platinum/sample_6.jpg",
+    website: "#",
+    description: "Platinum tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "platinum",
+    booth: "P102",
+    featured: true
+  },
+  
+  // Gold Tier
+  {
+    id: "gold-1",
+    name: "Gold Exhibitor 1",
+    logo: "/images/logos/exhibitors/gold/sample_3.png",
+    website: "#",
+    description: "Gold tier exhibitor - placeholder",
+    category: "Industry Partner",
     tier: "gold",
-    booth: "B201",
+    booth: "G101",
+    featured: true
+  },
+  {
+    id: "gold-2",
+    name: "Gold Exhibitor 2",
+    logo: "/images/logos/exhibitors/gold/sample_4.png",
+    website: "#",
+    description: "Gold tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "gold",
+    booth: "G102",
+    featured: true
+  },
+  {
+    id: "gold-3",
+    name: "Gold Exhibitor 3",
+    logo: "/images/logos/exhibitors/gold/sample_7.jpg",
+    website: "#",
+    description: "Gold tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "gold",
+    booth: "G103",
+    featured: true
+  },
+  {
+    id: "gold-4",
+    name: "Gold Exhibitor 4",
+    logo: "/images/logos/exhibitors/gold/sample_8.jpg",
+    website: "http://frib.msu.edu/",
+    description: "Gold tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "gold",
+    booth: "G104",
     featured: true
   }
 ];
