@@ -45,6 +45,38 @@ export interface CommunitySection {
 
 const { title, subtitle, stats, statsLabels, statsDescriptions, sponsorsTitle, sponsors, sponsorCta, testimonial } = Astro.props;
 
+// Create a weighted random list of exhibitors
+const createWeightedExhibitorList = (exhibitors: Exhibitor[]) => {
+  const weights = {
+    diamond: 5,    // Highest probability
+    platinum: 3,   // Medium probability
+    gold: 1        // Lowest probability
+  };
+  
+  // Dynamic count based on number of exhibitors (5x for smooth scrolling)
+  const count = exhibitors.length * 5;
+  const weightedList: Exhibitor[] = [];
+  
+  for (let i = 0; i < count; i++) {
+    // Create weighted pool
+    const pool: Exhibitor[] = [];
+    exhibitors.forEach(exhibitor => {
+      const weight = weights[exhibitor.tier as keyof typeof weights] || 1;
+      for (let j = 0; j < weight; j++) {
+        pool.push(exhibitor);
+      }
+    });
+    
+    // Pick random exhibitor from weighted pool
+    const randomIndex = Math.floor(Math.random() * pool.length);
+    weightedList.push(pool[randomIndex]);
+  }
+  
+  return weightedList;
+};
+
+const randomizedSponsors = createWeightedExhibitorList(sponsors);
+
 const getSponsorSize = (tier: string) => {
   // All tiers have the same base size; distinction shows only on hover
   return 'h-20 md:h-24';
@@ -131,27 +163,13 @@ const getHoverScale = (tier: string) => {
       <!-- Sponsor Logos Scrolling Row -->
       <div class="relative overflow-hidden py-4">
         <div class="exhibitor-scroll flex gap-8 items-center" id="exhibitor-scroll">
-          {sponsors.map((exhibitor: Exhibitor) => (
-            <a 
-              href={exhibitor.website} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class={`exhibitor-item group block p-4 rounded-lg transition-all duration-300 transform ${getHoverScale(exhibitor.tier)} flex-shrink-0`}>
-              <img 
-                src={exhibitor.logo} 
-                alt={`${exhibitor.name} logo`}
-                class={`${getSponsorSize(exhibitor.tier)} w-auto object-contain transition-all duration-300 opacity-80 group-hover:opacity-100`}
-              />
-            </a>
-          ))}
-          <!-- Duplicate for seamless loop -->
-          {sponsors.map((exhibitor: Exhibitor) => (
+          {randomizedSponsors.map((exhibitor: Exhibitor, index: number) => (
             <a 
               href={exhibitor.website} 
               target="_blank" 
               rel="noopener noreferrer"
               class={`exhibitor-item group block p-4 rounded-lg transition-all duration-300 transform ${getHoverScale(exhibitor.tier)} flex-shrink-0`}
-              aria-hidden="true">
+              key={`exhibitor-${index}`}>
               <img 
                 src={exhibitor.logo} 
                 alt={`${exhibitor.name} logo`}
