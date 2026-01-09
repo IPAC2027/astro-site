@@ -12,7 +12,7 @@ Sub-classifications associated with MC1:
 * A01 Hadron Colliders
 * A02 Lepton Circular Colliders
 * A03 Linear Lepton Colliders
-* A04 Circular Accelerators
+* A04 Circular Accelerators and Storage Rings
 * A07 Electrostatic Accelerators
 * A08 Linear Accelerators
 * A09 Muon Accelerators, Neutrino Factories, Muon Colliders
