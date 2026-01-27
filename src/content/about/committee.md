@@ -75,12 +75,104 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 :::collapsible{title="Scientific Advisory Board"}
 :::grid{columns=3}
 :::card{title="America"}
-* **member A**
-* member B
+* Mei Bai (SLAC)
+* Mark Hogan (SLAC)
+* Claudio Emma (SLAC)
+* Martina Martinello (SLAC)
+* Kevin Brown (BNL)
+* Guimei Wang (BNL)
+* Silvia Verdu-Andres (BNL)
+* Rong-Li Geng (JLab)
+* Alex Bogacz (JLab)
+* Anne-Marie Valente-Feliciano (JLab)
+* Steve Lidia (FRIB)
+* Laura Popielarski (FRIB)
+* Diktys Stratakis (FNAL)
+* Jonathan Jarvis (FNAL)
+* Thomas Planche (TRIUMF)
+* Camille Belanger-Champagne (TRIUMF)
+* Mike Trinczek (TRIUMF)
+* Bob Laxdal (TRIUMF)
+* Kiersten Ruisard (ORNL)
+* Abdurahim Oguz (ORNL)
+* Nicholas Evans (ORNL)
+* Anna Alexander (LANL)
+* Greg Dale (LANL)
+* En-Chuan Huang (LANL)
+* Ryan Lindberg (ANL)
+* Joseph Calvey (ANL)
+* John Power (ANL)
+* Tengming Shen (LBNL)
+* Ji Qiang (LBNL)
+<!-- * Fernando Henrique Cardoso (LNLS) -->
+* Tonia Batten (CLS)
+* Eduardo Nebot del Busto (CLS)
+* Nathaniel Pogue (LLNL)
+<!-- * Lin Shao (TAMU) -->
+* Xueying Lu (NIU)
+* Subashini De Silva (ODU)
+* Eric Prebys (UC Davis)
+* Siddharth Karkare (ASU)
+* Jared Maxson (Cornell)
+* Alex Murokh (Radiabeam)
+* Jonathan Eidelen (Radiasoft)
+* Andrew Burrill (Xlight)
+* Dmitry Teytelman (Dimtel)
 :::
 :::card{title="Asia"}
+* Ryoichi Hajima (QST/KPS)
+* Nobuyuki Nishimori (QST/NanoTeras)
+* Yoshiyuki Iwata (QST/HIMAC)
+* Shigeru Kashiwagi (Tohoku U)
+* Takashi Obina (KEK/PF)
+* Shu Nakamura (KEK/SKEKB)
+* Masanori Sato (KEK/InjectorLinac)
+* Naruhiko Sakamoto (RIKEN/Nishina)
+<!-- * Sheng Wang (IHEP/Beijing) -->
+* Yi Jiao (IHEP/Beijing)
+* Weiqing Zhang (DICP)
+* Chuanxiang Tang (Tsinghua U)
+<!-- * Guangyao Feng (USTC) -->
+* Xueqing Yan (PKU)
+* Chi-Hyun Shim (PAL)
+* Han-Sung Kim (KOMAC)
+* Dong-O Jeon (IBS)
+* Seong-Hee Park (KUS)
+* Jui-Che Huang (NSRRC)
+<!-- * Huang-Hsiu Tsai (NSRRC) -->
+* Zong-Kai Liu (NSRRC)
+* Rohan Dowd (ANSTO)
+<!-- * Suzie Sheehy (U Melbourne) -->
+* Prapaiwan Sunwong (SLRI)
+* Siriwan Jummunt (SLRI)
 :::
 :::card{title="Europe"}
+* Jérôme Faure (Laboratoire d'Optique Appliquée)
+* Marie Labat (SOLEIL)
+* Alexis Gamelin (SOLEIL)
+* Claire Simon (CEA)
+<!-- * Simon White (ESRF) -->
+* Sara Casalbuoni (EuXFEL)
+* Giuliano Franchetti (GSI)
+<!-- * Anke-Susanne Müller (KIT) -->
+* Ulrich Ratzinger (JWG U.)
+* Giovanni Bisoffi (INFN/LNL)
+<!-- * Erminia Bressi (CNAO Foundation) -->
+* Santo Gammino (INFN/LNS)
+<!-- * Cristina Pasotti (Elettra) -->
+* Ubaldo Iriso (ALBA-CELLS)
+* Ivan Podadera (IFMIF-Dones)
+* Fernando Toral (CIEMAT)
+* Olle Lundh (Lund Univ)
+<!-- * Hamed Tarawneh (MAX-IV) -->
+* Thomas Schietinger (PSI)
+* Frank Gerigk (CERN)
+* Jacqueline Keintzel (CERN)
+* Daniela Kiselev (PSI)
+* Phil Burrows (John Adams Institute)
+* Graeme Burt (Lancaster Univ)
+* Laura Corner (Liverpool Univ)
+* Dan Faircloth (STFC/RAL/ISIS)
 :::
 :::
 :::
@@ -91,6 +183,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * Geiger, Kristy (Eventive Thinking), Professional Conference Organizer
 * Hulbert, Casey (MSU)
 * Kanemura, Takuji (MSU)
+* Kulmatycski, Kyle (BNL)
 * Maruta, Tomofumi (MSU)
 * Miller, Samuel (MSU)
 * Pease, Katie (MSU), Conference Secretary
