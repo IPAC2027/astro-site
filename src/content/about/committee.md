@@ -76,7 +76,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 :::grid{columns=3}
 :::card{title="America"}
 * Mei Bai (SLAC)
-* Mark Hogan (SLAC)
+<!-- * Mark Hogan (SLAC) -->
 * Claudio Emma (SLAC)
 * Martina Martinello (SLAC)
 * Kevin Brown (BNL)
@@ -91,7 +91,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * Jonathan Jarvis (FNAL)
 * Thomas Planche (TRIUMF)
 * Camille Belanger-Champagne (TRIUMF)
-* Mike Trinczek (TRIUMF)
+<!-- * Mike Trinczek (TRIUMF) -->
 * Bob Laxdal (TRIUMF)
 * Kiersten Ruisard (ORNL)
 * Abdurahim Oguz (ORNL)
@@ -105,7 +105,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * Tengming Shen (LBNL)
 * Ji Qiang (LBNL)
 <!-- * Fernando Henrique Cardoso (LNLS) -->
-* Tonia Batten (CLS)
+<!-- * Tonia Batten (CLS) -->
 * Eduardo Nebot del Busto (CLS)
 * Nathaniel Pogue (LLNL)
 <!-- * Lin Shao (TAMU) -->
@@ -139,16 +139,16 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * Dong-O Jeon (IBS)
 * Seong-Hee Park (KUS)
 * Jui-Che Huang (NSRRC)
-<!-- * Huang-Hsiu Tsai (NSRRC) -->
+* Huang-Hsiu Tsai (NSRRC)
 * Zong-Kai Liu (NSRRC)
 * Rohan Dowd (ANSTO)
-<!-- * Suzie Sheehy (U Melbourne) -->
+* Suzie Sheehy (U Melbourne)
 * Prapaiwan Sunwong (SLRI)
 * Siriwan Jummunt (SLRI)
 :::
 :::card{title="Europe"}
 * Jérôme Faure (Laboratoire d'Optique Appliquée)
-* Marie Labat (SOLEIL)
+<!-- * Marie Labat (SOLEIL) -->
 * Alexis Gamelin (SOLEIL)
 * Claire Simon (CEA)
 <!-- * Simon White (ESRF) -->
