@@ -154,12 +154,12 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 <!-- * Simon White (ESRF) -->
 * Sara Casalbuoni (EuXFEL)
 * Giuliano Franchetti (GSI)
-<!-- * Anke-Susanne Müller (KIT) -->
+* Anke-Susanne Müller (KIT)
 * Ulrich Ratzinger (JWG U.)
 * Giovanni Bisoffi (INFN/LNL)
 <!-- * Erminia Bressi (CNAO Foundation) -->
 * Santo Gammino (INFN/LNS)
-<!-- * Cristina Pasotti (Elettra) -->
+* Cristina Pasotti (Elettra)
 * Ubaldo Iriso (ALBA-CELLS)
 * Ivan Podadera (IFMIF-Dones)
 * Fernando Toral (CIEMAT)
