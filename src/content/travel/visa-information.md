@@ -4,9 +4,10 @@ description: "Visa and entry requirements for international attendees of IPAC'27
 bannerText: "Visa Information"
 ---
 
-:::highlight
-Important visa and entry information for international attendees traveling to the United States for IPAC'27.
+:::info
+Visa Invitation Letters with be provided to registered attendees for IPAC'27.
+The process for requesting a Letter of Invitation for visa applications will be available in October, 2026.
 :::
 
-## U.S. Entry Requirements
+
 

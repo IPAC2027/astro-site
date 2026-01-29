@@ -7,7 +7,7 @@ bannerBackground: "/images/banners/Travel/dtw.jpg"
 
 
 
-:::highlight
+:::info
 Detroit is easily accessible by air, rail, and road from locations across North America and internationally.
 :::
 
@@ -59,20 +59,23 @@ Detroit is easily accessible by major interstate highways, making it convenient 
 
 
 **Approximate Driving Times to Detroit:**
-- Chicago, IL: 4.5 hours (280 miles)
-- Toronto, ON: 4 hours (235 miles)
-- Cleveland, OH: 2.5 hours (170 miles)
-- Columbus, OH: 3.5 hours (215 miles)
-- Indianapolis, IN: 4.5 hours (290 miles)
+* Chicago, IL: 4.5 hours (280 miles)
+* Toronto, ON: 4 hours (235 miles)
+* Cleveland, OH: 2.5 hours (170 miles)
+* Columbus, OH: 3.5 hours (215 miles)
+* Indianapolis, IN: 4.5 hours (290 miles)
 
-## Parking at Huntington Place
+## Parking
 
-The conference venue, [Huntington Place](https://www.huntingtonplacedetroit.com), offers convenient on-site parking:
+- The conference venue, [Huntington Place](https://www.huntingtonplacedetroit.com), offers convenient on-site parking. Please check the venue website for [current parking rates](https://www.huntingtonplacedetroit.com/plan-your-visit/parking) and directions.
 
-Check the venue website for current parking rates and availability.
+- The conference Hotel, [Detroit Marriott at the Renaissance Center](https://www.marriott.com/en-us/hotels/dtwdt-detroit-marriott-at-the-renaissance-center/overview/) offers on-site parking for $27 (daily rate)
 
 
 
-### Border Crossing to Canada
 
-Detroit is connected to Windsor, Ontario via the [Ambassador Bridge](https://www.ambassadorbridge.com) and the [Detroit-Windsor Tunnel](https://dwtunnel.com). Valid passport/visa may be required for border crossing.
+
+
+## Border Crossing to Canada
+
+Detroit is connected to Windsor, Ontario, Canada via the [Ambassador Bridge](https://www.ambassadorbridge.com) and the [Detroit-Windsor Tunnel](https://dwtunnel.com). Valid passport/visa will be required for border crossing.
