@@ -104,7 +104,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * John Power (ANL)
 * Tengming Shen (LBNL)
 * Ji Qiang (LBNL)
-<!-- * Fernando Henrique Cardoso (LNLS) -->
+* Fernando Henrique De Sa (LNLS)
 <!-- * Tonia Batten (CLS) -->
 * Eduardo Nebot del Busto (CLS)
 * Nathaniel Pogue (LLNL)
@@ -151,7 +151,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 <!-- * Marie Labat (SOLEIL) -->
 * Alexis Gamelin (SOLEIL)
 * Claire Simon (CEA)
-<!-- * Simon White (ESRF) -->
+* Nicola Carmignani (ESRF) 
 * Sara Casalbuoni (EuXFEL)
 * Giuliano Franchetti (GSI)
 * Anke-Susanne Müller (KIT)

@@ -189,7 +189,7 @@ h4.content-subsubtitle {
 }
 
 .alert-info {
-  @apply bg-accent-50 border border-accent-200;
+  @apply bg-gradient-to-r from-blue-100 to-cyan-100 dark:from-blue-900/40 dark:to-cyan-900/40 border-l-8 border-blue-500 dark:border-blue-400 rounded-xl p-8 shadow-lg;
 }
 
 .alert-warning {
@@ -303,11 +303,11 @@ h4.content-subsubtitle {
 
 /* Content highlight directive (used in markdown :::highlight) */
 .content-highlight {
-  @apply bg-yellow-50 dark:bg-yellow-900/30 border-l-4 border-yellow-400 dark:border-yellow-600 rounded-lg p-6 mb-8 shadow-sm;
+  @apply bg-gradient-to-r from-yellow-100 to-amber-100 dark:from-yellow-900/40 dark:to-amber-900/40 border-l-8 border-yellow-500 dark:border-yellow-400 rounded-xl p-8 mb-10 shadow-lg;
 }
 
 .content-highlight p {
-  @apply text-yellow-900 dark:text-yellow-100 font-medium m-0;
+  @apply text-yellow-900 dark:text-yellow-50 font-semibold text-lg m-0;
 }
 
 /* Lists */
