@@ -20,12 +20,27 @@ A special room block is available at the conference hotel for IPAC'27 attendees.
 
 The **Detroit Marriott at the Renaissance Center** serves as the official conference hotel for IPAC'27, offering convenient access to the conference venue and spectacular views of the Detroit River.
 
-**Address:**  
-Renaissance Center  
-400 Renaissance Dr W  
+:::grid{columns=2}
+:::card{icon="📍" title="Address"}
+Renaissance Center
+400 Renaissance Dr W
 Detroit, MI 48243
+<iframe src="https://maps.google.com/maps?q=400+Renaissance+Dr+W,+Detroit,+MI+48243&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="240" style="border:0;border-radius:8px;margin-top:0.75rem;" allowfullscreen="" loading="lazy"></iframe>
+:::
 
-[Book Your Stay](https://www.marriott.com/en-us/hotels/dtwdt-detroit-marriott-at-the-renaissance-center/) | [Hotel Website](https://www.marriott.com/en-us/hotels/dtwdt-detroit-marriott-at-the-renaissance-center/)
+:::card{icon="🏨" title="Book Your Stay"}
+**A special discounted room block is reserved for IPAC'27 attendees at the conference hotel.**
+
+<br>
+
+- **Conference Rate**: To be announced
+- **Booking Link**: To be announced
+
+[Hotel Website](https://www.marriott.com/en-us/hotels/dtwdt-detroit-marriott-at-the-renaissance-center/)
+
+Booking information and special conference rates will be announced approximately one year before the conference. Check back for updates.
+:::
+:::
 
 ### Hotel Highlights
 
@@ -53,13 +68,9 @@ The hotel is within walking distance or a short ride from Detroit's premier ente
 - **Detroit RiverWalk** - Award-winning waterfront promenade
 - Downtown restaurants, shops, and cultural attractions
 
-### Conference Room Block
 
-:::highlight
-**A special room block will be available for IPAC'27 attendees.**
 
-Booking information and special conference rates will be announced approximately one year before the conference. Check back for updates.
-:::
+
 
 ### Transportation to Conference Venue
 
@@ -68,21 +79,11 @@ From the Detroit Marriott at the Renaissance Center to Huntington Place:
 - **Walking**: 10-15 minutes via the scenic RiverWalk
 - **People Mover**: Quick 5-minute ride on Detroit's elevated transit system
 - **Rideshare/Taxi**: 5 minutes
-- **Driving**: Parking available at Huntington Place
+
 
 
 
 ## Additional Accommodation Options
 
-Downtown Detroit offers numerous hotels within walking distance or a short ride from Huntington Place:
+Downtown Detroit offers numerous hotels within walking distance or a short ride from Huntington Place.  To find more hotels and booking options, visit [Visit Detroit's Accommodation Guide](https://visitdetroit.com/plan-your-visit/).
 
-- **The Westin Book Cadillac Detroit** - Historic luxury hotel
-- **Aloft Detroit at The David Whitney** - Modern boutique hotel
-- **DoubleTree by Hilton Detroit Downtown - Fort Shelby** - Convenient downtown location
-- **Courtyard by Marriott Detroit Downtown** - Business-friendly hotel
-- **TownePlace Suites Detroit Downtown** - Extended-stay option
-
-For a complete list of hotels and booking options, visit [Visit Detroit's Accommodation Guide](https://visitdetroit.com/places-to-stay/).
-
-
-*Booking details and conference rates will be updated as they become available. Please check back regularly for the latest information.*
