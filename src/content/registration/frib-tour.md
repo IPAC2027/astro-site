@@ -6,7 +6,7 @@ bannerBackground: "/images/banners/Registration/frib-tour.png"
 ---
 
 :::highlight
-Visit the world-class Facility for Rare Isotope Beams (FRIB) at Michigan State University.
+Visit the world-class Facility for Rare Isotope Beams (FRIB) at Michigan State University on the afternoon of May 28, 2027. Additional details will be provided shortly.
 :::
 
 ## About FRIB
