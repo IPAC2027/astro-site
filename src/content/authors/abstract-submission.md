@@ -70,7 +70,7 @@ Notification of the acceptance of contributions for presentation at the Conferen
 Authors can withdraw abstracts independently until they are accepted as contributions in the program. If you need to withdraw your contribution after that time, please contact the IPAC’27 scientific secretariat specifying your abstract title and ID.
 
 ## Support
-Please contact the IPAC’27 scientific secretariat if you have questions about managing your abstracts.
+Please contact the [IPAC'27 Scientific Secretariat](/contact) if you have questions about managing your abstracts.
 
 
 

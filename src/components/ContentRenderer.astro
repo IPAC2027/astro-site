@@ -287,12 +287,17 @@ const processMarkdown = (content: string): string => {
     
     case 'button':
       return (
-        <div class="my-6">
-          <a 
-            href={block.url || '#'} 
-            class="btn-primary"
+        <div class="my-8 flex justify-center">
+          <a
+            href={block.url || '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-3 bg-accent-600 hover:bg-accent-700 active:bg-accent-800 text-white text-lg font-bold px-10 py-5 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.03]"
           >
-            {block.buttonText || block.content}
+            <span>{block.buttonText || block.content}</span>
+            <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
           </a>
         </div>
       );
@@ -316,6 +321,44 @@ const processMarkdown = (content: string): string => {
         return <CollapsibleContentComponent content={collapsibleContent} group={collapsibleGroup} />;
       }
       return null;
+    
+    case 'pdfpreview':
+      return (
+        <div class="my-8">
+          <a
+            href={block.url}
+            download
+            class="group block max-w-md mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-primary-200 dark:border-primary-700 focus:outline-none focus:ring-2 focus:ring-accent-500"
+            title={block.title || 'Download PDF'}
+            aria-label={block.title || 'Download PDF'}
+          >
+            <div class="relative">
+              <img
+                src={block.preview}
+                alt={`Preview of ${block.title || 'PDF document'}`}
+                class="w-full object-cover"
+              />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white dark:bg-primary-800 rounded-full px-5 py-3 flex items-center gap-2 shadow-lg">
+                  <svg class="w-5 h-5 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                  </svg>
+                  <span class="text-sm font-semibold text-primary-900 dark:text-primary-100">Download PDF</span>
+                </div>
+              </div>
+            </div>
+            <div class="bg-primary-50 dark:bg-primary-800 px-4 py-3 flex items-center gap-2">
+              <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/>
+              </svg>
+              <span class="text-sm font-medium text-primary-700 dark:text-primary-200 truncate">{block.title || 'Download PDF'}</span>
+              <svg class="w-4 h-4 text-primary-400 ml-auto flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
+            </div>
+          </a>
+        </div>
+      );
     
     default:
       return null;

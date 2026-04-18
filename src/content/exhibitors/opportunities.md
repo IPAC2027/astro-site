@@ -31,26 +31,29 @@ Build relationships through dedicated networking events, coffee breaks, and the 
 We offer flexible exhibition packages to meet various needs and budgets. 
 
 :::grid{columns=3}
-### Golden Exhibitor
-Spacious exhibition space with standard amenities
+### 🥇 Golden Exhibitor
+Spacious exhibition space with standard amenities.
+* From $7000
 
-### Platinum Exhibitor
+### 🔷 Platinum Exhibitor
 Enhanced space with additional features
+* From $13000
 
-### Diamond Exhibitor
+### 💎 Diamond Exhibitor
 Top packages with premium locations
+* From $18000
 :::
 
-## Get Started
+## Exhibitor Prospectus
 
-:::info
-Ready to showcase your company at IPAC'27? Contact our exhibition team to learn more about available opportunities and secure your space.
+Download the full exhibitor prospectus to learn about all packages, floor plans, and deadlines.
+
+:::pdfpreview{url="/images/exhibitor/ExhibitorProspectusV3.pdf" preview="/images/exhibitor/ExhibitorProspectusV3_preview-1.png" title="IPAC'27 Exhibitor Prospectus V3"}
 :::
 
-:::button{url="mailto:exhibition@ipac27.org" text="Contact Exhibition Team"}
-Contact our exhibition team for more information
-:::
+## Support
+Please contact the [IPAC'27 Exhibition Coordinator](/contact) if you have questions.
 
-:::status{type="coming-soon"}
-Exhibition Registration
-:::
+
+
+

@@ -24,11 +24,5 @@ The conference will offer several activities specifically designed for students 
 
 ## Student Grants
 
-Financial support may be available for student attendees. Details about:
-- Grant application procedures
-- Eligibility criteria
-- Application deadlines
-- Award amounts
-
-will be announced separately.
+Financial support is available for student attendees to apply. 
 

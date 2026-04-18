@@ -258,6 +258,15 @@ function parseDirective(type: string, content: string, props: Record<string, str
           status: (props.type as any) || 'coming-soon'
         };
       
+      case 'pdfpreview':
+        return {
+          type: 'pdfpreview',
+          content: content.trim(),
+          url: props.url || '#',
+          preview: props.preview || '',
+          title: props.title || 'Download PDF'
+        };
+
       case 'collapsible':
         // Check if the content contains nested directives
         const trimmedContent = content.trim();

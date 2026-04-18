@@ -27,5 +27,5 @@ Avoid landscape orientation for the A0/Arch E formats, as it will be too wide to
 * Student 's poster will be assign a seperate poster number for Sunday's student poster session.
 
 ## Support
-Please contact the IPAC’27 scientific secretariat if you have questions about managing your abstracts.
+Please contact the [IPAC'27 Scientific Secretariat](/contact) if you have questions about managing your abstracts.
 

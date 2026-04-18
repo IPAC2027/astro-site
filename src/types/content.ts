@@ -18,7 +18,8 @@ export type ContentBlockType =
   | 'grid' 
   | 'button' 
   | 'status' 
-  | 'collapsible';
+  | 'collapsible'
+  | 'pdfpreview';
 
 /**
  * Status options for status blocks
@@ -107,6 +108,17 @@ export interface CardContentBlock extends BaseContentBlock {
 }
 
 /**
+ * Content block for PDF preview with download
+ */
+export interface PdfPreviewContentBlock extends BaseContentBlock {
+  type: 'pdfpreview';
+  content: string;
+  url: string;
+  preview: string;
+  title?: string;
+}
+
+/**
  * Union type of all possible content blocks
  */
 export type ContentBlock = 
@@ -117,7 +129,8 @@ export type ContentBlock =
   | CollapsibleContentBlock
   | ButtonContentBlock
   | StatusContentBlock
-  | CardContentBlock;
+  | CardContentBlock
+  | PdfPreviewContentBlock;
 
 /**
  * Configuration for grid layouts

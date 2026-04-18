@@ -7,7 +7,7 @@ bannerBackground: "/images/banners/Registration/registration.png"
 
 
 :::warning
-Registration for IPAC'27 will open in early 2027. Please check back for updates and registration announcements.
+Registration for IPAC'27 will open in October 2026. Please check back for updates and registration announcements.
 :::
 
 ## Registration Information
