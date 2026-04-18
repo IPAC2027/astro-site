@@ -55,94 +55,94 @@ export const exhibitors: Exhibitor[] = [
   // Diamond Tier
   {
     id: "diamond-1",
-    name: "Diamond Exhibitor 1",
+    name: "Your Logo Here",
     logo: "/images/logos/exhibitors/diamond/sample_1.jpg",
     website: "#",
     description: "Diamond tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "diamond",
-    booth: "D101",
+    booth: "TBD",
     featured: true
   },
   {
     id: "diamond-2",
-    name: "Diamond Exhibitor 2",
+    name: "Your Logo Here",
     logo: "/images/logos/exhibitors/diamond/sample_5.jpg",
     website: "#",
     description: "Diamond tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "diamond",
-    booth: "D102",
+    booth: "TBD",
     featured: true
   },
   
   // Platinum Tier
   {
     id: "platinum-1",
-    name: "Platinum Exhibitor 1",
+    name: "Your Logo Here",
     logo: "/images/logos/exhibitors/platinum/sample_2.jpg",
     website: "#",
     description: "Platinum tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "platinum",
-    booth: "P101",
+    booth: "TBD",
     featured: true
   },
   {
     id: "platinum-2",
-    name: "Platinum Exhibitor 2",
+    name: "Your Logo Here",
     logo: "/images/logos/exhibitors/platinum/sample_6.jpg",
     website: "#",
     description: "Platinum tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "platinum",
-    booth: "P102",
+    booth: "TBD",
     featured: true
   },
   
   // Gold Tier
   {
     id: "gold-1",
-    name: "Gold Exhibitor 1",
+    name: "Your Logo Here",
     logo: "/images/logos/exhibitors/gold/sample_3.png",
     website: "#",
     description: "Gold tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "gold",
-    booth: "G101",
+    booth: "TBD",
     featured: true
   },
   {
     id: "gold-2",
-    name: "Gold Exhibitor 2",
+    name: "Your Logo Here",
     logo: "/images/logos/exhibitors/gold/sample_4.png",
     website: "#",
     description: "Gold tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "gold",
-    booth: "G102",
+    booth: "TBD",
     featured: true
   },
   {
     id: "gold-3",
-    name: "Gold Exhibitor 3",
+    name: "Your Logo Here",
     logo: "/images/logos/exhibitors/gold/sample_7.jpg",
     website: "#",
     description: "Gold tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "gold",
-    booth: "G103",
+    booth: "TBD",
     featured: true
   },
   {
     id: "gold-4",
-    name: "Gold Exhibitor 4",
+    name: "Your Logo Here",
     logo: "/images/logos/exhibitors/gold/sample_8.jpg",
     website: "http://frib.msu.edu/",
     description: "Gold tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "gold",
-    booth: "G104",
+    booth: "TBD",
     featured: true
   }
 ];

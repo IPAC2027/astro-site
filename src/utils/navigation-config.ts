@@ -64,7 +64,7 @@ export const navigationConfig: NavigationSection[] = [
       { name: 'Exhibition Opportunities', href: '/exhibitors/opportunities' },
       { name: 'Exhibition Registration', href: '/exhibitors/exhibition-registration' },
       { name: 'Ongoing Accelerator Projects', href: '/exhibitors/ongoing-projects' },
-      { name: 'Logistics', href: '/exhibitors/logistics' }
+      { name: "IPAC'27 Exhibitors", href: '/exhibitors/exhibitor_list' }
     ]
   },
   {

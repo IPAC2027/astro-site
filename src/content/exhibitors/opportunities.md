@@ -28,17 +28,17 @@ Build relationships through dedicated networking events, coffee breaks, and the 
 
 ## Exhibition Packages
 
-We offer flexible exhibition packages to meet various needs and budgets. Detailed pricing and package information will be available soon.
+We offer flexible exhibition packages to meet various needs and budgets. 
 
 :::grid{columns=3}
-### Standard Booth
-Basic exhibition space with standard amenities
+### Golden Exhibitor
+Spacious exhibition space with standard amenities
 
-### Premium Booth
+### Platinum Exhibitor
 Enhanced space with additional features
 
-### Custom Solutions
-Tailored packages for specific needs
+### Diamond Exhibitor
+Top packages with premium locations
 :::
 
 ## Get Started
