@@ -13,5 +13,5 @@ Registration for IPAC'27 will open in early 2027. Please check back for updates 
 
 ## Registration Information
 
-Registration for IPAC'27 includes access to all scientific sessions, coffee breaks, lunches, the welcome reception, and conference materials.
+Registration for IPAC'27 includes access to all scientific sessions, coffee breaks, the welcome reception, conference banquet, and conference materials.
 
