@@ -183,7 +183,6 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * Geiger, Kristy (Eventive Thinking), Professional Conference Organizer
 * Hulbert, Casey (MSU)
 * Kanemura, Takuji (MSU)
-* Kulmatycski, Kyle (BNL)
 * Maruta, Tomofumi (MSU)
 * Miller, Samuel (MSU)
 * Pease, Katie (MSU), Conference Secretary
