@@ -169,6 +169,52 @@ function parseMarkdownToBlocks(content: string, config: MarkdownParseConfig = DE
             multiColumn: isMultiColumn
           });
           i = nextIndex - 1; // -1 because the main loop will increment
+        } else if (line.startsWith('|')) {
+          // Handle markdown tables - collect consecutive | lines
+          const tableLines: string[] = [line];
+          let nextIndex = i + 1;
+          while (nextIndex < lines.length) {
+            const nextLine = lines[nextIndex].trim();
+            if (nextLine.startsWith('|')) {
+              tableLines.push(nextLine);
+              nextIndex++;
+            } else if (nextLine === '') {
+              nextIndex++;
+            } else {
+              break;
+            }
+          }
+
+          const parseRow = (row: string): string[] =>
+            row.split('|').slice(1, -1).map(cell => cell.trim());
+
+          const parseAlignment = (cell: string): 'left' | 'right' | 'center' | 'none' => {
+            const c = cell.trim();
+            if (c.startsWith(':') && c.endsWith(':')) return 'center';
+            if (c.endsWith(':')) return 'right';
+            if (c.startsWith(':')) return 'left';
+            return 'none';
+          };
+
+          const isSeparator = (row: string): boolean => /^\|[-:\s|]+\|$/.test(row);
+
+          if (tableLines.length >= 2) {
+            const headers = parseRow(tableLines[0]);
+            const sepIndex = tableLines.findIndex((r, idx) => idx > 0 && isSeparator(r));
+            const alignments = sepIndex >= 0
+              ? parseRow(tableLines[sepIndex]).map(parseAlignment)
+              : headers.map(() => 'none' as const);
+            const dataRows = tableLines
+              .filter((_, idx) => idx !== 0 && idx !== sepIndex)
+              .map(parseRow);
+
+            blocks.push({
+              type: 'table',
+              content: { headers, rows: dataRows, alignments }
+            });
+          }
+
+          i = nextIndex - 1;
         } else {
           // Regular text
           blocks.push({ type: 'text', content: line });

@@ -20,3 +20,11 @@ The Facility for Rare Isotope Beams (FRIB) is a scientific user facility for nuc
 - **World-class research**: Supporting nuclear science discoveries
 
 
+## Tour Registration
+
+* Participants must register for the tour through **both** the [Indico registration site](/registration/conference-registration) and the following payment site.
+* Due to capacity limitations, only 250 places are available.
+* A $75 fee will be charged for round-trip bus transportation to the FRIB facility.
+* The bus will depart from and return to the conference venue.
+
+

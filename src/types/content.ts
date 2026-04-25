@@ -19,7 +19,8 @@ export type ContentBlockType =
   | 'button' 
   | 'status' 
   | 'collapsible'
-  | 'pdfpreview';
+  | 'pdfpreview'
+  | 'table';
 
 /**
  * Status options for status blocks
@@ -108,6 +109,28 @@ export interface CardContentBlock extends BaseContentBlock {
 }
 
 /**
+ * Column alignment options for tables
+ */
+export type TableAlignment = 'left' | 'right' | 'center' | 'none';
+
+/**
+ * Data structure for table content
+ */
+export interface TableContent {
+  headers: string[];
+  rows: string[][];
+  alignments: TableAlignment[];
+}
+
+/**
+ * Content block for tables
+ */
+export interface TableContentBlock extends BaseContentBlock {
+  type: 'table';
+  content: TableContent;
+}
+
+/**
  * Content block for PDF preview with download
  */
 export interface PdfPreviewContentBlock extends BaseContentBlock {
@@ -130,7 +153,8 @@ export type ContentBlock =
   | ButtonContentBlock
   | StatusContentBlock
   | CardContentBlock
-  | PdfPreviewContentBlock;
+  | PdfPreviewContentBlock
+  | TableContentBlock;
 
 /**
  * Configuration for grid layouts

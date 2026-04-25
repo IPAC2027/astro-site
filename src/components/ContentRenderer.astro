@@ -322,6 +322,43 @@ const processMarkdown = (content: string): string => {
       }
       return null;
     
+    case 'table':
+      if (typeof block.content === 'object' && 'headers' in block.content) {
+        const { headers, rows, alignments } = block.content;
+        const alignClass = (a: string) =>
+          a === 'right' ? 'text-right' : a === 'center' ? 'text-center' : 'text-left';
+        return (
+          <div class="overflow-x-auto my-8 inline-block max-w-full rounded-xl shadow-sm border border-primary-200 dark:border-primary-700">
+            <table class="w-auto divide-y divide-primary-200 dark:divide-primary-700">
+              <thead>
+                <tr class="bg-gradient-to-r from-primary-700 to-primary-800 dark:from-primary-800 dark:to-primary-900">
+                  {headers.map((h: string, ci: number) => (
+                    <th
+                      scope="col"
+                      class={`px-6 py-4 text-base font-semibold text-white tracking-wide ${alignClass(alignments[ci] ?? 'none')} first:rounded-tl-xl last:rounded-tr-xl`}
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-primary-100 dark:divide-primary-700 bg-white dark:bg-primary-800">
+                {rows.map((row: string[], ri: number) => (
+                  <tr class={ri % 2 === 0 ? 'bg-white dark:bg-primary-800' : 'bg-primary-50 dark:bg-primary-800/60'}>
+                    {row.map((cell: string, ci: number) => (
+                      <td class={`px-6 py-4 text-base text-primary-800 dark:text-primary-200 ${alignClass(alignments[ci] ?? 'none')} ${ci === 0 ? 'font-medium text-primary-900 dark:text-primary-100' : ''}`}>
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
+      return null;
+
     case 'pdfpreview':
       return (
         <div class="my-8">
