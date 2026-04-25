@@ -360,7 +360,7 @@ function parseGridDirective(content: string, props: Record<string, string>): Con
       };
     }
     
-    const items: Array<{ title: string; content: string; icon?: string }> = [];
+    const items: Array<{ title: string; content: string; icon?: string; styledIcon?: boolean; width?: string }> = [];
     
     // Split content by lines and parse each card
     const lines = content.split('\n');
