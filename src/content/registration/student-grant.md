@@ -9,7 +9,7 @@ bannerBackground: "/images/banners/Registration/student_grant.jpg"
 Student grant applications will open along with the abstract submission, with the same submission deadline. 
 :::
 
-## Student Grant information
+## Student Grant Instruction
 
 - Before applying for a student grant, the student must have submitted **at least one abstract** and obtained **a contribution ID**.  There is no need to wait for the abstract to be accepted, as the contribution ID is assigned immediately after submission.
 
