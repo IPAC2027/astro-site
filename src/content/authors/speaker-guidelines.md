@@ -8,8 +8,8 @@ bannerText: "Speaker Guidelines"
 * Slides should use the 16:9 aspect ratio.
 * Presentations must be uploaded to Indico at least 8 hours before their scheduled time to allow verification and transfer to the conference A/V file server system.
 * There will be no provision for authors to use their personal computers under any circumstances.
-* Each invited Oral will take 25 mins + 5 mins for Q&A
-* Each contributed Oral will take 15 mins + 5 mins for Q&A
+* Each invited Oral will take 25 + 5 (Q&A) minutes.
+* Each contributed Oral will take 15 + 5 (Q&A) minutes.
 
 
 After the presentations are uploaded to the conference server, they can be checked on the conference computers provided in the Speaker Ready Room.
@@ -34,7 +34,7 @@ In PDF, please ensure that all fonts are embedded. No external resources (like l
 
 <img src="/images/authors/slide_submit.png" alt="edit and submit slides" width="800" style="display: block; margin: 0 auto;">
 
-## Speaker Ready room
+## Speaker Ready Room
 
 :::grid{columns=2}
 :::card{icon="📍" title="Location"}

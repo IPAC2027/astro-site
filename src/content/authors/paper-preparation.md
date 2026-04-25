@@ -1,18 +1,18 @@
 ---
-title: "Paper Preparation"
+title: "Paper Preparation and Submission"
 description: "Guidelines for preparing papers for IPAC'27 proceedings"
-bannerText: "Paper Preparation"
+bannerText: "Paper Preparation and Submission"
 ---
 
 
 
 :::highlight
-Paper submission will open on May, 2027, and will close on May 20, 2027.  Prepare the paper in $\LaTeX$ is strongly preferred.
+Paper submission will open in March, 2027, and will close on May 20, 2027. 
 :::
 
 ## Jacow Templates
 
-Each submitting author is asked to submit a paper following the paper preparation guidelines. Use of the [official JACoW templates](https://www.jacow.org/Authors/HomePage) is mandatory. Please Always download the latest version of the template ( $\LaTeX$, Word or OpenDocument) before starting to write a paper, even if you are an experienced author and/or have submitted a paper in a previous JACoW conference.  Please **do not reuse** the source files from previous papers to avoid use of possibly old template parts.
+Each submitting author is asked to submit a paper following the paper preparation guidelines. Use of the [official JACoW templates](https://www.jacow.org/Authors/HomePage) is mandatory. Please Always download the latest version of the template ( $\LaTeX$, Word or OpenDocument) before starting to write a paper, even if you are an experienced author and/or have submitted a paper in a previous JACoW conference.  Please **do not reuse** the source files from previous papers to avoid use of possibly old template parts. Prepare the paper in $\LaTeX$ is strongly preferred.
 
 :::grid{columns=3}
 :::card{icon="TeX" styled-icon="true" title="$\LaTeX$ Template"}
@@ -37,29 +37,13 @@ Page limits will be strictly respected, all papers exceeding their limit will be
 :::
 
 ## Editing Tools and Recommendation
-Authors are encouraged to use these tools before submission:
-* [CAT Scan Editor](https://scan.jacow.org/): A formatting validator for both Word and LaTeX submissions  
-* [Reference Search Tool](https://www.jacow.org/Authors/RefSearchToolHelp): Helps generate correctly formatted JACoW citations  
-* [Common Author Oversights](https://www.jacow.org/Editors/CommonAuthorOversights): Tips on avoiding typical formatting and content errors
-* [Formatting Citations](https://www.jacow.org/Authors/FormattingCitations): Guide to properly cite references
-* [Electronic Processing Overview](https://www.jacow.org/Authors/HomePage): Summary of the Important Information on Paper Preparation 
-
-:::grid{columns=2}
-:::card{icon="" title="Cat Scan Editor" width="1/2"}
-Authors, especially if preparing submissions using MS Word, are encouraged to use the [JACoW’s Cat Scan Editor](https://scan.jacow.org/) to help catch and correct formatting errors in their papers prior to submission. Details and a usage guide for the Cat Scan tool are [here](https://www.jacow.org/Authors/CSEHelp).
+Detailed instructions on how to write a good JACoW paper are included in the [JACoW LaTeX style guide](https://github.com/JACoW-org/JACoW_Templates/raw/master/LaTeX/jacow_latex_style_guide.pdf) and the [JACoW MSWord style guide](https://github.com/JACoW-org/JACoW_Templates/raw/master/MSWord/JACoW_MSWord_Style_Guide.pdf). We also suggest reading the following pages and using the linked tools to ensure the acceptable quality of your papers:
+- [JACoW Author guidance](https://www.jacow.org/Authors/HomePage)
+- [Reference Search Tool](https://refs.jacow.org/)
+- [CAT Scan Editor – docx & LaTeX validator](https://scan.jacow.org/)
 
 
-<div style="text-align: center;">
-<img src="https://scan.jacow.org/cat.png" alt="Cat Scan Editor" width="300" style="display: block; margin: 0 auto;">
-</div>
-:::
-:::card{icon="" title="Reference Search Tool" width="1/2"}
-<img src="/images/authors/ref_search.png" alt="Reference Search" width="400">
 
-The [JACoW Reference Search Tool](https://refs.jacow.org/) provides authors with correct and complete citations for JACoW publications, formatted for easy pasting into either LaTeX or MS Word documents. A usage guide for the Reference Search Tool is [here](https://www.jacow.org/Authors/RefSearchToolHelp).
-:::
-
-:::
 
 
 ## References

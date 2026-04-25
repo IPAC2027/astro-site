@@ -7,6 +7,6 @@ bannerText: "Message from PRAB"
 # Message from Physical Review Accelerators and Beams
 
 :::highlight
-Physical Review Accelerators and Beams (PRAB) is the premier open-access journal for accelerator science.
+Physical Review Accelerators and Beams (PRAB) is a premier open-access journal for accelerator science.
 :::
 
