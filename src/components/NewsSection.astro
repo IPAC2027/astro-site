@@ -22,9 +22,9 @@ const { title, subtitle, articles } = Astro.props;
       <p class="text-lg text-primary-600 dark:text-primary-300">{subtitle}</p>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-primary-300 dark:scrollbar-thumb-primary-600 scrollbar-track-transparent">
       {articles.map((article: NewsArticle) => (
-        <article class="bg-white/50 dark:bg-primary-800/50 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md border border-primary-100/20 dark:border-primary-700/20 transform hover:scale-[1.02] transition-all duration-300">
+        <article class="flex-none w-96 snap-start bg-white/50 dark:bg-primary-800/50 backdrop-blur-sm rounded-lg shadow-sm hover:shadow-md border border-primary-100/20 dark:border-primary-700/20 transform hover:scale-[1.02] transition-all duration-300">
           <div class="p-6">
             <div class="text-sm text-accent-600 dark:text-accent-400 font-semibold mb-2">{article.date}</div>
             <h3 class="text-xl font-semibold text-primary-900 dark:text-primary-100 mb-3">{article.title}</h3>

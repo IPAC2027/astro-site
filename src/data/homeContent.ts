@@ -73,7 +73,7 @@ export const homeContent = {
   about: {
     title: "Welcome to IPAC' 27",
     description: [
-      "The 18th International Particle Accelerator Conference (IPAC' 27) will be held in Detroit, Michigan at Huntington Place. The IPAC'27 conference is sponsored by , financially and technically, by the IEEE Nuclear Plasma Science Society(NPSS) and the American Physical Society (APS) Division of Physics of Beams (DPB) and hosted by Facility for Rare Isotope Beams, Michigan State University.",
+      "The 18th International Particle Accelerator Conference (IPAC' 27) will be held in Detroit, Michigan at Huntington Place. The IPAC'27 conference is sponsored by , financially and technically, by the IEEE Nuclear and Plasma Science Society (NPSS) and the American Physical Society (APS) Division of Physics of Beams (DPB) and hosted by the Facility for Rare Isotope Beams, Michigan State University.",
     ],
     learnMoreLink: {
       text: "Learn more about IPAC27",
@@ -187,7 +187,7 @@ export const homeContent = {
     sponsorsTitle: "IPAC' 27 Exhibitors",
     sponsors: exhibitors,
     sponsorCta: {
-      title: "Become a Exhibitor",
+      title: "Become an Exhibitor",
       description: "Join us to expand business opportunities and support the future of particle accelerator science",
       buttons: {
         primary: {
@@ -202,27 +202,28 @@ export const homeContent = {
     }
   },  
   news: {
-    title: "Latest Updates",
-    subtitle: "Stay informed about IPAC27 developments",
+    title: "Latest Updates and Announcements",
+    subtitle: "Stay informed about IPAC27 Announcements",
     articles: [
       {
-        date: "January 15, 2025",
-        title: "IPAC27 Website Launched",
+        date: "May 1, 2026",
+        title: "Exhibitor Early Bird Offer",
+        excerpt: "Take advantage of our 5% off early bird pricing for exhibitor booths at IPAC27 before Oct. 1, 2026. ",
+        link: "/exhibitors/opportunities"
+      },
+      {
+        date: "May 1, 2026",
+        title: "Exhibitor Registration Opens",
+        excerpt: "Exhibitor registration for IPAC27 is now open! Secure your spot to showcase your products and services to global accelerator experts.",
+        link: "/exhibitors/opportunities"
+      },
+      {
+        date: "Apr.29, 2026",
+        title: "IPAC27 Website Launch",
         excerpt: "We're excited to announce the launch of the official IPAC27 website. Stay tuned for important updates about the conference.",
         link: "#"
       },
-      {
-        date: "Coming Soon",
-        title: "Call for Abstracts",
-        excerpt: "Details about abstract submission guidelines and deadlines will be announced in the coming months.",
-        link: "#"
-      },
-      {
-        date: "Coming Soon",
-        title: "Venue Announcement",
-        excerpt: "The host city and venue for IPAC27 will be announced soon. Subscribe to our updates to be the first to know.",
-        link: "#"
-      }
+      
     ]
   }
 };

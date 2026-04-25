@@ -186,6 +186,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 * Maruta, Tomofumi (MSU)
 * Miller, Samuel (MSU)
 * Pease, Katie (MSU), Conference Secretary
+* Parsons, Alex (MSU)
 * Patterer, Robert (MSU), Treasurer
 * Plastun, Alexander (MSU)
 * Rao, Xing (MSU)
