@@ -8,9 +8,6 @@ bannerText: "Frequently Asked Questions"
 
 
 
-:::collapsible{title="What is IPAC'27?"}
-The 18th International Particle Accelerator Conference (IPAC'27) is the premier annual forum for the global particle accelerator community. It brings together scientists, engineers, industry professionals, and students to present and discuss the latest advances in accelerator physics, technology, applications, operations, and related innovation.
-:::
 
 :::collapsible{title="When and where is IPAC'27 taking place?"}
 IPAC'27 will be hosted by the Facility for Rare Isotope Beams (FRIB) at Michigan State University and held at Huntington Place in Detroit, Michigan, USA. The conference will take place 23–28 May 2027, during Michigan's late spring season.  
@@ -68,10 +65,6 @@ Yes. Single‑day registration will be available for purchase on‑site at the r
 
 
 
-:::collapsible{title="What is the abstract submission deadline?"}
-The abstract submission deadline is [Date] 2027. Late submissions are generally not accepted; in exceptional cases limited adjustments may be considered. Please plan to submit early to avoid congestion close to the deadline.
-:::
-
 :::collapsible{title="How many abstracts can I submit?"}
 Each registered participant may be the presenting author on up to 4 accepted contributions (oral and/or poster combined). Additional accepted contributions beyond this limit may incur an extra handling fee of $250 each. Co‑authorship is unrestricted.
 :::
@@ -79,6 +72,10 @@ Each registered participant may be the presenting author on up to 4 accepted con
 
 :::collapsible{title="Will the proceedings be published?"}
 Yes. Accepted contributions with submitted manuscripts will appear in the official conference proceedings available through JACoW.org (open access). Publication requires adherence to formatting and submission deadlines.
+:::
+
+:::collapsible{title="Are the proceedings open access?"}
+Yes. IPAC proceedings are published open access via JACoW. No subscription is required for retrieval.
 :::
 
 
@@ -151,13 +148,11 @@ Yes. Speaker preview / ready‑room facilities will be available with technical 
 Dedicated session support staff will monitor each room and can assist with audiovisual, connectivity, and timing issues. Please arrive early for setup.
 :::
 
-:::collapsible{title="Are the proceedings open access?"}
-Yes. IPAC proceedings are published open access via JACoW. No subscription is required for retrieval.
-:::
 
 
 
----
+
+
 
 :::highlight
 

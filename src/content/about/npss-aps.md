@@ -6,7 +6,7 @@ bannerText: "NPSS-APS"
 
 ## NPSS-APS Partnership
 
-The IPAC’27 conference is sponsored, financially and technically, by the IEEE Nuclear Plasma Science Society(NPSS) and the American Physical Society (APS) Division of Physics of Beams (DPB) 
+The IPAC’27 conference is sponsored, financially and technically, by the IEEE Nuclear and Plasma Science Society(NPSS) and the American Physical Society (APS) Division of Physics of Beams (DPB).
 
 
 ## IEEE

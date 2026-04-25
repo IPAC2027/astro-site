@@ -1,12 +1,12 @@
 ---
-title: "Committee"
+title: "Committees"
 description: ""
-bannerText: "Committee"
+bannerText: "IPAC'27 Committees"
 ---
 
 
 
-# IPAC'27 Committee
+
 
 The success of IPAC'27 depends on the dedicated work of our organizing committee, composed of experts from around the world.
 
@@ -177,7 +177,7 @@ The success of IPAC'27 depends on the dedicated work of our organizing committee
 :::
 :::
 
-:::collapsible{title="Local Organising Committee Members", open="true"}
+:::collapsible{title="Local Organizing Committee Members", open="true"}
 * **Hao, Yue (MSU), LOC Chair**
 * Anisimov, Petr (LANL), Scientific Secretariat
 * Geiger, Kristy (Eventive Thinking), Professional Conference Organizer
