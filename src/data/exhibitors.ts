@@ -1,11 +1,3 @@
-export interface Sponsor {
-  name: string;
-  logo: string;
-  link: string;
-  tier: 'platinum' | 'gold' | 'silver' | 'bronze';
-  description?: string;
-}
-
 export interface Exhibitor {
   id: string;
   name: string;
@@ -21,34 +13,6 @@ export interface Exhibitor {
   booth?: string;
   featured?: boolean;
 }
-
-// Sponsors organized by tier
-export const sponsors: Sponsor[] = [
-  // Platinum Sponsors
-  {
-    name: "IEEE NPSS",
-    logo: "/logos/IEEE_NPSS_Logo.png",
-    link: "https://ieee-npss.org/",
-    tier: "platinum",
-    description: "IEEE Nuclear & Plasma Sciences Society - Leading professional organization for accelerator science"
-  },
-  {
-    name: "American Physical Society",
-    logo: "/logos/APS_logo.svg",
-    link: "https://www.aps.org/",
-    tier: "platinum",
-    description: "American Physical Society - Advancing and diffusing the knowledge of physics"
-  },
-  
-  // Gold Sponsors
-  {
-    name: "FRIB",
-    logo: "/FRIB_logo.png",
-    link: "https://frib.msu.edu/",
-    tier: "gold",
-    description: "Facility for Rare Isotope Beams - User facility for nuclear science"
-  }
-];
 
 // Exhibitors and Industry Partners
 export const exhibitors: Exhibitor[] = [
@@ -148,10 +112,6 @@ export const exhibitors: Exhibitor[] = [
 ];
 
 // Helper functions
-export const getSponsorsByTier = (tier: Sponsor['tier']) => {
-  return sponsors.filter(sponsor => sponsor.tier === tier);
-};
-
 export const getExhibitorsByTier = (tier: Exhibitor['tier']) => {
   return exhibitors.filter(exhibitor => exhibitor.tier === tier);
 };
@@ -166,44 +126,4 @@ export const getFeaturedExhibitors = () => {
 
 export const getExhibitorCategories = () => {
   return [...new Set(exhibitors.map(exhibitor => exhibitor.category))];
-};
-
-// Sponsor tiers information
-export const sponsorTiers = {
-  platinum: {
-    name: "Platinum",
-    color: "#E5E7EB",
-    benefits: [
-      "Premium booth location",
-      "Logo on all conference materials",
-      "Speaking opportunity",
-      "VIP reception access"
-    ]
-  },
-  gold: {
-    name: "Gold",
-    color: "#F59E0B",
-    benefits: [
-      "Exhibition booth",
-      "Logo on website and program",
-      "Networking reception access"
-    ]
-  },
-  silver: {
-    name: "Silver",
-    color: "#6B7280",
-    benefits: [
-      "Exhibition space",
-      "Logo on website",
-      "Conference proceedings"
-    ]
-  },
-  bronze: {
-    name: "Bronze",
-    color: "#CD7C2F",
-    benefits: [
-      "Listing on website",
-      "Conference proceedings"
-    ]
-  }
 };
