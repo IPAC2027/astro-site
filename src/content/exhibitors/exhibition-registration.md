@@ -26,7 +26,7 @@ location.
 ## Registration Procedure
 
 - Exhibition registration will be available through the registration site below. Please select “Exhibitor Registration” and follow the subsequent instructions.
-:::button{url="https://web.cvent.com" text="Register for Exhibition Now"}
+:::button{url="https://cvent.me/ymovBo" text="Register for Exhibition Now"}
 :::
 - You will be able to choose an exhibition tier, with additional charges applied for premium booth locations.
 
