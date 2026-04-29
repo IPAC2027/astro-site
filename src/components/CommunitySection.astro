@@ -163,13 +163,12 @@ const getHoverScale = (tier: string) => {
       <!-- Sponsor Logos Scrolling Row -->
       <div class="relative overflow-hidden py-4">
         <div class="exhibitor-scroll flex gap-8 items-center" id="exhibitor-scroll">
-          {randomizedSponsors.map((exhibitor: Exhibitor, index: number) => (
+          {randomizedSponsors.map((exhibitor: Exhibitor) => (
             <a 
               href={exhibitor.website} 
               target="_blank" 
               rel="noopener noreferrer"
-              class={`exhibitor-item group block p-4 rounded-lg transition-all duration-300 transform ${getHoverScale(exhibitor.tier)} flex-shrink-0`}
-              key={`exhibitor-${index}`}>
+              class={`exhibitor-item group block p-4 rounded-lg transition-all duration-300 transform ${getHoverScale(exhibitor.tier)} flex-shrink-0`}>
               <img 
                 src={exhibitor.logo} 
                 alt={`${exhibitor.name} logo`}
@@ -329,6 +328,7 @@ const getHoverScale = (tier: string) => {
     });
     
     function autoScroll() {
+      if (!scrollContainer) return;
       if (!isPaused) {
         scrollPosition += scrollSpeed;
         
