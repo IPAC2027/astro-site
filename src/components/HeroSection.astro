@@ -90,9 +90,6 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
     </div>
   </div>
   
-  <!-- Decorative background elements -->
-  <div class="absolute top-20 left-10 w-72 h-72 bg-accent-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-  <div class="absolute bottom-20 right-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
 </section>
 
 <style>
@@ -223,24 +220,6 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
     }
   }
   
-  /* Enhanced depth with subtle parallax */
-  .cinematic-bg-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-    animation: lightPulse 25s ease-in-out infinite;
-  }
-  
-  @keyframes lightPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
-  }
-  
   /* Responsive padding adjustments */
   @media (max-height: 500px) {
     #hero-section > .relative {
@@ -265,17 +244,10 @@ const { title, subtitle, backgroundImage, conferenceDetails, callToAction } = As
   
   /* Accessibility: Reduce motion for users who prefer it */
   @media (prefers-reduced-motion: reduce) {
-    .cinematic-bg-image,
-    .cinematic-bg-image::after {
-      animation: none;
-    }
     .cinematic-bg-image {
+      animation: none;
       transform: translate(-50%, -50%) scale(1.2);
     }
   }
   
-  /* Animation delay utility for background elements */
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
 </style>
