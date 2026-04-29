@@ -1,3 +1,2 @@
-# Disallow all search engines from indexing this development site
 User-agent: *
-Disallow: /
+Allow: /
