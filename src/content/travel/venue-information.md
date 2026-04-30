@@ -22,7 +22,7 @@ Explore the venue in [360° panoramic virtual tours](https://www.huntingtonplace
 ## IPAC'27 Conference Floor Plan
 
 <!-- Replace the image path below once the floor plan image is available -->
-<div style="width: 100%; aspect-ratio: 16/9; overflow-y: auto; overflow-x: hidden; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
+<div id="floorplan-container" style="width: 100%; aspect-ratio: 16/9; overflow-y: auto; overflow-x: hidden; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
   <img src="/images/travel/venue_floorplan.jpg" alt="IPAC'27 Floor Plan" style="width: 100%; height: auto; display: block;" />
 </div>
 

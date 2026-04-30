@@ -37,3 +37,16 @@ const headings = pageContent?.blocks
     </div>
   )}
 </ContentLayout>
+
+<script>
+  const container = document.getElementById('floorplan-container');
+  if (container) {
+    const img = container.querySelector('img');
+    const scrollToBottom = () => { container.scrollTop = container.scrollHeight; };
+    if (img && img.complete) {
+      scrollToBottom();
+    } else if (img) {
+      img.addEventListener('load', scrollToBottom);
+    }
+  }
+</script>
