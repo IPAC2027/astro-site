@@ -48,7 +48,7 @@ Top packages with premium locations
 
 Download the full exhibitor prospectus to learn about all packages, floor plans, and deadlines.
 
-:::pdfpreview{url="/images/exhibitor/ExhibitorProspectusV3.pdf" preview="/images/exhibitor/ExhibitorProspectusV3_preview-1.png" title="IPAC'27 Exhibitor Prospectus V3"}
+:::pdfpreview{url="/images/exhibitor/ExhibitorProspectusV5.pdf" preview="/images/exhibitor/ExhibitorProspectus_preview.png" title="IPAC'27 Exhibitor Prospectus"}
 :::
 
 ## Support
