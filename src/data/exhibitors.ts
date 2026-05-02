@@ -90,7 +90,7 @@ export const exhibitors: Exhibitor[] = [
   {
     id: "gold-003",
     name: "Dean Technology",
-    logo: "/images/logos/exhibitors/gold/Dean-Logo.svg",
+    logo: "/images/logos/exhibitors/gold/Dean-Logo.png",
     website: "https://www.deantechnology.com/",
     description: "Gold tier exhibitor - placeholder",
     category: "Industry Partner",

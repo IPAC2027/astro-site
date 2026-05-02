@@ -53,8 +53,8 @@ const createWeightedExhibitorList = (exhibitors: Exhibitor[]) => {
     gold: 1        // Lowest probability
   };
   
-  // Dynamic count based on number of exhibitors (5x for smooth scrolling)
-  const count = exhibitors.length * 5;
+  // Dynamic count based on number of exhibitors (5x), with a minimum buffer of 30 logos
+  const count = Math.max(30, exhibitors.length * 5);
   const weightedList: Exhibitor[] = [];
   
   for (let i = 0; i < count; i++) {
@@ -78,21 +78,26 @@ const createWeightedExhibitorList = (exhibitors: Exhibitor[]) => {
 const randomizedSponsors = createWeightedExhibitorList(sponsors);
 
 const getSponsorSize = (tier: string) => {
-  // All tiers have the same base size; distinction shows only on hover
-  return 'h-20 md:h-24';
+  // Base size is scaled per tier with exact ratios: diamond:platinum:gold = 1:0.9:0.8
+  return 'tier-logo';
 };
 
-const getHoverScale = (tier: string) => {
+const getTierScale = (tier: string) => {
   switch (tier) {
     case 'diamond':
-      return 'hover:scale-[1.15]'; // Diamond - 15% enlargement
+      return '1';
     case 'platinum':
-      return 'hover:scale-110'; // Platinum - 10% enlargement
+      return '0.9';
     case 'gold':
-      return 'hover:scale-105'; // Gold - 5% enlargement
+      return '0.8';
     default:
-      return 'hover:scale-105';
+      return '1';
   }
+};
+
+const getHoverScale = (_tier: string) => {
+  // Keep the same hover multiplier for every tier so max size ratio stays 1:0.9:0.8.
+  return 'hover:scale-105';
 };
 ---
 
@@ -161,7 +166,7 @@ const getHoverScale = (tier: string) => {
       <h3 class="text-2xl font-semibold text-primary-900 dark:text-primary-100 mb-8">{sponsorsTitle}</h3>
       
       <!-- Sponsor Logos Scrolling Row -->
-      <div class="relative overflow-hidden py-4">
+      <div class="relative overflow-hidden py-4 bg-white/30 dark:bg-primary-800/30 rounded-lg">
         <div class="exhibitor-scroll flex gap-8 items-center" id="exhibitor-scroll">
           {randomizedSponsors.map((exhibitor: Exhibitor) => (
             <a 
@@ -172,6 +177,21 @@ const getHoverScale = (tier: string) => {
               <img 
                 src={exhibitor.logo} 
                 alt={`${exhibitor.name} logo`}
+                style={`--tier-scale: ${getTierScale(exhibitor.tier)};`}
+                class={`${getSponsorSize(exhibitor.tier)} w-auto object-contain transition-all duration-300 opacity-80 group-hover:opacity-100`}
+              />
+            </a>
+          ))}
+          {randomizedSponsors.map((exhibitor: Exhibitor) => (
+            <a 
+              href={exhibitor.website} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class={`exhibitor-item group block p-4 rounded-lg transition-all duration-300 transform ${getHoverScale(exhibitor.tier)} flex-shrink-0`}>
+              <img 
+                src={exhibitor.logo} 
+                alt={`${exhibitor.name} logo`}
+                style={`--tier-scale: ${getTierScale(exhibitor.tier)};`}
                 class={`${getSponsorSize(exhibitor.tier)} w-auto object-contain transition-all duration-300 opacity-80 group-hover:opacity-100`}
               />
             </a>
@@ -229,6 +249,16 @@ const getHoverScale = (tier: string) => {
   .community-stat:nth-child(1) { --animation-delay: 0ms; }
   .community-stat:nth-child(2) { --animation-delay: 200ms; }
   .community-stat:nth-child(3) { --animation-delay: 400ms; }
+  
+  .tier-logo {
+    height: calc(5rem * var(--tier-scale, 1));
+  }
+
+  @media (min-width: 768px) {
+    .tier-logo {
+      height: calc(6rem * var(--tier-scale, 1));
+    }
+  }
 </style>
 
 <script>
@@ -362,7 +392,7 @@ const getHoverScale = (tier: string) => {
   .exhibitor-scroll {
     will-change: transform;
   }
-  
+
   .exhibitor-item {
     min-width: 180px;
   }
