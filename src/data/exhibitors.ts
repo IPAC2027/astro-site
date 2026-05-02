@@ -66,7 +66,7 @@ export const exhibitors: Exhibitor[] = [
   
   // Gold Tier
   {
-    id: "gold-1",
+    id: "gold-001",
     name: "Dimtel, Inc.",
     logo: "/images/logos/exhibitors/gold/dimtel.jpg",
     website: "https://www.dimtel.com/",
@@ -77,27 +77,28 @@ export const exhibitors: Exhibitor[] = [
     featured: true
   },
   {
-    id: "gold-2",
-    name: "Your Logo Here",
-    logo: "/images/logos/exhibitors/gold/sample_4.png",
-    website: "#",
+    id: "gold-002",
+    name: "Tesla Engineering LTD.",
+    logo: "/images/logos/exhibitors/gold/Tesla_Engineering_Ltd.png",
+    website: "http://www.tesla.co.uk",
     description: "Gold tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "gold",
-    booth: "TBD",
+    booth: "C28",
     featured: true
   },
-  // {
-  //   id: "gold-3",
-  //   name: "Your Logo Here",
-  //   logo: "/images/logos/exhibitors/gold/sample_7.jpg",
-  //   website: "#",
-  //   description: "Gold tier exhibitor - placeholder",
-  //   category: "Industry Partner",
-  //   tier: "gold",
-  //   booth: "TBD",
-  //   featured: true
-  // },
+  {
+    id: "gold-003",
+    name: "Dean Technology",
+    logo: "/images/logos/exhibitors/gold/Dean-Logo.svg",
+    website: "https://www.deantechnology.com/",
+    description: "Gold tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "gold",
+    booth: "C51",
+    featured: true
+  },
+  //
   // {
   //   id: "gold-4",
   //   name: "Your Logo Here",

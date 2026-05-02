@@ -1,7 +1,7 @@
 ---
-title: "IPAC'27 Exhibitors"
-description: "Meet the exhibitors and industry partners at IPAC'27"
-bannerText: "IPAC'27 Exhibitors"
+title: "Exhibitors and Sponsors"
+description: "Meet our exhibitors and event sponsors at IPAC'27"
+bannerText: "Exhibitors and Sponsors"
 ---
 
 
