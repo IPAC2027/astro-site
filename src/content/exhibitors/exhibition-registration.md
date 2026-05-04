@@ -14,7 +14,7 @@ Complete the registration process by October 1, 2026, to receive a 5% discount.
 - All coffee breaks and poster sessions are located within the exhibition hall.
 
 <div style="text-align: center; margin: 2rem auto; max-width: 900px;">
-  <img src="/images/exhibitor/ExhibitorLayoutV1.png" alt="Exhibitor Hall Layout" style="width: 100%; height: auto; border-radius: 8px;" />
+  <img src="/images/exhibitor/ExhibitorLayoutV3.png" alt="Exhibitor Hall Layout" style="width: 100%; height: auto; border-radius: 8px;" />
 </div>
 
 :::warning

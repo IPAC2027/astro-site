@@ -32,7 +32,7 @@ All participants should have a **JACoW account** before registering. The JACoW a
 | Student Non Member | $450 | $550 |
 | Companion / Guest | $350 | $350 |
 
-The registration fee includes access to the scientific program, conference materials, welcome reception and conference banquet. 
+The registration fee for conference attendee includes access to the scientific program, exhibibtion program, conference materials, snack/coffee break, welcome reception and conference banquet.  The companion/guest fee includes all social events including the welcome reception and conference banquet.
 
 
 
