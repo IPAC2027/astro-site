@@ -78,8 +78,8 @@ export const exhibitors: Exhibitor[] = [
   },
   {
     id: "gold-002",
-    name: "Tesla Engineering LTD.",
-    logo: "/images/logos/exhibitors/gold/Tesla_Engineering_Ltd.png",
+    name: "Tesla Group",
+    logo: "/images/logos/exhibitors/gold/TESLA_logo.jpg",
     website: "http://www.tesla.co.uk",
     description: "Gold tier exhibitor - placeholder",
     category: "Industry Partner",
@@ -96,6 +96,17 @@ export const exhibitors: Exhibitor[] = [
     category: "Industry Partner",
     tier: "gold",
     booth: "C51",
+    featured: true
+  },
+  {
+    id: "gold-004",
+    name: "DANFYSIK A/S",
+    logo: "/images/logos/exhibitors/gold/Danfysik.png",
+    website: "https://www.danfysik.com/en/",
+    description: "Gold tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "gold",
+    booth: "C21",
     featured: true
   },
   //
