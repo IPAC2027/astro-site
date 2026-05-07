@@ -28,9 +28,13 @@ location.
 - Exhibition registration will be available through the registration site below. Please select “Exhibitor Registration” and follow the subsequent instructions.
 :::button{url="https://cvent.me/ymovBo" text="Register for Exhibition Now"}
 :::
-- You will be able to choose an exhibition tier, with additional charges applied for premium booth locations.
+- During registration, exhibitors may select an exhibition tier. Additional charges apply for premium booth locations.
 
-- After the registration process is completed, complimentary registration codes for exhibitor personnel will be provided, with the number of codes depending on the selected exhibitor tier. Exhibitor personnel may then use these codes to complete their registration, following regular [conference registration](/registration/conference-registration).
+- Once booth registration is completed, complimentary registration codes for exhibitor personnel will be issued. The number of codes provided depends on the selected exhibitor tier. 
+
+- Exhibitor personnel who wish to attend the scientific program should complete the regular [conference registration](/registration/conference-registration), and use their complimentary registration code on the payment site.
+
+- Exhibitor personnel who plan to attend only the exhibition program may complete registration directly through the payment site using their complimentary registration code.
 
 
 

@@ -6,8 +6,10 @@ bannerBackground: "/images/banners/Registration/student_grant.jpg"
 
 
 :::warning
-Student grant applications will open along with the abstract submission, with the same submission deadline. 
+Student grant applications will open along with the abstract submission.  In order to be considered, , your full application material must be received before the abstract submission deadline. 
 :::
+
+IPAC'27 is happy to provide the limited number of supports for graduate and undergraduate students to attend the conference.  The supported students shall agree to attend the entire conference, submit their paper to the conference proceedings, participate in the Student Poster Session, and support the conference sessions.
 
 ## Student Grant Instruction
 

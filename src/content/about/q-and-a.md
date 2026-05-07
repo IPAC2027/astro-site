@@ -27,11 +27,11 @@ We anticipate approximately 1,000–1,300 participants from leading research lab
 
 
 :::collapsible{title="How do I register for IPAC'27?"}
-Online registration will open in December 2026 via the official conference website. Early-bird rates will be available for a limited period—early booking is encouraged.
+Online registration will open in October 2026 via the official conference website. Early-bird rates will be available for a limited period—early booking is encouraged.
 :::
 
 :::collapsible{title="What is the registration fee?"}
-Registration fees will vary by participant category (APS/IEEE member, student, life-time member, etc) and by registration phase (early, standard, late/on‑site). Detailed fee tables will be published in late 2026.
+Registration fees will vary by participant category (APS/IEEE member, student, life-time member, etc) and by registration phase (early, standard, late/on‑site). Detailed fee tables can be found in the [registration page](/registration/conference-registration).
 :::
 
 :::collapsible{title="What is included in a full registration?"}
@@ -39,20 +39,11 @@ Full registration includes access to all scientific and industrial sessions, pos
 :::
 
 :::collapsible{title="Is financial assistance available?"}
-Yes. Limited financial support may be available for students and early‑career researchers. Application instructions (including eligibility criteria and required documentation) will be published when registration opens. Applications must be submitted by [Date].
+Yes. Limited financial support may be available for students. Application instructions (including eligibility criteria and required documentation) can be found in [student grant](/registration/student-grant) page. 
 :::
 
 :::collapsible{title="Can I get a refund if I cancel my registration?"}
-Provisional refund framework (subject to final confirmation):
-
-Standard (no visa issue):
-- Before [Date]: 100% refund
-- Before [Date]: 50% refund  
-- After [Date]: No refund
-
-Visa‑related cases will be handeled case-by-case :
-
-Credit card processing surcharges (≈3%) and bank charges are non‑refundable.
+Please check the [registration page](/registration/conference-registration) for details
 :::
 
 :::collapsible{title="Can I register for only part of the conference?"}

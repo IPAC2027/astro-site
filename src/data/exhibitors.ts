@@ -89,7 +89,7 @@ export const exhibitors: Exhibitor[] = [
   },
   {
     id: "gold-003",
-    name: "Dean Technology",
+    name: "Dean Technology, Inc.",
     logo: "/images/logos/exhibitors/gold/Dean-Logo.png",
     website: "https://www.deantechnology.com/",
     description: "Gold tier exhibitor - placeholder",
@@ -106,21 +106,9 @@ export const exhibitors: Exhibitor[] = [
     description: "Gold tier exhibitor - placeholder",
     category: "Industry Partner",
     tier: "gold",
-    booth: "C21",
+    booth: "C27",
     featured: true
   },
-  //
-  // {
-  //   id: "gold-4",
-  //   name: "Your Logo Here",
-  //   logo: "/images/logos/exhibitors/gold/sample_8.jpg",
-  //   website: "http://frib.msu.edu/",
-  //   description: "Gold tier exhibitor - placeholder",
-  //   category: "Industry Partner",
-  //   tier: "gold",
-  //   booth: "TBD",
-  //   featured: true
-  // }
 ];
 
 // Helper functions
