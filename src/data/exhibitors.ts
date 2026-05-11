@@ -43,13 +43,13 @@ export const exhibitors: Exhibitor[] = [
   // Platinum Tier
   {
     id: "platinum-1",
-    name: "Your Logo Here",
-    logo: "/images/logos/exhibitors/platinum/sample_2.jpg",
-    website: "#",
-    description: "Platinum tier exhibitor - placeholder",
+    name: "INSTRUMENTATION TECHNOLOGIES",
+    logo: "/images/logos/exhibitors/platinum/Instrumentation_tech.png",
+    website: "https://www.i-tech.si/",
+    description: "Platinum tier exhibitor",
     category: "Industry Partner",
     tier: "platinum",
-    booth: "TBD",
+    booth: "B20",
     featured: true
   },
   // {
@@ -107,6 +107,28 @@ export const exhibitors: Exhibitor[] = [
     category: "Industry Partner",
     tier: "gold",
     booth: "C27",
+    featured: true
+  },
+   {
+    id: "gold-005",
+    name: "Diversified Technologies, Inc.",
+    logo: "/images/logos/exhibitors/gold/Diversified_tech.png",
+    website: "https://divtecs.com/",
+    description: "Gold tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "gold",
+    booth: "C44",
+    featured: true
+  },
+  {
+    id: "gold-006",
+    name: "Canon Electron Tubes & Devices",
+    logo: "/images/logos/exhibitors/gold/canon.png",
+    website: "https://etd.canon/en/index.html",
+    description: "Gold tier exhibitor - placeholder",
+    category: "Industry Partner",
+    tier: "gold",
+    booth: "C6",
     featured: true
   },
 ];
